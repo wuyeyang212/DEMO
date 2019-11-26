@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <!-- import CSS -->
+    <!-- <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css"> -->
+    <link rel="stylesheet" href="css/vue.css">
+    <!-- 弹窗CSS -->
+    <link rel="stylesheet" href="css/popup.css">
+
+</head>
+
+<body>
+    <div id="app">
+        <!-- <el-button type="text" @click="dialogTableVisible = true">打开嵌套表格的 Dialog</el-button>
+        
+
+        <el-dialog title="病案首页智能质控" :visible.sync="dialogTableVisible">
+            <el-table :data="gridData" height="570px">
+              <el-table-column property="date" label="日期" width="150"></el-table-column>
+              <el-table-column property="name" label="姓名" width="200"></el-table-column>
+              <el-table-column property="address" label="地址"></el-table-column>
+            </el-table>
+        </el-dialog> -->
+
+
+        <div class="container">
+            
+            <el-row class="logo">
+                <el-col :span="24">
+                    <img class="img" src="./image/xiugai.png" alt="">
+                    <span class="title">病案首页智能质控</span>
+                </el-col>
+            </el-row>
+
+
+            <el-row class="information">
+                <el-col :span="7">
+                    <div>
+                        <span class="left" style="letter-spacing:3px;">病案号</span>
+                        <span class="left">：</span>
+                        <span class="right">外2019070500032643</span>
+                    </div>
+                    <div>
+                        <span class="left" style="letter-spacing:12px;">姓名</span>
+                        <span class="left">：</span>
+                        <span class="right">吴竞波</span>
+                    </div>
+                    <div>
+                        <span class="left">参保类型：</span>
+                        <span class="right">职工医保</span>
+                    </div>
+                </el-col>
+                <el-col :span="7">
+                    <div>
+                        <span class="left">入组情况：</span>
+                        <span class="right">外2019070500032643</span>
+                    </div>
+                    <div>
+                        <span class="left">主要诊断：</span>
+                        <span class="right">K25.9</span>
+                    </div>
+                    <div>
+                        <span class="left">主要操作：</span>
+                        <span class="right">42.41(部分食管切除术)</span>
+                    </div>
+                </el-col>
+                <el-col :span="7">
+                    <div>
+                        <span class="left" style="letter-spacing:3.5px;">DRG支付标准</span>
+                        <span class="left">：</span>
+                        <span class="right">3000元</span>
+                    </div>
+                    <div>
+                        <span class="left">DRG基金支付标准：</span>
+                        <span class="right">2300元</span>
+                    </div>
+                    <div>
+                        <span class="left" style="letter-spacing:8px;">医疗总费用</span>
+                        <span class="left">：</span>
+                        <span class="right">5300元</span>
+                    </div>
+                </el-col>
+                <el-col :span="3" style="position:relative;">
+                    <div>
+                        <span class="left allGrade">质量评分：</span>
+                        <span class="grade">87</span>
+                        <span class="left">分</span>
+                    </div>
+                    
+                </el-col>
+
+                <el-col :span="24" class="line">
+                </el-col>
+            </el-row>
+
+            <el-row class="tabbar">
+                <el-col :span="24">
+                    <el-tabs v-model="activeName" @tab-click="handleClick">
+                        <el-tab-pane label="完整性校验" name="first">
+                        <!-- 完整性校验 -->
+
+                            <div class="theOne" style="height:320px;">
+                                <el-table :data="tableData" border height="320"
+                                :header-cell-style="{background:'rgba(16,142,233,.15)',color:'#606266'}">
+                                    <el-table-column prop="date" label="规则1" align="center">
+                                    </el-table-column>
+                                    <el-table-column prop="address" label="规则内容" width="500" align="center">
+                                    </el-table-column>
+                                    <el-table-column prop="name" label="科室" width="180" align="center">
+                                    </el-table-column>
+                                    <el-table-column prop="address" label="修改" width="400" align="center">
+                                        <el-input placeholder="请输入修改内容"></el-input>
+                                    </el-table-column>
+                                </el-table>
+                            </div>
+
+                        </el-tab-pane>
+                        <el-tab-pane label="逻辑性校验" name="second">
+                        <!-- 逻辑性校验 -->
+                            
+                            <div class="theTwo" style="height:320px;">
+                                <el-table :data="tableData" border height="320"
+                                :header-cell-style="{background:'rgba(16,142,233,.15)',color:'#606266'}">
+                                    <el-table-column prop="date" label="规则2" align="center">
+                                    </el-table-column>
+                                    <el-table-column prop="address" label="规则内容" width="500" align="center">
+                                    </el-table-column>
+                                    <el-table-column prop="name" label="科室" width="180" align="center">
+                                    </el-table-column>
+                                    <el-table-column prop="address" label="修改" width="400" align="center">
+                                        <el-input placeholder="请输入修改内容"></el-input>
+                                    </el-table-column>
+                                </el-table>
+                            </div>
+                        </el-tab-pane>
+                        <el-tab-pane label="DRG校验" name="third">
+                        <!-- DRG校验 -->
+                            <div class="lightHeight">不合理原因：当存在C01-CO2.4两个或两个以上亚目的情况，应选择C02.8</div>
+
+                            <div class="theThree" style="height:320px;overflow-y:scroll;">
+                                
+                                <el-table :data="tableData" border
+                                :header-cell-style="{background:'rgba(16,142,233,.15)',color:'#606266'}">
+                                    <el-table-column prop="date" label="字段名" align="center">
+                                    </el-table-column>
+                                    <el-table-column prop="address" label="ICD-10" width="500" align="center">
+                                    </el-table-column>
+                                    <el-table-column prop="name" label="ICD-10中文名称" width="500" align="center">
+                                    </el-table-column>
+                                    <el-table-column prop="address" label="修改" width="500" align="center">
+                                        <el-input placeholder="请输入修改内容"></el-input>
+                                    </el-table-column>
+                                </el-table>
+
+                                <el-table :data="tableData" border
+                                :header-cell-style="{background:'rgba(16,142,233,.15)',color:'#606266'}">
+                                    <el-table-column prop="date" label="字段名" align="center">
+                                    </el-table-column>
+                                    <el-table-column prop="address" label="ICD-9" width="500" align="center">
+                                    </el-table-column>
+                                    <el-table-column prop="name" label="ICD-9中文名称" width="500" align="center">
+                                    </el-table-column>
+                                    <el-table-column prop="address" label="修改" width="500" align="center">
+                                        <el-input placeholder="请输入修改内容"></el-input>
+                                    </el-table-column>
+                                </el-table>
+                            </div>
+
+                        </el-tab-pane>
+                    </el-tabs>
+                </el-col>
+
+            </el-row>
+
+            
+        </div>
+
+
+
+        <!-- <el-button @click="Keios">默认按钮</el-button> -->
+        <!-- <button onclick="demo()">4545</button> -->
+    </div>
+</body>
+<!-- import Vue before Element -->
+<!-- <script src="https://unpkg.com/vue/dist/vue.js"></script> -->
+<script  src="js/vue.js"></script>
+<!-- import JavaScript -->
+<!-- <script src="https://unpkg.com/element-ui/lib/index.js"></script> -->
+<!-- <script src="js/jsjs.js"></script> -->
+<script src="js/jsjsneir.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: function () {
+            return {
+                activeName: 'first',
+                tableData: [{
+                    date: '2016-05-02',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1518 弄'
+                    }, 
+                    {
+                    date: '2016-05-04',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1517 弄'
+                    },
+                    {
+                    date: '2016-05-01',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1519 弄'
+                    }, 
+                    {
+                    date: '2016-05-03',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1516 弄'
+                    },
+                    {
+                    date: '2016-05-01',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1519 弄'
+                    }, 
+                    , 
+                    {
+                    date: '2016-05-04',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1517 弄'
+                    },
+                    {
+                    date: '2016-05-01',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1519 弄'
+                    }, 
+                    {
+                    date: '2016-05-03',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1516 弄'
+                    },
+                    {
+                    date: '2016-05-01',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1519 弄'
+                    },
+                    {
+                    date: '2016-05-03',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1516 弄'
+                }]
+            }
+        },
+        created() {
+            
+        },
+        methods: {
+            Keio() {
+                console.log(this.fromInlineg)
+                // this.fromeiu.cuise = false
+                return this.fromInlineg
+            },
+             handleClick(tab, event) {
+                console.log(tab, event);
+            }
+        },
+    })
+
+    function demo() {
+        let ari = vm.Keio()
+        console.log(ari.cuis)
+    }
+</script>
+
+</html>

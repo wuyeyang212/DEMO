@@ -1,0 +1,245 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+#app {
+    /* width:1200px; */
+    /* height: 937px; */
+    /* background:rgba(0,0,0,.4); */
+    position: relative;
+    font-size: 12px;
+}
+
+#app .container {
+    /* margin-top: 200px;
+    margin-left: 200px; */
+    width: 900px;
+    margin: 0 auto;
+    /* height: 650px; */
+    /* border-radius:13px;
+    background: #fff; */
+    /* position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%); */
+}
+
+/* logo图标 */
+#app .container .logo {
+    /* border-radius: 13px 13px 0 0; */
+    padding: 10px 30px;
+    background: #108EE9;
+    position: relative;
+}
+
+#app .container .logo .img {
+    /* width: 100px; */
+    height: 32px;
+    margin-top: 8px;
+}
+
+#app .container .logo .title {
+    color: #fff;
+    border-left: 1px solid #fff;
+    padding-left: 10px;
+    font-size: 14px;
+    font-family: PingFangSC-Regular;
+    line-height: 22px;
+    margin-left: 8px;
+    position: absolute;
+    top: 23px;
+    left: 147px;
+}
+
+/* 病案号等信息 */
+#app .container .information {
+    padding: 10px 30px;
+    /* font-size: 14px; */
+    line-height: 26px;
+    position: relative;
+    height: 100px;
+    /* ie7 */
+    +height: 92px;
+}
+
+#app .container .information .compatible {
+    position: relative;
+    left: 666px;
+    top: -77px;
+    /* 兼容ie7 */
+    +left: -14px;
+    +top: 3px;
+    float: left;
+    width: 180px;
+}
+
+#app .container .information .nameLat{
+    letter-spacing:10px;
+    /* ie7 */
+    +letter-spacing:18px;
+}
+
+#app .container .information .cost{
+    letter-spacing:7px;
+    /* ie7 */
+    +letter-spacing:8px;
+}
+#app .container .information .left {
+    color: #666666;
+}
+
+#app .container .information .right {
+    color: #108EE9;
+}
+
+
+#app .container .information .grade {
+    color: #FF3B30;
+    line-height: 100px;
+    font-size: 50px;
+    position: absolute;
+    top: -8px;
+    left: 104px;
+    font-weight: 500;
+}
+
+#app .container .information .allGrade {
+    position: absolute;
+    top: -2px;
+    left: 58px;
+}
+
+#app .container .information .code {
+    position: absolute;
+    top: 51px;
+    left: 158px;
+}
+
+#app .container .information .line {
+    border-bottom: 1px solid #ccc;
+    margin-top: 96px;
+}
+
+
+/* tabbar切换 */
+#app .container .tabbar {
+    padding: 0 30px;
+    line-height: 26px;
+    /* width: 840px; */
+    /* height: 60px; */
+    /* margin: 20px auto; */
+}
+
+.tab:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.tab li {
+    /* width: 90px; */
+    height: 30px;
+    line-height: 30px;
+    font-size: 16px;
+    font-weight: 500;
+    padding-bottom: 4px;
+    cursor: pointer;
+    list-style: none;
+    float: left;
+    margin-right: 38px;
+    background: #fff;
+}
+
+.tab li.active {
+    color: #108EE9;
+    /* font-weight: 500; */
+    border-bottom: 2px solid #108EE9;
+}
+
+.tab li .item{
+    position: absolute;
+    top:-4px;
+    right:-20px;
+    /* background:red; */
+    background: url(../image/msg.png);
+    background-repeat:no-repeat;
+    background-size: 100% 100%;
+    /* border-radius: 18px; */
+    width:20px;
+    height:20px;
+    color:#fff;
+    text-align: center;
+    font-size: 12px;
+    line-height: 18px;
+}
+
+.content{
+    margin-top: 12px;
+    color: #333;
+}
+.dg{
+    width:840px;
+    border-collapse:collapse;
+    border-color:#808080;
+    text-align: center;
+    line-height: 30px;
+}
+/* .dg tr:hover{
+    background-color: #87CEFA;
+    opacity: 0.5;
+} */
+.dg td{
+    border: 1px solid #808080;
+}
+.dg th{
+    /* border: none; */
+    border: 1px solid #87CEFA;
+    border-bottom: #808080;
+}
+.content:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.content li {
+    width: 840px;
+    /* height: 300px; */
+    /* padding: 20px; */
+    /* background: #f7f7f7; */
+    display: none;
+    /* 兼容ie7 */
+    +margin-top: 12px;
+}
+
+#app .container .tabbar .lightHeight {
+    color: red;
+    line-height: 26px;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+
+
+
+
+
+/* ::-webkit-scrollbar {  */
+    /*滚动条整体样式*/
+    /* width: 15px; */
+    /*高宽分别对应横竖滚动条的尺寸*/
+    /* height: 1px; */
+/* } */
+
+/* ::-webkit-scrollbar-thumb { */
+    /*滚动条里面小方块*/
+    /* border-radius: 8px; */
+    /* background: #87CEFA; */
+/* } */
+
+/* ::-webkit-scrollbar-track { */
+    /*滚动条里面轨道*/
+    /* border: 1px solid #ebeef5; */
+/* } */
