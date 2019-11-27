@@ -173,8 +173,8 @@
                 </el-col>
 
             </el-row>
-
-
+            <div class="FileArea"></div>
+            <input type="file" name="fileName" id="fileId" @change="check(this)"  />
         </div>
 
 
@@ -265,8 +265,17 @@
             },
             handleClick(tab, event) {
                 console.log(tab, event);
+            },
+            check(data) {
+
+                // if (objFile.value == "" || objFile.value == null) {
+                //     alert("请选择文件！");
+                //     return;
+                // }
+               console.log(data)
             }
         },
+
     })
 
     function demo() {
