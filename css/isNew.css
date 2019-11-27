@@ -1,0 +1,250 @@
+/* // 病案首页 */
+/* .hospital{ */
+
+.content {
+    height: 730px;
+    display: flex;
+    justify-content: space-between;
+}
+.personInfor {
+    flex: 1;
+    padding: 20px;
+}
+.isPerInfor {
+    margin-bottom: 30px;
+    line-height: 26px;
+}
+.isPerInfor input {
+    height: 26px;
+}
+/* .tableIsmsg {
+
+} */
+.casebook {
+    width: 880px;
+    background: rgba(255, 255, 255, 1);
+    border-radius: 6px;
+    margin-right: 20px;
+}
+.twoBtn {
+    position: fixed;
+    top: 50%;
+    right: 5px;
+}
+.top {
+    font-size: 14px;
+    /* height: 34px; */
+    background: rgba(16, 142, 233, .15);
+    border-radius: 6px 6px 0 0;
+    padding:15px;
+}
+.txt {
+    margin-left: 42px;
+}
+
+.gray {
+    color: #000;
+}
+
+.blue {
+    color: rgba(16, 142, 233, 1);
+}
+
+
+
+.underline {
+    border-bottom: 1px solid #000;
+    display: inline-block;
+    width: 40px;
+}
+
+.lenUnderline {
+    width: 70px;
+}
+
+.showfirstPage {
+    display: block;
+}
+.showAttachedpage {
+    display: none;
+}
+.my {
+    /* height:622px; */
+    overflow-y: scroll;
+    font-size: 12px;
+    padding: 30px;
+    padding-left: 36px;
+}
+
+.myTable {
+    padding: 10px 10px 0 10px;
+    width: 800px;
+    border-color: #000;
+    border-bottom: 0;
+}
+
+.myTable td {
+    border: none;
+    padding-bottom: 8px;
+}
+
+.myTable .blanking {
+    margin-right: 12px;
+}
+
+.myTable .fontBold {
+    font-weight: 700;
+}
+
+.myTable .myInput {
+    border-style: none;
+    border-bottom-style: solid;
+    border-bottom-width: thin;
+    border-bottom-color: #000;
+
+}
+
+.myTable1 {
+    text-align: center;
+    width: 800px;
+    border-right: 1px solid #000;
+    border-bottom: 1px solid #000;
+}
+
+.myTable1 td {
+    line-height: 24px;
+    border-left: 1px solid #000;
+    border-top: 1px solid #000;
+}
+
+.myTable1 .fontBold {
+    font-weight: 700;
+    padding-left: 10px;
+}
+
+.myTable1 .fontStyle {
+    font-weight: 700;
+}
+
+.myTable1 .textLeft {
+    text-align: left;
+}
+
+.myTable1 .myInput {
+    border-style: none;
+    border-bottom-style: solid;
+    border-bottom-width: thin;
+    border-bottom-color: #000;
+
+}
+
+.myTable1 .blanking {
+    margin-right: 12px;
+}
+
+.myTable1 .tab1Tr>td {
+    border-top: none;
+}
+
+.myTable2 {
+    /* // padding: 10px 10px 0 10px; */
+    width: 800px;
+    border-color: #000;
+    border-bottom: 1px solid #000;
+    border-top: none;
+}
+
+.myTable2 td {
+    padding: 0 10px;
+    border: none;
+    padding-bottom: 8px;
+}
+
+.myTable2 .myTable2 .blanking {
+    margin-right: 12px;
+}
+
+.myTable2 .fontBold {
+    font-weight: 700;
+}
+
+.myTable2 .myInput {
+    border-style: none;
+    border-bottom-style: solid;
+    border-bottom-width: thin;
+    border-bottom-color: #000;
+}
+
+/* // 附页 */
+.addPage {
+    width: 800px;
+    margin-top: 15px;
+    font-size: 14px;
+    line-height: 26px;
+}
+
+.first {
+    margin-left: 180px;
+    font-weight: 500;
+}
+
+.myInput {
+    border-style: none;
+    border-bottom-style: solid;
+    border-bottom-width: thin;
+    border-bottom-color: #000;
+}
+
+.second {
+    margin-left: 298px;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 15px;
+}
+
+.third {
+    margin-left: 304px;
+}
+
+.fourth {
+    border-bottom: none;
+    padding-bottom: 6px;
+    padding-left: 10px;
+}
+
+.borderLine {
+    border-bottom: 1px solid #000;
+}
+
+.fifth {
+    padding-left: 10px;
+    font-weight: 700;
+    margin-top: 5px;
+    font-size: 15px;
+}
+
+.publicTitle {
+    padding-left: 10px;
+    font-weight: 700;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.my::-webkit-scrollbar {
+    /*滚动条整体样式*/
+    width: 15px;
+    /*高宽分别对应横竖滚动条的尺寸*/
+    height: 1px;
+}
+
+.my::-webkit-scrollbar-thumb {
+    /*滚动条里面小方块*/
+    border-radius: 8px;
+    background: rgba(16, 142, 233, .15);
+}
+
+.my::-webkit-scrollbar-track {
+    /*滚动条里面轨道*/
+    border: 1px solid #ebeef5;
+    border-radius: 8px;
+}

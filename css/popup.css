@@ -100,8 +100,9 @@
     line-height: 100px;
     font-size: 50px;
     position: absolute;
-    top: -8px;
-    left: 104px;
+    right: 45px;
+    /* top: -8px; */
+    /* left: 104px; */
     font-weight: 500;
 }
 
@@ -109,6 +110,12 @@
     position: absolute;
     top: -2px;
     left: 58px;
+}
+
+.isUnit {
+    position: absolute;
+    top: 60px;
+    right: 30px;
 }
 
 #app .container .information .code {
@@ -119,7 +126,7 @@
 
 #app .container .information .line {
     border-bottom: 1px solid #ccc;
-    margin-top: 96px;
+    margin-top: 10px;
 }
 
 
