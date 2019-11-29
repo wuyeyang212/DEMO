@@ -71,7 +71,9 @@
     display: inline-block;
     width: 65px;
 }
-
+.noBoder {
+    border: 0px;
+}
 .medicalRecord {
     border: 0px;
     outline: none;
@@ -227,7 +229,9 @@
 .third {
     margin-left: 36%;
 }
-
+.sceuiesa {
+    margin-left: 38%;
+}
 .fourth {
     border-bottom: none;
     padding-bottom: 6px;

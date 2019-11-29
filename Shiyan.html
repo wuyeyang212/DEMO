@@ -32,35 +32,7 @@
 
                 <!-- 左边 -->
                 <div class="personInfor">
-                    <div class="isPerInfor">
-                        <span style="margin-right: 20%;">
-                            科室：
-                            <input type="text" name="" id="" />
-                        </span>
-                        <span>
-                            病案号：
-                            <input type="text" />
-                        </span>
-                    </div>
-
-                    <div class="tableIsmsg">
-                        <el-table class="oneTable" :data="tableData" border style="width: 100%"
-                            :header-cell-style="{background:'rgba(16,142,233,.15)',color:'rgba(51,51,51,1)'}">
-
-                            <!-- <el-table-column class="blue" prop="date" label="规则" width="260">
-                              <template slot-scope="scope">
-                                <el-button @click="handleClick(scope.row)" type="text" size="small">{{scope.row.ruleName}}</el-button>
-                              </template>
-                            </el-table-column> -->
-
-                            <el-table-column prop="name" label="姓名">
-                            </el-table-column>
-                            <el-table-column prop="date" label="日期">
-                            </el-table-column>
-                            <el-table-column prop="address" label="规则内容">
-                            </el-table-column>
-                        </el-table>
-                    </div>
+                    
                 </div>
 
                 <!-- 右边 -->
@@ -88,10 +60,10 @@
                                 <div class="third">（病人存档及卫生统计用）</div>
                                 <div class="fourth">
                                     病案号：
-                                    <input id="JN7" class="medicalRecord" v-model="formitem.JN7" />
-                                    <span id="JN6" style="margin-left:12%;">
+                                    <input id="JN7" class="medicalRecord" v-model="formitem.JN7" style="border: none;" />
+                                    <span id="JN6" style="margin-left:14%;">
                                         第
-                                        <input class="underline times" v-model="formitem.JN6" />
+                                        <input class="underline noBoder" v-model="formitem.JN6" style="width: 20px;" />
                                         <span>次住院</span>
                                     </span>
                                 </div>
@@ -832,7 +804,7 @@
                                 </tr>
                                 <tr>
                                     <td colspan="2"><span
-                                            id="JN141">{{ formitem.JN141==undefind? '-':formitem.JN141 }}</span></td>
+                                            id="JN141">{{ formitem.JN141==''? '-':formitem.JN141 }}</span></td>
                                     <td><span id="JN486">{{ formitem.JN486 }}</span></td>
                                     <td colspan="2"><span id="JN140">{{ formitem.JN140 }}</span></td>
                                     <td><span id="JN143">{{ formitem.JN143 }}</span></td>
@@ -845,7 +817,7 @@
                                 </tr>
                                 <tr>
                                     <td colspan="2"><span
-                                            id="JN155">{{ formitem.JN155==undefind? '-':formitem.JN155 }}</span></td>
+                                            id="JN155">{{ formitem.JN155==''? '-':formitem.JN155 }}</span></td>
                                     <td><span id="JN487">{{ formitem.JN487 }}</span></td>
                                     <td colspan="2"><span id="JN154">{{ formitem.JN154 }}</span></td>
                                     <td><span id="JN157">{{ formitem.JN157 }}</span></td>
@@ -858,7 +830,7 @@
                                 </tr>
                                 <tr>
                                     <td colspan="2"><span
-                                            id="JN169">{{ formitem.JN169==undefind? '-':formitem.JN169 }}</span></td>
+                                            id="JN169">{{ formitem.JN169==''? '-':formitem.JN169 }}</span></td>
                                     <td><span id="JN488">{{ formitem.JN488 }}</span></td>
                                     <td colspan="2"><span id="JN168">{{ formitem.JN168 }}</span></td>
                                     <td><span id="JN171">{{ formitem.JN171 }}</span></td>
@@ -871,7 +843,7 @@
                                 </tr>
                                 <tr>
                                     <td colspan="2"><span
-                                            id="JN183">{{ formitem.JN183==undefind? '-':formitem.JN183 }}</span></td>
+                                            id="JN183">{{ formitem.JN183==''? '-':formitem.JN183 }}</span></td>
                                     <td><span id="JN489">{{ formitem.JN489 }}</span></td>
                                     <td colspan="2"><span id="JN182">{{ formitem.JN182 }}</span></td>
                                     <td><span id="JN185">{{ formitem.JN185 }}</span></td>
@@ -884,7 +856,7 @@
                                 </tr>
                                 <tr>
                                     <td colspan="2"><span
-                                            id="JN197">{{ formitem.JN197==undefind? '-':formitem.JN197 }}</span></td>
+                                            id="JN197">{{ formitem.JN197==''? '-':formitem.JN197 }}</span></td>
                                     <td><span id="JN490">{{ formitem.JN490 }}</span></td>
                                     <td colspan="2"><span id="JN196">{{ formitem.JN196 }}</span></td>
                                     <td><span id="JN199">{{ formitem.JN199 }}</span></td>
@@ -897,7 +869,7 @@
                                 </tr>
                                 <tr>
                                     <td colspan="2"><span
-                                            id="JN211">{{ formitem.JN211==undefind? '-':formitem.JN211 }}</span></td>
+                                            id="JN211">{{ formitem.JN211==''? '-':formitem.JN211 }}</span></td>
                                     <td><span id="JN491">{{ formitem.JN491 }}</span></td>
                                     <td colspan="2"><span id="JN210">{{ formitem.JN210 }}</span></td>
                                     <td><span id="JN213">{{ formitem.JN213 }}</span></td>
@@ -910,7 +882,7 @@
                                 </tr>
                                 <tr>
                                     <td colspan="2"><span
-                                            id="JN225">{{ formitem.JN225==undefind? '-':formitem.JN225 }}</span></td>
+                                            id="JN225">{{ formitem.JN225==''? '-':formitem.JN225 }}</span></td>
                                     <td><span id="JN492">{{ formitem.JN492 }}</span></td>
                                     <td colspan="2"><span id="JN224">{{ formitem.JN224 }}</span></td>
                                     <td><span id="JN227">{{ formitem.JN227 }}</span></td>
@@ -923,7 +895,7 @@
                                 </tr>
                                 <tr>
                                     <td colspan="2"><span
-                                            id="JN239">{{ formitem.JN239==undefind? '-':formitem.JN239 }}</span></td>
+                                            id="JN239">{{ formitem.JN239==''? '-':formitem.JN239 }}</span></td>
                                     <td><span id="JN493">{{ formitem.JN493 }}</span></td>
                                     <td colspan="2"><span id="JN238">{{ formitem.JN238 }}</span></td>
                                     <td><span id="JN241">{{ formitem.JN241 }}</span></td>
@@ -936,7 +908,7 @@
                                 </tr>
                                 <tr>
                                     <td colspan="2"><span
-                                            id="JN253">{{ formitem.JN253==undefind? '-':formitem.JN253 }}</span></td>
+                                            id="JN253">{{ formitem.JN253==''? '-':formitem.JN253 }}</span></td>
                                     <td><span id="JN494">{{ formitem.JN494 }}</span></td>
                                     <td colspan="2"><span id="JN252">{{ formitem.JN252 }}</span></td>
                                     <td><span id="JN255">{{ formitem.JN255 }}</span></td>
@@ -1297,13 +1269,13 @@
                                     <input class="underline" style="width: 120px;" v-model="formitem.JN2" />）
                                 </div>
                                 <div class="second">住院病案附页</div>
-                                <div class="third">（医疗治疗管理用）</div>
+                                <div class="sceuiesa">（医疗治疗管理用）</div>
                                 <div class="fourth borderLine">
                                     病案号：
-                                    <input class="medicalRecord" v-model="formitem.JN7" />
-                                    <span style="margin-left:12%;">
+                                    <input class="medicalRecord" v-model="formitem.JN7" style="border: none;" />
+                                    <span style="margin-left:14%;">
                                         第
-                                        <input class="underline times" v-model="formitem.JN6" />
+                                        <input class="underline noBoder" v-model="formitem.JN6" style="width: 20px;" />
                                         <span>次住院</span>
                                     </span>
                                 </div>
@@ -2116,20 +2088,20 @@
                                     </td>
                                     <td>
                                         <span>
-                                            <span class="underline"></span>年
-                                            <span class="underline"></span>月
-                                            <span class="underline"></span>日
+                                            <input class="underline" />年
+                                            <input class="underline" />月
+                                            <input class="underline" />日
                                             <br>
-                                            <span class="underline"></span>时
-                                            <span class="underline"></span>分
+                                            <input class="underline" />时
+                                            <input class="underline" />分
                                         </span>
                                     </td>
                                     <td>
                                         <span>
-                                            <span class="underline"></span>月
-                                            <span class="underline"></span>日
-                                            <span class="underline"></span>时
-                                            <span class="underline"></span>分
+                                            <input class="underline" />月
+                                            <input class="underline" />日
+                                            <input class="underline" />时
+                                            <input class="underline" />分
                                         </span>
                                     </td>
                                     <td>
@@ -2152,20 +2124,20 @@
                                     </td>
                                     <td>
                                         <span>
-                                            <span class="underline"></span>年
-                                            <span class="underline"></span>月
-                                            <span class="underline"></span>日
+                                            <input class="underline" />年
+                                            <input class="underline" />月
+                                            <input class="underline" />日
                                             <br>
-                                            <span class="underline"></span>时
-                                            <span class="underline"></span>分
+                                            <input class="underline" />时
+                                            <input class="underline" />分
                                         </span>
                                     </td>
                                     <td>
                                         <span>
-                                            <span class="underline"></span>月
-                                            <span class="underline"></span>日
-                                            <span class="underline"></span>时
-                                            <span class="underline"></span>分
+                                            <input class="underline" />月
+                                            <input class="underline" />日
+                                            <input class="underline" />时
+                                            <input class="underline" />分
                                         </span>
                                     </td>
                                     <td>
@@ -2188,20 +2160,20 @@
                                     </td>
                                     <td>
                                         <span>
-                                            <span class="underline"></span>年
-                                            <span class="underline"></span>月
-                                            <span class="underline"></span>日
+                                            <input class="underline" />年
+                                            <input class="underline" />月
+                                            <input class="underline" />日
                                             <br>
-                                            <span class="underline"></span>时
-                                            <span class="underline"></span>分
+                                            <input class="underline" />时
+                                            <input class="underline" />分
                                         </span>
                                     </td>
                                     <td>
                                         <span>
-                                            <span class="underline"></span>月
-                                            <span class="underline"></span>日
-                                            <span class="underline"></span>时
-                                            <span class="underline"></span>分
+                                            <input class="underline" />月
+                                            <input class="underline" />日
+                                            <input class="underline" />时
+                                            <input class="underline" />分
                                         </span>
                                     </td>
                                     <td>
@@ -2224,20 +2196,20 @@
                                     </td>
                                     <td>
                                         <span>
-                                            <span class="underline"></span>年
-                                            <span class="underline"></span>月
-                                            <span class="underline"></span>日
+                                            <input class="underline" />年
+                                            <input class="underline" />月
+                                            <input class="underline" />日
                                             <br>
-                                            <span class="underline"></span>时
-                                            <span class="underline"></span>分
+                                            <input class="underline" />时
+                                            <input class="underline" />分
                                         </span>
                                     </td>
                                     <td>
                                         <span>
-                                            <span class="underline"></span>月
-                                            <span class="underline"></span>日
-                                            <span class="underline"></span>时
-                                            <span class="underline"></span>分
+                                            <input class="underline" />月
+                                            <input class="underline" />日
+                                            <input class="underline" />时
+                                            <input class="underline" />分
                                         </span>
                                     </td>
                                     <td>
@@ -2260,20 +2232,20 @@
                                     </td>
                                     <td>
                                         <span>
-                                            <span class="underline"></span>年
-                                            <span class="underline"></span>月
-                                            <span class="underline"></span>日
+                                            <input class="underline" />年
+                                            <input class="underline" />月
+                                            <input class="underline" />日
                                             <br>
-                                            <span class="underline"></span>时
-                                            <span class="underline"></span>分
+                                            <input class="underline" />时
+                                            <input class="underline" />分
                                         </span>
                                     </td>
                                     <td>
                                         <span>
-                                            <span class="underline"></span>月
-                                            <span class="underline"></span>日
-                                            <span class="underline"></span>时
-                                            <span class="underline"></span>分
+                                            <input class="underline" />月
+                                            <input class="underline" />日
+                                            <input class="underline" />时
+                                            <input class="underline" />分
                                         </span>
                                     </td>
                                     <td>
@@ -2296,20 +2268,20 @@
                                     </td>
                                     <td>
                                         <span>
-                                            <span class="underline"></span>年
-                                            <span class="underline"></span>月
-                                            <span class="underline"></span>日
+                                            <input class="underline" />年
+                                            <input class="underline" />月
+                                            <input class="underline" />日
                                             <br>
-                                            <span class="underline"></span>时
-                                            <span class="underline"></span>分
+                                            <input class="underline" />时
+                                            <input class="underline" />分
                                         </span>
                                     </td>
                                     <td>
                                         <span>
-                                            <span class="underline"></span>月
-                                            <span class="underline"></span>日
-                                            <span class="underline"></span>时
-                                            <span class="underline"></span>分
+                                            <input class="underline" />月
+                                            <input class="underline" />日
+                                            <input class="underline" />时
+                                            <input class="underline" />分
                                         </span>
                                     </td>
                                     <td>
@@ -2649,7 +2621,16 @@
 
                 formitem: {
                     JN127: '',
-                }, //明细data
+                    JN141: '',
+                    JN155: '',
+                    JN169: '',
+                    JN183: '',
+                    JN197: '',
+                    JN211: '',
+                    JN225: '',
+                    JN239: '',
+                    JN253: '',
+                }, //明细datas
 
                 //出生年月日
                 year: '',
@@ -2861,7 +2842,7 @@
             type: 2,
             title: '欢迎页',
             maxmin: true,
-            area: ['800px', '500px'],
+            area: ['1000px', '700px'],
             // content: 'http://layer.layui.com/test/welcome.html',
             content: 'detailedrew.html',
             end: function () {
