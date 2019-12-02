@@ -8,6 +8,11 @@
     <title>Document</title>
     <!-- <link rel="stylesheet" href="css/amazeui.css">
     <link rel="stylesheet" href="css/app.css"> -->
+    <!-- 弹窗CSS -->
+    <link rel="stylesheet" href="css/isPop.css">
+    <link rel="stylesheet" href="css/base.css">
+    <!--模糊搜索-->
+    <link rel="stylesheet" href="css/jquery-ui-1.9.2.custom.css">
     <style>
         
     </style>
@@ -16,42 +21,197 @@
 
 <body style="background:#eef4f9">
     
-    <div class="content" id="content">
+    <div class="container" id="container">
 
-        <div class="personInfor">
-            <div class="isPerInfor">
-                    <div>
-                        科室：
-                        <input type="text" name="" id="">
-                    </div>
-                    <div>
-                        病案号： 
-                        <input type="text">
-                    </div>
+
+            <div class="logo">
+                <div>
+                    <img class="img" src="./image/xiugai.png" alt="">
+                    <span class="title">病案首页智能质控</span>
+                </div>
             </div>
-
-            <div>
-                    <div class="theOne">
-                        <table>
-                            
-                        </table>
+    
+    
+            <div class="information">
+                <div style="float: left;margin-right: 8px;width: 210px;">
+                    <div>
+                        <span class="left" style="letter-spacing:3px;">病案号</span>
+                        <span class="left">：</span>
+                        <span class="right" id="mId">外2019070500032643</span>
                     </div>
+                    <div>
+                        <span class="left nameLat">姓名</span>
+                        <span class="left">：</span>
+                        <span class="right" id="name">吴竞波</span>
+                    </div>
+                    <div>
+                        <span class="left">参保类型：</span>
+                        <span class="right" id="claimType">职工医保</span>
+                    </div>
+                </div>
+                <div style="float: left;margin-right: 8px;width: 300px;">
+                    <div>
+                        <span class="left">入组情况：</span>
+                        <span class="right" id="guoupInfo">外2019070500032643</span>
+                    </div>
+                    <div>
+                        <span class="left">主要诊断：</span>
+                        <span class="right" id="diagnose">K25.9</span>
+                    </div>
+                    <div>
+                        <span class="left">主要操作：</span>
+                        <span class="right" id="operation">42.41(部分食管切除术)</span>
+                    </div>
+                </div>
+                <div style="float: left;margin-right: 8px;width: 190px;">
+                    <div>
+                        <span class="left" style="letter-spacing:3px;">DRG支付标准</span>
+                        <span class="left">：</span>
+                        <span class="right" id="drgAmount">3000</span>
+                        <span class="right">元</span>
+                    </div>
+                    <!--<div>-->
+                        <!--<span class="left">DRG基金支付标准：</span>-->
+                        <!--<span class="right" id="drgFundAmount">2300</span>-->
+                        <!--<span class="right">元</span>-->
+                    <!--</div>-->
+                    <div>
+                        <span class="left cost">医疗总费用</span>
+                        <span class="left">：</span>
+                        <span class="right" id="totalAmount">5300</span>
+                        <span class="right">元</span>
+                    </div>
+                </div>
+                <div class="compatible">
+                    <div>
+                        <span class="left allGrade">质量评分：</span>
+                        <span class="grade" id="score">87</span>
+                        <span class="left code">分</span>
+                    </div>
+    
+                </div>
+    
+                <div class="line">
+                </div>
             </div>
-        </div>
-
-        <div class="casebook">
-                1111111
-
-        </div>
+    
+    
+            <div class="tabbar">
+    
+                <ul class="tab">
+                    <li class="active" style="position:relative;">
+                        <span>完整性校验</span>
+                        <span class="item" id="fullCheck"></span>
+                    </li>
+                    <li style="position:relative;">
+                        <span>逻辑性校验</span>
+                        <span class="item" id="logicCheck"></span>
+                    </li>
+                    <li style="position:relative;">
+                        <span>DRG校验</span>
+                        <span class="item" id="alldrgCheck"></span>
+                    </li>
+                </ul>
+    
+                <ul class="content">
+                    <li style="display: block;">
+                        <div class="theOne">
+    
+                            <table class="dg" cellspacing="0">
+                                <thead>
+                                <tr class="blueTr">
+                                    <th style="width: 200px">违规</th>
+                                    <th style="width: 350px;">规则内容</th>
+                                    <th>修改</th>
+                                </tr>
+                                </thead>
+                                <tbody id="fullCheckResult"></tbody>
+                            </table>
+                        </div>
+                    </li>
+    
+                    <li>
+                        <div class="theOne">
+    
+                            <table class="dg" cellspacing="0">
+                                <thead>
+                                <tr class="blueTr">
+                                    <th style="width: 200px">违规</th>
+                                    <th style="width: 350px;">规则内容</th>
+                                    <th>修改</th>
+                                </tr>
+                                </thead>
+                                <tbody id="logicCheckResult"></tbody>
+    
+                            </table>
+                        </div>
+                    </li>
+    
+                    <li>
+                        <div>
+                            <div class="lightHeight" id="unreasonable">
+                                不合理原因：<span  id="unreasontext"></span>
+                            </div>
+    
+                            <table class="dg leftText" cellspacing="0">
+                                <thead>
+                                <tr class="blueTr">
+                                    <th style="width: 120px">字段名</th>
+                                    <th style="width: 120px">ICD-10</th>
+                                    <th>ICD-10中文名称</th>
+                                    <th>修改</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody id="drgDiagnoseFieldResult"></tbody>
+    
+                            </table>
+    
+                            <table class="dg leftText" cellspacing="0">
+                                <thead>
+                                <tr class="blueTr">
+                                    <th style="width: 120px">字段名</th>
+                                    <th style="width: 120px">ICD-9</th>
+                                    <th>ICD-9中文名称</th>
+                                    <th>修改</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody id="drgOperationFieldResult"></tbody>
+                            </table>
+                        </div>
+                    </li>
+                </ul>
+    
+            </div>
+    
+        
     </div>
+    
+    
+    
 
 
 
     
 
-    <script>
-
-    </script>
+    
 </body>
+<!-- import jquery -->
+<script src="js/jquery-1.8.3.js"></script>
 
+<script src="js/jquery.cssforms.js"></script>
+
+<!--模糊搜索-->
+<script src="js/jquery-ui-1.9.2.custom.js"></script>
+<script>
+    $(function () {
+        //选项卡
+        $('.tab').find('li').click(function () {
+            var index = $(this).index();
+            $(this).addClass('active').siblings().removeClass('active');
+            $('.content').find('li').eq(index).show().siblings().hide();
+        })
+    })
+</script>
 </html>

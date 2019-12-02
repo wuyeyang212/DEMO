@@ -1,0 +1,297 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+#app {
+    /* width:1200px; */
+    /* height: 937px; */
+    /* background:rgba(0,0,0,.4); */
+    position: relative;
+    font-size: 12px;
+}
+
+.container {
+    /* margin-top: 200px;
+    margin-left: 200px; */
+    width: 900px;
+    margin: 0 auto;
+    /*height: 650px;*/
+    /*border-radius:13px;*/
+    /*background: #fff; */
+    /* position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%); */
+}
+
+/* logo图标 */
+.logo {
+    border-radius: 13px 13px 0 0;
+    padding: 10px 30px;
+    background: #108EE9;
+    position: relative;
+}
+
+.img {
+    /* width: 100px; */
+    height: 32px;
+    margin-top: 8px;
+}
+
+.title {
+    color: #fff;
+    border-left: 1px solid #fff;
+    padding-left: 10px;
+    font-size: 14px;
+    letter-spacing: 1px;
+    line-height: 22px;
+    margin-left: 8px;
+    position: absolute;
+    top: 23px;
+    left: 147px;
+}
+
+/* 病案号等信息 */
+.information {
+    padding: 10px 30px;
+    /* font-size: 14px; */
+    line-height: 26px;
+    position: relative;
+    height: 100px;
+    /* ie7 */
+    +height: 92px;
+}
+
+.compatible {
+    position: relative;
+    /*left: 660px;*/
+    /*top: -77px;*/
+    left: 138px;
+    top: -50px;
+    /* 兼容ie7 */
+    +left: -14px;
+    +top: 3px;
+    float: left;
+    width: 180px;
+}
+
+.nameLat{
+    letter-spacing: 10px;
+    /* ie7 */
+    +letter-spacing: 18px;
+}
+
+.cost{
+    letter-spacing: 7px;
+    /* ie7 */
+    +letter-spacing: 8px;
+}
+
+.left {
+    color: #666666;
+}
+
+.right {
+    color: #108EE9;
+}
+
+/*入组情况*/
+#guoupInfo{
+    /*IE7*/
+    +line-height: 16px;
+    line-height: 13px;
+    display: inline-block;
+    height: 12px;
+    width: 220px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/*主要操作*/
+#operation{
+    /*IE7*/
+    +line-height: 16px;
+    line-height: 13px;
+    display: inline-block;
+    height: 13px;
+    width: 220px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.grade {
+    width: 86px;
+    display: inline-block;
+    text-align: center;
+    color: #FF3B30;
+    line-height: 84px;
+    font-size: 44px;
+    position: absolute;
+    top: 0px;
+    left: 84px;
+    font-weight: 500;
+}
+
+.allGrade {
+    position: absolute;
+    top: -2px;
+    left: 58px;
+}
+
+.code {
+    position: absolute;
+    top: 51px;
+    left: 168px;
+}
+
+.line {
+    border-bottom: 1px solid #ccc;
+    margin-top: 96px;
+}
+
+
+/* tabbar切换 */
+.tabbar {
+    padding: 0 30px;
+    line-height: 26px;
+    /* width: 840px; */
+    /* height: 60px; */
+    /* margin: 20px auto; */
+}
+
+.tab:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.tab li {
+    height: 30px;
+    line-height: 30px;
+    font-size: 16px;
+    font-weight: 500;
+    padding-bottom: 4px;
+    cursor: pointer;
+    list-style: none;
+    float: left;
+    margin-right: 38px;
+    background: #fff;
+}
+
+.tab li.active {
+    color: #108EE9;
+    border-bottom: 2px solid #108EE9;
+}
+
+.tab li .item{
+    position: absolute;
+    top: -8px;
+    right: -25px;
+    background: url(../image/msg2.png);
+    background-repeat:no-repeat;
+    background-size: 100% 100%;
+    width: 23px;
+    height: 23px;
+    color: #fff;
+    text-align: center;
+    font-size: 12px;
+    line-height: 18px;
+}
+
+.content{
+    margin-top: 12px;
+    color: #333;
+}
+.dg{
+    width: 840px;
+    border-collapse: collapse;
+    border-color: #ccc;
+    text-align: left;
+    line-height: 22px;
+}
+.leftText {
+    text-align: center;
+}
+.dg tr:hover{
+    background-color: #87cefa;
+}
+.dg tr input:hover{
+    background-color: #87cefa;
+}
+.dg td{
+    border: 1px solid #ccc;
+}
+.dg th{
+    /* border: none; */
+    border: 1px solid #DBEEFC;
+    border-bottom: #ccc;
+}
+.content:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+.content li {
+    width: 840px;
+    /* height: 300px; */
+    /* padding: 20px; */
+    /* background: #f7f7f7; */
+    display: none;
+    /* 兼容ie7 */
+    +margin-top: 12px;
+}
+
+.lightHeight {
+    color: red;
+    line-height: 26px;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.blueTr{
+    background: #B7DDF8;
+}
+
+.tipaImg{
+    margin-top: 7px;
+    +margin-top: 0px;
+    margin-right: 5px;
+    width: 14px;
+}
+
+.inputContent{
+    width: 200px;
+    line-height: 16px;
+    border: none;
+}
+
+.moveUpOrDown {
+    background-color: #5BC0DE;
+    border-radius: 3px;
+    cursor: pointer;
+    color: #FFFFFF;
+    padding: 2px;
+    font-size: 12px;
+}
+
+/*::-webkit-scrollbar {*/
+/*!*滚动条整体样式*!*/
+/*width: 15px;*/
+/*!*高宽分别对应横竖滚动条的尺寸*!*/
+/*height: 1px;*/
+/*}*/
+
+/*::-webkit-scrollbar-thumb {*/
+/*!*滚动条里面小方块*!*/
+/*border-radius: 8px;*/
+/*background: #D4DFEA;*/
+/*}*/
+
+/*::-webkit-scrollbar-track {*/
+/*!*滚动条里面轨道*!*/
+/*border: 1px solid #D4DFEA;*/
+/*}*/
