@@ -334,6 +334,7 @@
      margin-left: 0px;
 }
 
+
 /* 卡片 */
 .blueTop {
     height: 5px;
@@ -347,4 +348,7 @@
     border-bottom-right-radius: 4px;
     margin-bottom: 30px;
     padding: 15px;
+}
+.el-col-5{
+    width: 20%;
 }
