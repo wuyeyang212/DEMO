@@ -7,9 +7,19 @@
     justify-content: space-between;
 }
 .top-con{
+    line-height: 60px;
+    color: #fff;
     height: 60px;
     width: 100%;
     background:linear-gradient(45deg,rgba(10,115,207,1) 0%,rgba(16,142,233,1) 100%);
+}
+.titleTex {
+    margin-left: 76px;
+    font-size: 26px;
+}
+.listCon {
+    padding: 0px 12px;
+    border-right: 1px solid #fff;
 }
 .personInfor {
     /* flex: 1; */
@@ -114,9 +124,10 @@
     overflow-y: scroll;
     font-size: 12px;
     padding: 30px;
+    padding-left: 0;
     margin-top: 20PX;
    
-    background: #ffffff;
+    /* background: #ffffff; */
     /* padding-left: 36px; */
 }
 
@@ -343,12 +354,45 @@
     background:linear-gradient(45deg,rgba(10,115,207,1) 0%,rgba(16,142,233,1) 100%);
 }
 .cardContent {
-    height: 180px;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
     margin-bottom: 30px;
-    padding: 15px;
+    line-height: 22px;
+    box-shadow: 0px 14px 12px 0px #D9D9D9;
+}
+.cardContent:hover .normal{
+    background:linear-gradient(45deg,rgba(10,115,207,1) 0%,rgba(16,142,233,1) 100%);
+    color: #fff;
+    border-bottom: 1px solid rgb(227, 227, 227);
 }
 .el-col-5{
     width: 20%;
 }
+.patientName {
+    font-size: 18px;
+}
+.sickbedNumber {
+    font-size: 18px;
+    float: right;
+}
+.normal {
+    background-color: #fff;
+    color: rgb(51,51,51);
+    padding-bottom: 10px;
+    border-bottom: 1px dashed rgb(51,51,51);
+    padding: 10px 15px;
+}
+.nextCon {
+    background-color: #fff;
+    padding: 10px 15px;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+.sexAge {
+    font-size: 14px;
+}
+.hospitalId {
+    font-size: 16px;
+    color: #0F88E3;
+}
+/* .hospitalDate {
+    font-size: 14px;
+} */

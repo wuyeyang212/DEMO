@@ -17,9 +17,26 @@
     <div id="app">
 
 
-        <div class="top-con">
-            首页
-        </div>
+        <!-- <div class="top-con"> -->
+            <!-- <span class="titleTex">电子病历</span>
+            <span class="rightSide">
+                <span class="right">霍思邈</span>
+            </span> -->
+            <el-row type="flex" class="top-con" justify="space-between">
+                <el-col :span="6"><div class="titleTex">电子病历</div></el-col>
+                <el-col :span="4">
+                    <div class="grid-content bg-purple">
+                        <span class="listCon">霍思邈</span>
+                        <span class="listCon">霍思邈</span>
+                        <span class="listCon">霍思邈</span>
+                        <span>
+                            <img src="image/out.png" alt="">
+                        </span>
+                    </div>
+                </el-col>
+            </el-row>
+        <!-- </div> -->
+
         <el-container id="content" style="background: #E3E3E3;">
             <el-aside width="300px" class="personInfor">
                 <ul class="rightsider">
@@ -2593,7 +2610,23 @@
                             <el-col :span="5" @click.native="Indexsui(i)" v-for="(item,i) in conste">
                                 <div class="blueTop"></div>
                                 <div class="cardContent"> 
-                                    {{item}}
+                                    <div class="normal">
+                                        <div>
+                                            <span class="patientName">{{item.name}}</span>
+                                            <span class="sickbedNumber">{{item.sickbedNumber}}床</span>
+                                        </div>
+                                        <div class="sexAge">
+                                            <span style="margin-right: 30px">性别：{{item.sex}}</span>
+                                            <span>年龄：{{item.age}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="nextCon">
+                                        <div class="hospitalId">
+                                            住院号：{{item.hospitalId}}
+                                        </div>
+                                        <div>入院日期：{{item.hospitalDate}}</div>
+                                        <div>诊断：{{item.diagnosis}}</div>
+                                    </div>
                                 </div>
                             </el-col>
 
@@ -2731,13 +2764,55 @@
                 flagIndex: 0,
                 myIndex: 0,
                 conste:[
-                    "姚雨飞",
-                    "1212",
-                    "姚雨飞",
-                    "1212",
-                    "1212",
-                    "1212", "1212",
-                    "1212", "1212",
+                    {"name": "姚雨飞",
+                    "sickbedNumber": "01",
+                    "sex": "男",
+                    "age": "23",
+                    "hospitalId": "0000067584",
+                    "hospitalDate": "2019-10-24 22:24",
+                    "diagnosis": "诊断情况"},
+                    {"name": "姚雨飞",
+                    "sickbedNumber": "01",
+                    "sex": "男",
+                    "age": "23",
+                    "hospitalId": "0000067584",
+                    "hospitalDate": "2019-10-24 22:24",
+                    "diagnosis": "诊断情况"},
+                    {"name": "姚雨飞",
+                    "sickbedNumber": "01",
+                    "sex": "男",
+                    "age": "23",
+                    "hospitalId": "0000067584",
+                    "hospitalDate": "2019-10-24 22:24",
+                    "diagnosis": "诊断情况"},
+                    {"name": "姚雨飞",
+                    "sickbedNumber": "01",
+                    "sex": "男",
+                    "age": "23",
+                    "hospitalId": "0000067584",
+                    "hospitalDate": "2019-10-24 22:24",
+                    "diagnosis": "诊断情况"},
+                    {"name": "姚雨飞",
+                    "sickbedNumber": "01",
+                    "sex": "男",
+                    "age": "23",
+                    "hospitalId": "0000067584",
+                    "hospitalDate": "2019-10-24 22:24",
+                    "diagnosis": "诊断情况"},
+                    {"name": "姚雨飞",
+                    "sickbedNumber": "01",
+                    "sex": "男",
+                    "age": "23",
+                    "hospitalId": "0000067584",
+                    "hospitalDate": "2019-10-24 22:24",
+                    "diagnosis": "诊断情况"},
+                    {"name": "姚雨飞",
+                    "sickbedNumber": "01",
+                    "sex": "男",
+                    "age": "23",
+                    "hospitalId": "0000067584",
+                    "hospitalDate": "2019-10-24 22:24",
+                    "diagnosis": "诊断情况"},
                 ]
             }
         },
@@ -2918,7 +2993,7 @@
         // console.log(ari.cuis)
         layer.open({
             type: 2,
-            title: '欢迎页',
+            title: '病案首页智能质控',
             maxmin: true,
             area: ['1000px', '700px'],
             // content: 'http://layer.layui.com/test/welcome.html',
