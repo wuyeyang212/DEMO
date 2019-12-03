@@ -2590,7 +2590,12 @@
                     </div>
                     <div id="myKui" class="myKui" v-show="myIndex==0">
                         <el-row :gutter="20" >
-                            <el-col :span="6" @click.native="Indexsui(i)" v-for="(item,i) in conste">{{item}}</el-col>
+                            <el-col :span="6" @click.native="Indexsui(i)" v-for="(item,i) in conste">
+                                <div class="blueTop"></div>
+                                <div class="cardContent"> 
+                                    {{item}}
+                                </div>
+                            </el-col>
                             
                         </el-row>
                     </div>
@@ -2725,9 +2730,9 @@
                 flagIndex: 0,
                 myIndex: 0,
                 conste:[
+                    "姚雨飞",
                     "1212",
-                    "1212",
-                    "1212",
+                    "姚雨飞",
                     "1212",
                     "1212",
                     "1212", "1212",
