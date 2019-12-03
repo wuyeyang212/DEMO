@@ -15,38 +15,55 @@
 
 <body>
     <div id="app">
-        <!-- <el-button type="text" @click="dialogTableVisible = true">打开嵌套表格的 Dialog</el-button>
-        
-
-        <el-dialog title="病案首页智能质控" :visible.sync="dialogTableVisible">
-            <el-table :data="gridData" height="570px">
-              <el-table-column property="date" label="日期" width="150"></el-table-column>
-              <el-table-column property="name" label="姓名" width="200"></el-table-column>
-              <el-table-column property="address" label="地址"></el-table-column>
-            </el-table>
-        </el-dialog> -->
 
 
-        <div class="hospital">
-            <div class="content">
-
-                <!-- 左边 -->
-                <div class="personInfor">
-                    
-                </div>
-
-                <!-- 右边 -->
+        <div class="top-con">
+            首页
+        </div>
+        <el-container id="content" style="background: #E3E3E3;">
+            <el-aside width="300px" class="personInfor">
+                <ul class="rightsider">
+                    <li>
+                        入院记录
+                    </li>
+                    <li>
+                        病情记录
+                    </li>
+                    <li class="dIAN-sui">
+                        病案首页
+                    </li>
+                    <li>
+                        出院记录
+                    </li>
+                    <li>
+                        辅助检查
+                    </li>
+                    <li>
+                        手术情况
+                    </li>
+                    <li>
+                        诊断情况
+                    </li>
+                </ul>
+            </el-aside>
+            <el-main>
                 <div class="casebook">
                     <el-row class="top">
-                        <el-col :span="2" style="float: left;">
-                            <el-button @click="firstPage" type="primary">首页</el-button>
-                        </el-col>
-                        <el-col :offset="20" :span="2" style="float: right;">
-                            <el-button @click="attachedPage" type="primary">附页</el-button>
-                        </el-col>
+
+                        <!-- <el-col :span="7" style="float: right;">
+
+                        
+                        </el-col> -->
+                        <div style="float: right;">
+                            <button onclick="demo()" v-show="myIndex==1" class="Baocun">保存</button>
+                            <el-button @click="attachedPage" v-show="myIndex==1" type="primary">{{ flagIndex ==0?'附页':'首页'}}</el-button>
+                            <el-button @click="FistPage"   type="primary">回到上一页</el-button>
+                           
+                        </div>
+                        <!-- <button onclick="demo()">sui</button> -->
                     </el-row>
 
-                    <div class="my" id="my">
+                    <div class="my" id="my" v-show="myIndex==1">
 
                         <div :class="flagIndex == 0?'showfirstPage': 'showAttachedpage'">
                             <div class="addPage">
@@ -60,7 +77,8 @@
                                 <div class="third">（病人存档及卫生统计用）</div>
                                 <div class="fourth">
                                     病案号：
-                                    <input id="JN7" class="medicalRecord" v-model="formitem.JN7" style="border: none;" />
+                                    <input id="JN7" class="medicalRecord" v-model="formitem.JN7"
+                                        style="border: none;" />
                                     <span id="JN6" style="margin-left:14%;">
                                         第
                                         <input class="underline noBoder" v-model="formitem.JN6" style="width: 20px;" />
@@ -803,8 +821,8 @@
                                     <td colspan="2"><span id="JN125">{{ formitem.JN125 }}</span></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2"><span
-                                            id="JN141">{{ formitem.JN141==''? '-':formitem.JN141 }}</span></td>
+                                    <td colspan="2"><span id="JN141">{{ formitem.JN141==''? '-':formitem.JN141 }}</span>
+                                    </td>
                                     <td><span id="JN486">{{ formitem.JN486 }}</span></td>
                                     <td colspan="2"><span id="JN140">{{ formitem.JN140 }}</span></td>
                                     <td><span id="JN143">{{ formitem.JN143 }}</span></td>
@@ -816,8 +834,8 @@
                                     <td colspan="2"><span id="JN139">{{ formitem.JN139 }}</span></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2"><span
-                                            id="JN155">{{ formitem.JN155==''? '-':formitem.JN155 }}</span></td>
+                                    <td colspan="2"><span id="JN155">{{ formitem.JN155==''? '-':formitem.JN155 }}</span>
+                                    </td>
                                     <td><span id="JN487">{{ formitem.JN487 }}</span></td>
                                     <td colspan="2"><span id="JN154">{{ formitem.JN154 }}</span></td>
                                     <td><span id="JN157">{{ formitem.JN157 }}</span></td>
@@ -829,8 +847,8 @@
                                     <td colspan="2"><span id="JN153">{{ formitem.JN153 }}</span></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2"><span
-                                            id="JN169">{{ formitem.JN169==''? '-':formitem.JN169 }}</span></td>
+                                    <td colspan="2"><span id="JN169">{{ formitem.JN169==''? '-':formitem.JN169 }}</span>
+                                    </td>
                                     <td><span id="JN488">{{ formitem.JN488 }}</span></td>
                                     <td colspan="2"><span id="JN168">{{ formitem.JN168 }}</span></td>
                                     <td><span id="JN171">{{ formitem.JN171 }}</span></td>
@@ -842,8 +860,8 @@
                                     <td colspan="2"><span id="JN167">{{ formitem.JN167 }}</span></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2"><span
-                                            id="JN183">{{ formitem.JN183==''? '-':formitem.JN183 }}</span></td>
+                                    <td colspan="2"><span id="JN183">{{ formitem.JN183==''? '-':formitem.JN183 }}</span>
+                                    </td>
                                     <td><span id="JN489">{{ formitem.JN489 }}</span></td>
                                     <td colspan="2"><span id="JN182">{{ formitem.JN182 }}</span></td>
                                     <td><span id="JN185">{{ formitem.JN185 }}</span></td>
@@ -855,8 +873,8 @@
                                     <td colspan="2"><span id="JN181">{{ formitem.JN181 }}</span></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2"><span
-                                            id="JN197">{{ formitem.JN197==''? '-':formitem.JN197 }}</span></td>
+                                    <td colspan="2"><span id="JN197">{{ formitem.JN197==''? '-':formitem.JN197 }}</span>
+                                    </td>
                                     <td><span id="JN490">{{ formitem.JN490 }}</span></td>
                                     <td colspan="2"><span id="JN196">{{ formitem.JN196 }}</span></td>
                                     <td><span id="JN199">{{ formitem.JN199 }}</span></td>
@@ -868,8 +886,8 @@
                                     <td colspan="2"><span id="JN195">{{ formitem.JN195 }}</span></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2"><span
-                                            id="JN211">{{ formitem.JN211==''? '-':formitem.JN211 }}</span></td>
+                                    <td colspan="2"><span id="JN211">{{ formitem.JN211==''? '-':formitem.JN211 }}</span>
+                                    </td>
                                     <td><span id="JN491">{{ formitem.JN491 }}</span></td>
                                     <td colspan="2"><span id="JN210">{{ formitem.JN210 }}</span></td>
                                     <td><span id="JN213">{{ formitem.JN213 }}</span></td>
@@ -881,8 +899,8 @@
                                     <td colspan="2"><span id="JN209">{{ formitem.JN209 }}</span></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2"><span
-                                            id="JN225">{{ formitem.JN225==''? '-':formitem.JN225 }}</span></td>
+                                    <td colspan="2"><span id="JN225">{{ formitem.JN225==''? '-':formitem.JN225 }}</span>
+                                    </td>
                                     <td><span id="JN492">{{ formitem.JN492 }}</span></td>
                                     <td colspan="2"><span id="JN224">{{ formitem.JN224 }}</span></td>
                                     <td><span id="JN227">{{ formitem.JN227 }}</span></td>
@@ -894,8 +912,8 @@
                                     <td colspan="2"><span id="JN223">{{ formitem.JN223 }}</span></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2"><span
-                                            id="JN239">{{ formitem.JN239==''? '-':formitem.JN239 }}</span></td>
+                                    <td colspan="2"><span id="JN239">{{ formitem.JN239==''? '-':formitem.JN239 }}</span>
+                                    </td>
                                     <td><span id="JN493">{{ formitem.JN493 }}</span></td>
                                     <td colspan="2"><span id="JN238">{{ formitem.JN238 }}</span></td>
                                     <td><span id="JN241">{{ formitem.JN241 }}</span></td>
@@ -907,8 +925,8 @@
                                     <td colspan="2"><span id="JN237">{{ formitem.JN237 }}</span></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2"><span
-                                            id="JN253">{{ formitem.JN253==''? '-':formitem.JN253 }}</span></td>
+                                    <td colspan="2"><span id="JN253">{{ formitem.JN253==''? '-':formitem.JN253 }}</span>
+                                    </td>
                                     <td><span id="JN494">{{ formitem.JN494 }}</span></td>
                                     <td colspan="2"><span id="JN252">{{ formitem.JN252 }}</span></td>
                                     <td><span id="JN255">{{ formitem.JN255 }}</span></td>
@@ -2570,17 +2588,36 @@
                             </table>
                         </div>
                     </div>
+                    <div id="myKui" class="myKui" v-show="myIndex==0">
+                        <el-row :gutter="20" >
+                            <el-col :span="6" @click.native="Indexsui(i)" v-for="(item,i) in conste">{{item}}</el-col>
+                            
+                        </el-row>
+                    </div>
+                </div>
+            </el-main>
+        </el-container>
+
+        <!-- <div class="hospital">
+            <div class="content" id="content">
+
+               
+                <div class="personInfor">
+
                 </div>
 
+                
+               
+
             </div>
-        </div>
+        </div> -->
 
 
 
         <!-- <el-button @click="Keios">默认按钮</el-button> -->
         <!-- <button onclick="demo()">4545</button> -->
     </div>
-    <button onclick="demo()">sui</button>
+
 
 </body>
 <!-- import Vue before Element -->
@@ -2685,9 +2722,20 @@
                 inICU5day: '',
                 // inICU5hours: '',
                 // inICU5mins: '',
-                flagIndex: 0
+                flagIndex: 0,
+                myIndex: 0,
+                conste:[
+                    "1212",
+                    "1212",
+                    "1212",
+                    "1212",
+                    "1212",
+                    "1212", "1212",
+                    "1212", "1212",
+                ]
             }
         },
+
         created() {
             this.GetList(this.id);
         },
@@ -2695,24 +2743,44 @@
             let parm = {
                 mdId: this.id
             };
+            this.Guding();
             this.MedicalDataDetail(parm)
         },
         methods: {
-            firstPage() {
-                this.flagIndex = 0
+            FistPage() {
+                this.myIndex = 0
             },
             attachedPage() {
-                this.flagIndex = 1
+                // this.flagIndex = 1
+                if (this.flagIndex == 0) {
+                    this.flagIndex = 1
+                } else {
+                    this.flagIndex = 0
+                }
             },
-
+            Indexsui(data){
+               console.log(data)
+                this.myIndex=1
+              
+            },
+            //计算屏幕尺寸
+            Guding() {
+                var client = document.documentElement.clientHeight;
+                var content = document.getElementById('content');
+                var myKui = document.getElementById('myKui');
+                var my = document.getElementById('my');
+                content.style.height = (client - 61) + 'px'
+                my.style.height = (client - 260) + "px"
+                myKui.style.height = (client - 260) + "px"
+            },
             Keio() {
                 console.log(this.fromInlineg)
                 // this.fromeiu.cuise = false
                 return this.fromInlineg
             },
             KeioS() {
-               console.log("22465465");
-               this.formitem.JN127 = "123465"
+                console.log("22465465");
+                this.formitem.JN127 = "123465"
             },
             handleClick(tab, event) {
                 console.log(tab, event);
