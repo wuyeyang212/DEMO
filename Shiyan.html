@@ -2660,10 +2660,10 @@
 
 </body>
 <!-- import Vue before Element -->
-<!-- <script src="https://unpkg.com/vue/dist/vue.js"></script> -->
 <script src="http://cdn.bootcss.com/jquery/1.12.3/jquery.min.js"></script>
 
 <script src="js/vue.js"></script>
+<script src="js/axios.js"></script>
 <!-- import JavaScript -->
 <!-- <script src="https://unpkg.com/element-ui/lib/index.js"></script> -->
 <!-- <script src="js/jsjs.js"></script> -->
@@ -2671,6 +2671,7 @@
 <script src="js/layer.js"></script>
 
 <script>
+    // const axios = require('axios')
     var vm = new Vue({
         el: '#app',
         data: function () {
@@ -2819,6 +2820,9 @@
 
         created() {
             this.GetList(this.id);
+            axios.get('https://www.easy-mock.com/mock/5cc512356ab22004c8938098/listdept/gettsio').then(res=>{
+                console.log(res)
+            })
         },
         mounted() {
             let parm = {
