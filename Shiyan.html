@@ -18,25 +18,27 @@
 
 
         <!-- <div class="top-con"> -->
-            <!-- <span class="titleTex">电子病历</span>
+        <!-- <span class="titleTex">电子病历</span>
             <span class="rightSide">
                 <span class="right">霍思邈</span>
             </span> -->
-            <el-row type="flex" class="top-con" justify="space-between">
-                <el-col :span="6"><div class="titleTex">电子病历</div></el-col>
-                <el-col :span="4">
-                    <div class="grid-content bg-purple">
-                        <span class="listCon">霍思邈</span>
-                        <span class="listCon">
-                            <img src="image/information.png" alt="">
-                        </span>
-                        <span class="listCon">霍思邈</span>
-                        <span style="margin-left: 12px;">
-                            <img src="image/out.png" alt="">
-                        </span>
-                    </div>
-                </el-col>
-            </el-row>
+        <el-row type="flex" class="top-con" justify="space-between">
+            <el-col :span="6">
+                <div class="titleTex">电子病历</div>
+            </el-col>
+            <el-col :span="4">
+                <div class="grid-content bg-purple">
+                    <span class="listCon">霍思邈</span>
+                    <span class="listCon">
+                        <img src="image/information.png" alt="">
+                    </span>
+                    <span class="listCon">霍思邈</span>
+                    <span style="margin-left: 12px;">
+                        <img src="image/out.png" alt="">
+                    </span>
+                </div>
+            </el-col>
+        </el-row>
         <!-- </div> -->
 
         <el-container id="content" style="background: #E3E3E3;">
@@ -75,9 +77,10 @@
                         </el-col> -->
                         <div style="float: right;">
                             <button onclick="demo()" v-show="myIndex==1" class="Baocun">保存</button>
-                            <el-button @click="attachedPage" v-show="myIndex==1" type="primary">{{ flagIndex ==0?'附页':'首页'}}</el-button>
-                            <el-button @click="FistPage"   type="primary">回到上一页</el-button>
-                           
+                            <el-button @click="attachedPage" v-show="myIndex==1" type="primary">
+                                {{ flagIndex ==0?'附页':'首页'}}</el-button>
+                            <el-button @click="FistPage" type="primary">回到上一页</el-button>
+
                         </div>
                         <!-- <button onclick="demo()">sui</button> -->
                     </el-row>
@@ -2608,10 +2611,10 @@
                         </div>
                     </div>
                     <div id="myKui" class="myKui" v-show="myIndex==0">
-                        <el-row :gutter="20" >
-                            <el-col :span="5" @click.native="Indexsui(i)" v-for="(item,i) in conste">
+                        <el-row :gutter="20">
+                            <el-col :span="5" @click.native="Indexsui(item.hospitalId)" v-for="(item,i) in conste">
                                 <div class="blueTop"></div>
-                                <div class="cardContent"> 
+                                <div class="cardContent">
                                     <div class="normal">
                                         <div>
                                             <span class="patientName">{{item.name}}</span>
@@ -2632,7 +2635,7 @@
                                 </div>
                             </el-col>
 
-                            
+
                         </el-row>
                     </div>
                 </div>
@@ -2766,64 +2769,96 @@
                 // inICU5mins: '',
                 flagIndex: 0,
                 myIndex: 0,
-                conste:[
-                    {"name": "姚雨飞",
-                    "sickbedNumber": "01",
-                    "sex": "男",
-                    "age": "23",
-                    "hospitalId": "0000067584",
-                    "hospitalDate": "2019-10-24 22:24",
-                    "diagnosis": "诊断情况"},
-                    {"name": "姚雨飞",
-                    "sickbedNumber": "01",
-                    "sex": "男",
-                    "age": "23",
-                    "hospitalId": "0000067584",
-                    "hospitalDate": "2019-10-24 22:24",
-                    "diagnosis": "诊断情况"},
-                    {"name": "姚雨飞",
-                    "sickbedNumber": "01",
-                    "sex": "男",
-                    "age": "23",
-                    "hospitalId": "0000067584",
-                    "hospitalDate": "2019-10-24 22:24",
-                    "diagnosis": "诊断情况"},
-                    {"name": "姚雨飞",
-                    "sickbedNumber": "01",
-                    "sex": "男",
-                    "age": "23",
-                    "hospitalId": "0000067584",
-                    "hospitalDate": "2019-10-24 22:24",
-                    "diagnosis": "诊断情况"},
-                    {"name": "姚雨飞",
-                    "sickbedNumber": "01",
-                    "sex": "男",
-                    "age": "23",
-                    "hospitalId": "0000067584",
-                    "hospitalDate": "2019-10-24 22:24",
-                    "diagnosis": "诊断情况"},
-                    {"name": "姚雨飞",
-                    "sickbedNumber": "01",
-                    "sex": "男",
-                    "age": "23",
-                    "hospitalId": "0000067584",
-                    "hospitalDate": "2019-10-24 22:24",
-                    "diagnosis": "诊断情况"},
-                    {"name": "姚雨飞",
-                    "sickbedNumber": "01",
-                    "sex": "男",
-                    "age": "23",
-                    "hospitalId": "0000067584",
-                    "hospitalDate": "2019-10-24 22:24",
-                    "diagnosis": "诊断情况"},
+                conste: [{
+                        "name": "姚雨飞",
+                        "sickbedNumber": "01",
+                        "sex": "男",
+                        "age": "23",
+                        "hospitalId": "0000067584",
+                        "hospitalDate": "2019-10-24 22:24",
+                        "diagnosis": "诊断情况"
+                    },
+                    {
+                        "name": "姚雨飞",
+                        "sickbedNumber": "01",
+                        "sex": "男",
+                        "age": "23",
+                        "hospitalId": "0000067584",
+                        "hospitalDate": "2019-10-24 22:24",
+                        "diagnosis": "诊断情况"
+                    },
+                    {
+                        "name": "姚雨飞",
+                        "sickbedNumber": "01",
+                        "sex": "男",
+                        "age": "23",
+                        "hospitalId": "0000067584",
+                        "hospitalDate": "2019-10-24 22:24",
+                        "diagnosis": "诊断情况"
+                    },
+                    {
+                        "name": "姚雨飞",
+                        "sickbedNumber": "01",
+                        "sex": "男",
+                        "age": "23",
+                        "hospitalId": "0000067584",
+                        "hospitalDate": "2019-10-24 22:24",
+                        "diagnosis": "诊断情况"
+                    },
+                    {
+                        "name": "姚雨飞",
+                        "sickbedNumber": "01",
+                        "sex": "男",
+                        "age": "23",
+                        "hospitalId": "0000067584",
+                        "hospitalDate": "2019-10-24 22:24",
+                        "diagnosis": "诊断情况"
+                    },
+                    {
+                        "name": "姚雨飞",
+                        "sickbedNumber": "01",
+                        "sex": "男",
+                        "age": "23",
+                        "hospitalId": "0000067584",
+                        "hospitalDate": "2019-10-24 22:24",
+                        "diagnosis": "诊断情况"
+                    },
+                    {
+                        "name": "姚雨飞",
+                        "sickbedNumber": "01",
+                        "sex": "男",
+                        "age": "23",
+                        "hospitalId": "0000067584",
+                        "hospitalDate": "2019-10-24 22:24",
+                        "diagnosis": "诊断情况"
+                    },
                 ]
             }
         },
 
         created() {
             this.GetList(this.id);
-            axios.get('https://www.easy-mock.com/mock/5cc512356ab22004c8938098/listdept/gettsio').then(res=>{
-                console.log(res)
+            axios.get('http://192.168.3.252:8081/api/demo/getusers').then(res => {
+                var arr = [];
+                var ress = res.data.user;
+                for (var i = 0; i < res.data.user.length; i++) {
+                    // function getStr(string, str) {
+                    //     var str_before = string.split(str)[0];
+                    //     var str_after = string.split(str)[1];
+                    //     alert('前：' + str_before + ' - 后：' + str_after);
+                    // }
+                    var str_before = ress[i].BedNumber.split('号')[0];
+                    arr.push({
+                        "name": ress[i].JN8,
+                        "sickbedNumber": str_before,
+                        "sex": ress[i].JN9 == 1 ? '男' : '女',
+                        "age": ress[i].JN11,
+                        "hospitalId": ress[i].JN7,
+                        "hospitalDate": ress[i].JN39,
+                        "diagnosis": ress[i].JN49
+                    })
+                }
+                this.conste = arr
             })
         },
         mounted() {
@@ -2845,10 +2880,10 @@
                     this.flagIndex = 0
                 }
             },
-            Indexsui(data){
-               console.log(data)
-                this.myIndex=1
-              
+            Indexsui(data) {
+                console.log(data)
+                this.myIndex = 1
+
             },
             //计算屏幕尺寸
             Guding() {
