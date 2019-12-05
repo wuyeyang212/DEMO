@@ -279,8 +279,9 @@
 }
 
 .mytbody {
+    /* width: 940px; */
     height: 322px;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .mytbody::-webkit-scrollbar {

@@ -393,6 +393,7 @@
     font-size: 16px;
     color: #0F88E3;
 }
-/* .hospitalDate {
-    font-size: 14px;
-} */
+
+.cardDiagnose {
+    height: 45px;
+}

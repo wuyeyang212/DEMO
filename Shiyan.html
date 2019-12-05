@@ -2621,7 +2621,7 @@
                                             <span class="sickbedNumber">{{item.sickbedNumber}}床</span>
                                         </div>
                                         <div class="sexAge">
-                                            <span style="margin-right: 30px">性别：{{item.sex}}</span>
+                                            <span style="margin-right: 20px">性别：{{item.sex}}</span>
                                             <span>年龄：{{item.age}}</span>
                                         </div>
                                     </div>
@@ -2630,7 +2630,7 @@
                                             住院号：{{item.hospitalId}}
                                         </div>
                                         <div>入院日期：{{item.hospitalDate}}</div>
-                                        <div>诊断：{{item.diagnosis}}</div>
+                                        <div class="cardDiagnose">诊断：{{item.diagnosis}}</div>
                                     </div>
                                 </div>
                             </el-col>
@@ -2681,23 +2681,7 @@
         el: '#app',
         data: function () {
             return {
-                tableData: [{
-                    date: '2016-05-02',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄'
-                }, {
-                    date: '2016-05-04',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1517 弄'
-                }, {
-                    date: '2016-05-01',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1519 弄'
-                }, {
-                    date: '2016-05-03',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1516 弄'
-                }],
+                tableData: [],
 
                 newVselet: null, //上次点击的id
 
@@ -2769,70 +2753,7 @@
                 // inICU5mins: '',
                 flagIndex: 0,
                 myIndex: 0,
-                conste: [{
-                        "name": "姚雨飞",
-                        "sickbedNumber": "01",
-                        "sex": "男",
-                        "age": "23",
-                        "hospitalId": "0000067584",
-                        "hospitalDate": "2019-10-24 22:24",
-                        "diagnosis": "诊断情况"
-                    },
-                    {
-                        "name": "姚雨飞",
-                        "sickbedNumber": "01",
-                        "sex": "男",
-                        "age": "23",
-                        "hospitalId": "0000067584",
-                        "hospitalDate": "2019-10-24 22:24",
-                        "diagnosis": "诊断情况"
-                    },
-                    {
-                        "name": "姚雨飞",
-                        "sickbedNumber": "01",
-                        "sex": "男",
-                        "age": "23",
-                        "hospitalId": "0000067584",
-                        "hospitalDate": "2019-10-24 22:24",
-                        "diagnosis": "诊断情况"
-                    },
-                    {
-                        "name": "姚雨飞",
-                        "sickbedNumber": "01",
-                        "sex": "男",
-                        "age": "23",
-                        "hospitalId": "0000067584",
-                        "hospitalDate": "2019-10-24 22:24",
-                        "diagnosis": "诊断情况"
-                    },
-                    {
-                        "name": "姚雨飞",
-                        "sickbedNumber": "01",
-                        "sex": "男",
-                        "age": "23",
-                        "hospitalId": "0000067584",
-                        "hospitalDate": "2019-10-24 22:24",
-                        "diagnosis": "诊断情况"
-                    },
-                    {
-                        "name": "姚雨飞",
-                        "sickbedNumber": "01",
-                        "sex": "男",
-                        "age": "23",
-                        "hospitalId": "0000067584",
-                        "hospitalDate": "2019-10-24 22:24",
-                        "diagnosis": "诊断情况"
-                    },
-                    {
-                        "name": "姚雨飞",
-                        "sickbedNumber": "01",
-                        "sex": "男",
-                        "age": "23",
-                        "hospitalId": "0000067584",
-                        "hospitalDate": "2019-10-24 22:24",
-                        "diagnosis": "诊断情况"
-                    },
-                ]
+                conste: [] //病人卡片信息
             }
         },
 
@@ -2866,7 +2787,6 @@
                 mdId: this.id
             };
             this.Guding();
-            this.MedicalDataDetail(parm)
         },
         methods: {
             FistPage() {
@@ -2883,7 +2803,49 @@
             Indexsui(data) {
                 console.log(data)
                 this.myIndex = 1
+                let _this = this;
+                axios.get('http://192.168.3.252:8081/api/demo/getuserinfo/' + data).then(res => {
+                    console.log(res)
+                    _this.formitem = res.data.jnInfo
 
+                    this.year = res.data.jnInfo.JN10.substr(0, 4)
+                    this.month = res.data.jnInfo.JN10.substr(4, 2)
+                    this.day = res.data.jnInfo.JN10.substr(6, 2)
+
+                    this.JN39year = res.data.jnInfo.JN39.substr(0, 4)
+                    this.JN39month = res.data.jnInfo.JN39.substr(5, 2)
+                    this.JN39day = res.data.jnInfo.JN39.substr(8, 2)
+                    this.JN39hours = res.data.jnInfo.JN39.substr(11, 2)
+
+                    this.JN42year = res.data.jnInfo.JN42.substr(0, 4)
+                    this.JN42month = res.data.jnInfo.JN42.substr(5, 2)
+                    this.JN42day = res.data.jnInfo.JN42.substr(8, 2)
+                    this.JN42hours = res.data.jnInfo.JN42.substr(11, 2)
+
+                    this.JN300year = res.data.jnInfo.JN300.substr(0, 4)
+                    this.JN300month = res.data.jnInfo.JN300.substr(5, 2)
+                    this.JN300day = res.data.jnInfo.JN300.substr(8, 2)
+
+                    this.inICU1year = res.data.jnInfo.JN316.substr(0, 4)
+                    this.inICU1month = res.data.jnInfo.JN316.substr(5, 2)
+                    this.inICU1day = res.data.jnInfo.JN316.substr(8, 2)
+
+                    this.inICU2year = res.data.jnInfo.JN319.substr(0, 4)
+                    this.inICU2month = res.data.jnInfo.JN319.substr(5, 2)
+                    this.inICU2day = res.data.jnInfo.JN319.substr(8, 2)
+
+                    this.inICU3year = res.data.jnInfo.JN322.substr(0, 4)
+                    this.inICU3month = res.data.jnInfo.JN322.substr(5, 2)
+                    this.inICU3day = res.data.jnInfo.JN322.substr(8, 2)
+
+                    this.inICU4year = res.data.jnInfo.JN325.substr(0, 4)
+                    this.inICU4month = res.data.jnInfo.JN325.substr(5, 2)
+                    this.inICU4day = res.data.jnInfo.JN325.substr(8, 2)
+
+                    this.inICU5year = res.data.jnInfo.JN328.substr(0, 4)
+                    this.inICU5month = res.data.jnInfo.JN328.substr(5, 2)
+                    this.inICU5day = res.data.jnInfo.JN328.substr(8, 2)
+                })
             },
             //计算屏幕尺寸
             Guding() {
@@ -2896,9 +2858,9 @@
                 myKui.style.height = (client - 260) + "px"
             },
             Keio() {
-                console.log(this.fromInlineg)
+                console.log(this.formitem)
                 // this.fromeiu.cuise = false
-                return this.fromInlineg
+                return this.formitem
             },
             KeioS() {
                 console.log("22465465");
@@ -2906,62 +2868,6 @@
             },
             handleClick(tab, event) {
                 console.log(tab, event);
-            },
-            // 明细查询/queryMedicalDataDetail
-            MedicalDataDetail(parm) {
-                let _this = this;
-
-                this.getAxios('/queryMedicalDataDetail', parm).then((res) => {
-                    console.log(res.data)
-                    console.log(res.data.fullCheckResult)
-                    console.log(res.data.logicCheckResult)
-                    console.log(res.data.drgCheckResult)
-                    _this.formitem = res.data.medicalData
-                    _this.tableData01 = res.data.fullCheckResult
-                    _this.tableData02 = res.data.logicCheckResult
-                    _this.tableData03 = res.data.drgCheckResult
-
-                    this.year = res.data.medicalData.JN10.substr(0, 4)
-                    this.month = res.data.medicalData.JN10.substr(4, 2)
-                    this.day = res.data.medicalData.JN10.substr(6, 2)
-
-                    // this.province = res.data.medicalData.JN23.substr(0,6)
-                    // this.county = res.data.medicalData.JN23.substr(6,3)
-
-                    this.JN39year = res.data.medicalData.JN39.substr(0, 4)
-                    this.JN39month = res.data.medicalData.JN39.substr(5, 2)
-                    this.JN39day = res.data.medicalData.JN39.substr(8, 2)
-                    this.JN39hours = res.data.medicalData.JN39.substr(11, 2)
-
-                    this.JN42year = res.data.medicalData.JN42.substr(0, 4)
-                    this.JN42month = res.data.medicalData.JN42.substr(5, 2)
-                    this.JN42day = res.data.medicalData.JN42.substr(8, 2)
-                    this.JN42hours = res.data.medicalData.JN42.substr(11, 2)
-
-                    this.JN300year = res.data.medicalData.JN300.substr(0, 4)
-                    this.JN300month = res.data.medicalData.JN300.substr(5, 2)
-                    this.JN300day = res.data.medicalData.JN300.substr(8, 2)
-
-                    this.inICU1year = res.data.medicalData.JN316.substr(0, 4)
-                    this.inICU1month = res.data.medicalData.JN316.substr(5, 2)
-                    this.inICU1day = res.data.medicalData.JN316.substr(8, 2)
-
-                    this.inICU2year = res.data.medicalData.JN319.substr(0, 4)
-                    this.inICU2month = res.data.medicalData.JN319.substr(5, 2)
-                    this.inICU2day = res.data.medicalData.JN319.substr(8, 2)
-
-                    this.inICU3year = res.data.medicalData.JN322.substr(0, 4)
-                    this.inICU3month = res.data.medicalData.JN322.substr(5, 2)
-                    this.inICU3day = res.data.medicalData.JN322.substr(8, 2)
-
-                    this.inICU4year = res.data.medicalData.JN325.substr(0, 4)
-                    this.inICU4month = res.data.medicalData.JN325.substr(5, 2)
-                    this.inICU4day = res.data.medicalData.JN325.substr(8, 2)
-
-                    this.inICU5year = res.data.medicalData.JN328.substr(0, 4)
-                    this.inICU5month = res.data.medicalData.JN328.substr(5, 2)
-                    this.inICU5day = res.data.medicalData.JN328.substr(8, 2)
-                })
             },
 
 
@@ -3030,22 +2936,43 @@
     })
 
     function demo() {
-        // let ari = vm.Keio()
-        // console.log(ari.cuis)
-        layer.open({
-            type: 2,
-            title: '病案首页智能质控',
-            maxmin: true,
-            area: ['1000px', '700px'],
-            // content: 'http://layer.layui.com/test/welcome.html',
-            content: 'detailedrew.html',
-            end: function () {
-                var sui = vm.KeioS()
-                // layer.tips('Hi', '#about', {
-                //     tips: 1
-                // })
+        let ari = vm.Keio()
+       ari = JSON.stringify(ari)
+        $.ajax({
+            url: "http://192.168.3.252:8081/recordAudit", //请求的url地址
+            dataType: "json", //返回格式为json
+            async: true, //请求是否异步，默认为异步，这也是ajax重要特性
+            data: {
+                "recordInfo": ari
+            }, //参数值
+            type: "post", //请求方式
+            beforeSend: function () {
+                //请求前的处理
+            },
+            success: function (req) {
+                console.log(req) 
+            },
+            complete: function () {
+                //请求完成的处理
+            },
+            error: function () {
+                //请求出错处理
             }
         });
+        // layer.open({
+        //     type: 2,
+        //     title: '病案首页智能质控',
+        //     maxmin: true,
+        //     area: ['1000px', '700px'],
+        //     // content: 'http://layer.layui.com/test/welcome.html',
+        //     content: 'detailedrew.html',
+        //     end: function () {
+        //         var sui = vm.KeioS()
+        //         // layer.tips('Hi', '#about', {
+        //         //     tips: 1
+        //         // })
+        //     }
+        // });
     }
 </script>
 
