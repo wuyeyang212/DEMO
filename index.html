@@ -1,0 +1,2986 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <!-- import CSS -->
+    <!-- <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css"> -->
+    <link rel="stylesheet" href="css/vue.css">
+    <!-- 弹窗CSS -->
+    <link rel="stylesheet" href="css/popup.css">
+
+    <link rel="stylesheet" href="css/isNew.css">
+
+</head>
+
+<body>
+    <div id="app">
+
+
+        <!-- <div class="top-con"> -->
+        <!-- <span class="titleTex">电子病历</span>
+            <span class="rightSide">
+                <span class="right">霍思邈</span>
+            </span> -->
+        <el-row type="flex" class="top-con" justify="space-between">
+            <el-col :span="6">
+                <div class="titleTex">电子病历</div>
+            </el-col>
+            <el-col :span="4">
+                <div class="grid-content bg-purple">
+                    <span class="listCon">霍思邈</span>
+                    <span class="listCon">
+                        <img src="image/information.png" alt="">
+                    </span>
+                    <span class="listCon">霍思邈</span>
+                    <span style="margin-left: 12px;">
+                        <img src="image/out.png" alt="">
+                    </span>
+                </div>
+            </el-col>
+        </el-row>
+        <!-- </div> -->
+
+        <el-container id="content" style="background: #E3E3E3;">
+            <el-aside width="300px" class="personInfor">
+                <ul class="rightsider">
+                    <li>
+                        入院记录
+                    </li>
+                    <li>
+                        病情记录
+                    </li>
+                    <li class="dIAN-sui">
+                        病案首页
+                    </li>
+                    <li>
+                        出院记录
+                    </li>
+                    <li>
+                        辅助检查
+                    </li>
+                    <li>
+                        手术情况
+                    </li>
+                    <li>
+                        诊断情况
+                    </li>
+                </ul>
+            </el-aside>
+            <el-main>
+                <div class="casebook">
+                    <el-row class="top">
+
+                        <!-- <el-col :span="7" style="float: right;">
+
+                        
+                        </el-col> -->
+                        <div style="float: right;">
+                            <button onclick="demo()" v-show="myIndex==1" class="Baocun">保存</button>
+                            <el-button @click="attachedPage" v-show="myIndex==1" type="primary">
+                                {{ flagIndex ==0?'附页':'首页'}}</el-button>
+                            <el-button @click="FistPage" type="primary">回到上一页</el-button>
+
+                        </div>
+                        <!-- <button onclick="demo()">sui</button> -->
+                    </el-row>
+
+                    <div class="my" id="my" v-show="myIndex==1">
+
+                        <div :class="flagIndex == 0?'showfirstPage': 'showAttachedpage'">
+                            <div class="addPage">
+                                <div class="first">
+                                    <input class="underline" id="JN3" style="width: 140px;" v-model="formitem.JN3" />
+                                    医院（机构代码：
+                                    <input class="underline" id="JN2" style="width: 120px;" v-model="formitem.JN2" />）
+
+                                </div>
+                                <div class="second">住院病案首页</div>
+                                <div class="third">(病人存档及卫生统计用)</div>
+                                <div class="fourth">
+                                    病案号：
+                                    <input id="JN7" class="medicalRecord" v-model="formitem.JN7"
+                                        style="border: none;" />
+                                    <span id="JN6" style="margin-left:19%;">
+                                        第
+                                        <input class="underline noBoder" v-model="formitem.JN6" style="width: 20px;" />
+                                        <span>次住院</span>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <table class="myTable" border="1" cellspacing="0">
+                                <tr>
+                                    <td colspan="4">
+                                        <span class="blanking" id="JN8">
+                                            <span class="fontBold">姓名：</span>
+                                            <input class="underline" v-model="formitem.JN8" />
+                                        </span>
+
+                                        <span class="blanking" id="JN9">
+                                            <span class="fontBold">性别：</span>
+                                            <input type="radio" name="sex" value="1" v-model="formitem.JN9"
+                                                disabled="true" />男
+                                            <input type="radio" name="sex" value="2" v-model="formitem.JN9"
+                                                disabled="true" />女
+                                        </span>
+
+                                        <span class="blanking" id="JN10">
+                                            <span class="fontBold">出生日期：</span>
+                                            <input class="underline" v-model="year" />年
+                                            <input class="underline" v-model="month" />月
+                                            <input class="underline" v-model="day" />日
+                                        </span>
+
+                                        <span id="JN23">
+                                            <span class="fontBold">出生地：</span>
+                                            <input class="underline" style="width: 290px;" v-model="formitem.JN23" />
+                                        </span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="4">
+                                        <span class="blanking" id="JN24">
+                                            <span class="fontBold">籍贯：</span>
+                                            <input class="underline" style="width: 100px;" v-model="formitem.JN24" />
+                                        </span>
+
+                                        <span class="blanking" id="JN22">
+                                            <span class="fontBold">婚姻：</span>
+                                            <input type="radio" name="marry" value="2" v-model="formitem.JN22"
+                                                disabled="true" />已
+                                            <input type="radio" name="marry" value="1" v-model="formitem.JN22"
+                                                disabled="true" />未
+                                            <input type="radio" name="marry" value="4" v-model="formitem.JN22"
+                                                disabled="true" />离
+                                            <input type="radio" name="marry" value="3" v-model="formitem.JN22"
+                                                disabled="true" />丧偶
+                                        </span>
+
+                                        <span class="blanking" id="JN25">
+                                            <span class="fontBold">民族：</span>
+                                            <input class="underline" style="width: 100px;" v-model="formitem.JN25" />
+                                        </span>
+
+                                        <span class="blanking" id="JN12">
+                                            <span class="fontBold">国籍：</span>
+                                            <input class="underline" v-model="formitem.JN12" />
+                                        </span>
+
+                                        <span id="JN20">
+                                            <span class="fontBold">身份证号：</span>
+                                            <input class="underline" style="width: 217px;" v-model="formitem.JN20" />
+                                        </span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="4">
+                                        <span class="blanking" id="JN21">
+                                            <span class="fontBold">职业：</span>
+                                            <input class="underline" style="width: 120px;" v-model="formitem.JN21" />
+                                        </span>
+
+                                        <span class="blanking" id="JN26">
+                                            <span class="fontBold">现住址：</span>
+                                            <input class="underline" style="width: 312px;" v-model="formitem.JN26" />
+                                        </span>
+
+                                        <span class="blanking" id="JN28">
+                                            <span class="fontBold">电话：</span>
+                                            <input class="underline" style="width: 120px;" v-model="formitem.JN28" />
+                                        </span>
+
+                                        <span id="JN27">
+                                            <span class="fontBold">邮编：</span>
+                                            <input class="underline" style="width: 120px;" v-model="formitem.JN27" />
+                                        </span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="4">
+                                        <span class="blanking" id="JN31">
+                                            <span class="fontBold">工作单位及地址：</span>
+                                            <input class="underline" style="width: 420px;" v-model="formitem.JN31" />
+                                        </span>
+
+                                        <span class="blanking" id="JN32">
+                                            <span class="fontBold">单位电话：</span>
+                                            <input class="underline" style="width: 115px;" v-model="formitem.JN32" />
+                                        </span>
+
+                                        <span id="JN33">
+                                            <span class="fontBold">邮编：</span>
+                                            <input class="underline" style="width: 120px;" v-model="formitem.JN33" />
+                                        </span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="4">
+                                        <span class="blanking" id="JN34">
+                                            <span class="fontBold">联系人姓名：</span>
+                                            <input class="underline" style="width: 80px;" v-model="formitem.JN34" />
+                                        </span>
+
+                                        <span class="blanking" id="JN35">
+                                            <span class="fontBold">关系：</span>
+                                            <input class="underline" v-model="formitem.JN35" />
+                                        </span>
+
+                                        <span class="blanking" id="JN36">
+                                            <span class="fontBold">地址：</span>
+                                            <input class="underline" style="width: 383px;" v-model="formitem.JN36" />
+                                        </span>
+
+                                        <span id="JN37">
+                                            <span class="fontBold">电话：</span>
+                                            <input class="underline" style="width: 120px;" v-model="formitem.JN37" />
+                                        </span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="4">
+                                        <span class="blanking" id="JN38">
+                                            <span class="fontBold">入院途径：</span>
+                                            <input type="radio" name="hospitalized" value="1" v-model="formitem.JN38"
+                                                disabled="true" />急诊
+                                            <input type="radio" name="hospitalized" value="2" v-model="formitem.JN38"
+                                                disabled="true" />门诊
+                                            <input type="radio" name="hospitalized" value="3" v-model="formitem.JN38"
+                                                disabled="true" />转入
+                                            <input type="radio" name="hospitalized" value="9" v-model="formitem.JN38"
+                                                disabled="true" />其他，
+                                            <input class="underline" style="width: 315px;" />
+                                        </span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="4">
+                                        <span class="blanking" id="JN39">
+                                            <span class="fontBold">入院日期：</span>
+                                            <input class="underline" v-model="JN39year" />年
+                                            <input class="underline" v-model="JN39month" />月
+                                            <input class="underline" v-model="JN39day" />日
+                                            <input class="underline" v-model="JN39hours" />时
+                                        </span>
+
+                                        <span class="blanking" id="JN40">
+                                            <span class="fontBold">入院科别：</span>
+                                            <input class="underline" style="width: 107px;" v-model="formitem.JN40" />
+                                        </span>
+
+                                        <span id="JN41">
+                                            <span class="fontBold">病室</span>
+                                            <input class="underline" style="width: 107px;" v-model="formitem.JN41" />
+                                        </span>
+
+                                        <span id="JN45">
+                                            <span class="fontBold">转科科别：</span>
+                                            <input class="underline" style="width: 107px;" v-model="formitem.JN45" />
+                                        </span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="4">
+                                        <span class="blanking" id="JN42">
+                                            <span class="fontBold">出院日期：</span>
+                                            <input class="underline" v-model="JN42year" />年
+                                            <input class="underline" v-model="JN42month" />月
+                                            <input class="underline" v-model="JN42day" />日
+                                            <input class="underline" v-model="JN42hours" />时
+                                        </span>
+
+                                        <span class="blanking" id="JN43">
+                                            <span class="fontBold">出院科别：</span>
+                                            <input class="underline" style="width: 107px;" v-model="formitem.JN43" />
+                                        </span>
+
+                                        <span id="JN44">
+                                            <span class="fontBold">病室</span>
+                                            <input class="underline" style="width: 107px;" v-model="formitem.JN44" />
+                                        </span>
+
+                                        <span id="JN46">
+                                            <span class="fontBold">患者住院天数：</span>
+                                            <input class="underline" style="width: 72px;" v-model="formitem.JN46" />天
+                                        </span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="4">
+                                        <span class="blanking" id="JN47">
+                                            <span class="fontBold">门（急）诊诊断：</span>
+                                            <input class="underline" style="width: 610px;" v-model="formitem.JN47" />
+                                        </span>
+                                        <span id="JN51">
+                                            <span class="fontBold">入院时病情：</span>
+                                            <input type="radio" name="state" value="1" v-model="formitem.JN51"
+                                                disabled="true" />危
+                                            <input type="radio" name="state" value="2" v-model="formitem.JN51"
+                                                disabled="true" />急
+                                            <input type="radio" name="state" value="3" v-model="formitem.JN51"
+                                                disabled="true" />一般
+                                        </span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="4">
+                                        <span class="blanking" id="JN49">
+                                            <span class="fontBold">入院诊断：</span>
+                                            <input class="underline" style="width: 490px;" v-model="formitem.JN49" />
+                                        </span>
+
+                                        <span id="JN300">
+                                            <span class="fontBold">入院诊断日期：</span>
+                                            <input class="underline" v-model="JN300year" />年
+                                            <input class="underline" v-model="JN300month" />月
+                                            <input class="underline" v-model="JN300day" />日
+                                        </span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="4">
+                                        <span id="JN395">
+                                            <span class="fontBold">住院期间是否告病危：</span>
+                                            <input type="radio" name="criticallyIll" value="1" v-model="formitem.JN395"
+                                                disabled="true" />是
+                                            <input type="radio" name="criticallyIll" value="2" v-model="formitem.JN395"
+                                                disabled="true" />否
+                                        </span>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <!-- 第二个表格 -->
+
+                            <table class="myTable1" cellspacing="0">
+                                <tr>
+                                    <td rowspan="2" colspan="5">
+                                        <span class="fontStyle">出院诊断</span>
+                                    </td>
+                                    <td colspan="5">
+                                        <span class="fontStyle">出院情况</span>
+                                    </td>
+                                    <td rowspan="2">
+                                        <span class="fontStyle">ICD-10</span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td width="80">1.治愈</td>
+                                    <td width="80">2.好转</td>
+                                    <td width="80">3.未愈</td>
+                                    <td width="80">4.死亡</td>
+                                    <td width="80">5.其他</td>
+                                </tr>
+
+                                <tr id="JN52">
+                                    <td colspan="5" class="textLeft">
+                                        <span id="JN49">
+                                            <span class="fontBold">主要诊断：</span>
+                                            <span class="diagnose">{{ formitem.JN49 }}</span>
+                                        </span>
+                                    </td>
+                                    <td>{{ formitem.JN52 == '1'? '√' : '' }}</td>
+                                    <td>{{ formitem.JN52 == '2'? '√' : '' }}</td>
+                                    <td>{{ formitem.JN52 == '3'? '√' : '' }}</td>
+                                    <td>{{ formitem.JN52 == '4'? '√' : '' }}</td>
+                                    <td>{{ formitem.JN52 == '9'? '√' : '' }}</td>
+                                    <td><span id="JN50">{{ formitem.JN50 }}</span></td>
+                                </tr>
+
+                                <tr id="JN56">
+                                    <td colspan="5" class="textLeft">
+                                        <span id="JN53">
+                                            <span class="fontBold">其他诊断1：</span>
+                                            <span class="diagnose">{{ formitem.JN53 }}</span>
+                                        </span>
+                                    </td>
+                                    <td>{{ formitem.JN56 == '1'? '√' : '' }}</td>
+                                    <td>{{ formitem.JN56 == '2'? '√' : '' }}</td>
+                                    <td>{{ formitem.JN56 == '3'? '√' : '' }}</td>
+                                    <td>{{ formitem.JN56 == '4'? '√' : '' }}</td>
+                                    <td>{{ formitem.JN56 == '9'? '√' : '' }}</td>
+                                    <td><span id="JN54">{{ formitem.JN54 }}</span></td>
+                                </tr>
+
+                                <tr height="24" id="JN60">
+                                    <td colspan="5" class="textLeft">
+                                        <span id="JN57">
+                                            <span class="fontBold">其他诊断2：</span>
+                                            <span class="diagnose">{{ formitem.JN57 }}</span>
+                                        </span>
+                                    </td>
+                                    <td>{{ formitem.JN60 == '1'? '√' : '' }}</td>
+                                    <td>{{ formitem.JN60 == '2'? '√' : '' }}</td>
+                                    <td>{{ formitem.JN60 == '3'? '√' : '' }}</td>
+                                    <td>{{ formitem.JN60 == '4'? '√' : '' }}</td>
+                                    <td>{{ formitem.JN60 == '9'? '√' : '' }}</td>
+                                    <td><span id="JN58">{{ formitem.JN58 }}</span></td>
+                                </tr>
+
+                                <tr height="24" id="JN64">
+                                    <td colspan="5" class="textLeft">
+                                        <span id="JN61">
+                                            <span class="fontBold">其他诊断3：</span>
+                                            <span class="diagnose">{{ formitem.JN61 }}</span>
+                                        </span>
+                                    </td>
+                                    <td>{{ formitem.JN64 == '1'? '√' : '' }}</td>
+                                    <td>{{ formitem.JN64 == '2'? '√' : '' }}</td>
+                                    <td>{{ formitem.JN64 == '3'? '√' : '' }}</td>
+                                    <td>{{ formitem.JN64 == '4'? '√' : '' }}</td>
+                                    <td>{{ formitem.JN64 == '9'? '√' : '' }}</td>
+                                    <td><span id="JN62">{{ formitem.JN62 }}</span></td>
+                                </tr>
+
+                                <tr height="24" id="JN68">
+                                    <td colspan="5" class="textLeft">
+                                        <span id="JN65">
+                                            <span class="fontBold">其他诊断4：</span>
+                                            <span class="diagnose">{{ formitem.JN65 }}</span>
+                                        </span>
+                                    </td>
+                                    <td>{{ formitem.JN68 == '1'? '√' : '' }}</td>
+                                    <td>{{ formitem.JN68 == '2'? '√' : '' }}</td>
+                                    <td>{{ formitem.JN68 == '3'? '√' : '' }}</td>
+                                    <td>{{ formitem.JN68 == '4'? '√' : '' }}</td>
+                                    <td>{{ formitem.JN68 == '9'? '√' : '' }}</td>
+                                    <td><span id="JN66">{{ formitem.JN66 }}</span></td>
+                                </tr>
+
+                                <tr height="24" id="JN72">
+                                    <td colspan="5" class="textLeft">
+                                        <span id="JN69">
+                                            <span class="fontBold">其他诊断5：</span>
+                                            <span class="diagnose">{{ formitem.JN69 }}</span>
+                                        </span>
+                                    </td>
+                                    <td>{{ formitem.JN72 == '1'? '√' : '' }}</td>
+                                    <td>{{ formitem.JN72 == '2'? '√' : '' }}</td>
+                                    <td>{{ formitem.JN72 == '3'? '√' : '' }}</td>
+                                    <td>{{ formitem.JN72 == '4'? '√' : '' }}</td>
+                                    <td>{{ formitem.JN72 == '9'? '√' : '' }}</td>
+                                    <td><span id="JN70">{{ formitem.JN70 }}</span></td>
+                                </tr>
+
+                                <tr height="24" id="JN76">
+                                    <td colspan="5" class="textLeft">
+                                        <span id="JN73">
+                                            <span class="fontBold">其他诊断6：</span>
+                                            <span class="diagnose">{{ formitem.JN73 }}</span>
+                                        </span>
+                                    </td>
+                                    <td>{{ formitem.JN76 == '1'? '√' : '' }}</td>
+                                    <td>{{ formitem.JN76 == '2'? '√' : '' }}</td>
+                                    <td>{{ formitem.JN76 == '3'? '√' : '' }}</td>
+                                    <td>{{ formitem.JN76 == '4'? '√' : '' }}</td>
+                                    <td>{{ formitem.JN76 == '9'? '√' : '' }}</td>
+                                    <td><span id="JN74">{{ formitem.JN74 }}</span></td>
+                                </tr>
+
+                                <tr height="24" id="JN80">
+                                    <td colspan="5" class="textLeft">
+                                        <span id="JN77">
+                                            <span class="fontBold">其他诊断7：</span>
+                                            <span class="diagnose">{{ formitem.JN77 }}</span>
+                                        </span>
+                                    </td>
+                                    <td>{{ formitem.JN80 == '1'? '√' : '' }}</td>
+                                    <td>{{ formitem.JN80 == '2'? '√' : '' }}</td>
+                                    <td>{{ formitem.JN80 == '3'? '√' : '' }}</td>
+                                    <td>{{ formitem.JN80 == '4'? '√' : '' }}</td>
+                                    <td>{{ formitem.JN80 == '9'? '√' : '' }}</td>
+                                    <td><span id="JN78">{{ formitem.JN78 }}</span></td>
+                                </tr>
+
+                                <tr height="24" id="JN84">
+                                    <td colspan="5" class="textLeft">
+                                        <span id="JN81">
+                                            <span class="fontBold">其他诊断8：</span>
+                                            <span class="diagnose">{{ formitem.JN81 }}</span>
+                                        </span>
+                                    </td>
+                                    <td>{{ formitem.JN84 == '1'? '√' : '' }}</td>
+                                    <td>{{ formitem.JN84 == '2'? '√' : '' }}</td>
+                                    <td>{{ formitem.JN84 == '3'? '√' : '' }}</td>
+                                    <td>{{ formitem.JN84 == '4'? '√' : '' }}</td>
+                                    <td>{{ formitem.JN84 == '9'? '√' : '' }}</td>
+                                    <td><span id="JN82">{{ formitem.JN82 }}</span></td>
+                                </tr>
+
+                                <tr height="24" id="JN88">
+                                    <td colspan="5" class="textLeft">
+                                        <span id="JN85">
+                                            <span class="fontBold">其他诊断9：</span>
+                                            <span class="diagnose">{{ formitem.JN85 }}</span>
+                                        </span>
+                                    </td>
+                                    <td>{{ formitem.JN88 == '1'? '√' : '' }}</td>
+                                    <td>{{ formitem.JN88 == '2'? '√' : '' }}</td>
+                                    <td>{{ formitem.JN88 == '3'? '√' : '' }}</td>
+                                    <td>{{ formitem.JN88 == '4'? '√' : '' }}</td>
+                                    <td>{{ formitem.JN88 == '9'? '√' : '' }}</td>
+                                    <td><span id="JN86">{{ formitem.JN86 }}</span></td>
+                                </tr>
+
+                                <tr height="24" id="JN92">
+                                    <td colspan="5" class="textLeft">
+                                        <span id="JN89">
+                                            <span class="fontBold">其他诊断10：</span>
+                                            <span class="diagnose">{{ formitem.JN89 }}</span>
+                                        </span>
+                                    </td>
+                                    <td>{{ formitem.JN92 == '1'? '√' : '' }}</td>
+                                    <td>{{ formitem.JN92 == '2'? '√' : '' }}</td>
+                                    <td>{{ formitem.JN92 == '3'? '√' : '' }}</td>
+                                    <td>{{ formitem.JN92 == '4'? '√' : '' }}</td>
+                                    <td>{{ formitem.JN92 == '9'? '√' : '' }}</td>
+                                    <td><span id="JN90">{{ formitem.JN90 }}</span></td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="5" class="textLeft">
+                                        <span id="JN389">
+                                            <span class="fontBold">医院感染：</span>
+                                            <input type="radio" name="infection" value="1" v-model="formitem.JN389"
+                                                disabled="true" />有
+                                            <input type="radio" name="infection" value="2" v-model="formitem.JN389"
+                                                disabled="true" />无
+                                            <input type="radio" name="infection" value="3" v-model="formitem.JN389"
+                                                disabled="true" />其他，
+                                            <input class="underline" style="width: 60px;" v-model="formitem.JN389" />
+                                        </span>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+
+                                <tr>
+                                    <td id="JN106" colspan="10" class="textLeft">
+                                        <span class="fontBold">病理诊断：</span>
+                                        <span>{{ formitem.JN106 }}</span>&nbsp;
+                                        <!-- <span id="JN110">{{ formitem.JN110 }}</span>&nbsp;
+                            <span id="JN114">{{ formitem.JN114 }}</span> -->
+                                    </td>
+                                    <td></td>
+                                </tr>
+
+                                <tr class="textLeft">
+                                    <td id="JN118" colspan="5">
+                                        <span class="fontBold">损伤中毒的外部原因：</span>
+                                        <span>{{ formitem.JN118 }}</span>&nbsp;
+                                        <!-- <span id="JN120">{{ formitem.JN120 }}</span>&nbsp;
+                            <span id="JN122">{{ formitem.JN122 }}</span> -->
+                                    </td>
+                                    <td colspan="5">
+                                        <span id="JN331">
+                                            <span class="fontBold">尸检：</span>
+                                            <input type="radio" name="autopsy" value="1" v-model="formitem.JN331"
+                                                disabled="true" />是
+                                            <input type="radio" name="autopsy" value="2" v-model="formitem.JN331"
+                                                disabled="true" />否
+                                        </span>
+                                    </td>
+                                    <td></td>
+                                </tr>
+
+                                <tr class="textLeft">
+                                    <td colspan="11">
+
+                                        <span id="JN124">
+                                            <span class="fontBold">药物过敏：</span>
+                                            <input class="underline" style="width: 300px;" v-model="formitem.JN124" />
+                                        </span>
+                                        <span id="JN297">
+                                            <span class="fontBold">HBsAg</span>
+                                            <input class="underline" v-model="formitem.JN297" />
+                                        </span>
+                                        <span id="JN298">
+                                            <span class="fontBold">HCV-Ab</span>
+                                            <input class="underline" v-model="formitem.JN298" />
+                                        </span>
+                                        <span id="JN299">
+                                            <span class="fontBold">HIV-Ab</span>
+                                            <input class="underline" v-model="formitem.JN299" />
+                                        </span>
+                                        <span>
+                                            <span class="fontBold">梅毒抗体</span>
+                                            <input class="underline" />
+                                        </span>
+                                        <!-- <span class="blanking">1.未做</span>
+                            <span class="blanking">2.阴性</span>
+                            <span class="blanking">3.阳性</span> -->
+                                    </td>
+                                </tr>
+
+                                <tr class="textLeft">
+                                    <td colspan="11">
+                                        <span id="JN295">
+                                            <span class="fontBold">血型：</span>
+                                            <input type="radio" name="bloodType" value="1" v-model="formitem.JN295"
+                                                disabled="true" />A
+                                            <input type="radio" name="bloodType" value="2" v-model="formitem.JN295"
+                                                disabled="true" />B
+                                            <input type="radio" name="bloodType" value="4" v-model="formitem.JN295"
+                                                disabled="true" />AB
+                                            <input type="radio" name="bloodType" value="3" v-model="formitem.JN295"
+                                                disabled="true" />O
+                                            <input type="radio" name="bloodType" value="5" v-model="formitem.JN295"
+                                                disabled="true" />其他
+                                            <input type="radio" name="bloodType" value="6" v-model="formitem.JN295"
+                                                disabled="true" />未做
+                                        </span>
+                                        <span id="JN296">
+                                            <span class="fontBold">RH：</span>
+                                            <input type="radio" name="RH" value="1" v-model="formitem.JN296"
+                                                disabled="true" />阴
+                                            <input type="radio" name="RH" value="2" v-model="formitem.JN296"
+                                                disabled="true" />阳
+                                        </span>
+                                    </td>
+                                </tr>
+
+                                <tr class="textLeft">
+                                    <td colspan="11">
+                                        <span class="fontBold">输血品种：</span>
+                                        <span class="blanking"></span>
+                                        <span class="blanking" id="JN333">
+                                            1.红细胞
+                                            <input class="underline" v-model="formitem.JN333" />单位
+                                        </span>
+                                        <span class="blanking"></span>
+                                        <span class="blanking" id="JN334">
+                                            2.血小板
+                                            <input class="underline" v-model="formitem.JN334" />人份
+                                        </span>
+                                        <span class="blanking"></span>
+                                        <span class="blanking" id="JN335">
+                                            3.血浆
+                                            <input class="underline" v-model="formitem.JN335" />ml
+                                        </span>
+                                        <span class="blanking"></span>
+                                        <span class="blanking" id="JN336">
+                                            4.全血
+                                            <input class="underline" v-model="formitem.JN336" />ml
+                                        </span>
+                                        <span class="blanking"></span>
+                                        <span class="blanking" id="JN337">
+                                            5.自体血回输
+                                            <input class="underline" v-model="formitem.JN337" />ml
+                                        </span>
+                                        <br>
+                                        <span class="blanking"></span>
+                                        <span class="blanking" id="JN338">
+                                            6.其他
+                                            <input class="underline" v-model="formitem.JN338" />ml
+                                        </span>
+                                        <span class="blanking"></span>
+                                        <span id="JN339">
+                                            <span class="blanking">
+                                                <span class="fontBold">输血反应：</span>
+                                            </span>
+                                            <input type="radio" name="transfusion" value="1" v-model="formitem.JN339"
+                                                disabled="true" />是
+                                            <input type="radio" name="transfusion" value="2" v-model="formitem.JN339"
+                                                disabled="true" />否
+                                            <input type="radio" name="transfusion" value="0" v-model="formitem.JN339"
+                                                disabled="true" />未输
+                                        </span>
+                                    </td>
+                                </tr>
+
+                                <tr class="textLeft">
+                                    <td colspan="11">
+                                        <span id="JN429">
+                                            <span class="fontBold">输液反应：</span>
+                                            <input type="radio" name="infusion" value="1" v-model="formitem.JN429"
+                                                disabled="true" />是
+                                            <input type="radio" name="infusion" value="2" v-model="formitem.JN429"
+                                                disabled="true" />否
+                                            <input type="radio" name="infusion" value="0" v-model="formitem.JN429"
+                                                disabled="true" />未输
+                                        </span>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <!-- 第三个表格 -->
+                            <table class="myTable1" cellspacing="0">
+                                <tr class="tab1Tr textLeft">
+                                    <td colspan="15">
+                                        <span>
+                                            <span class="fontBold">出院去向：</span>
+
+                                            <span class="blanking">
+                                                <input type="radio" name="leaveHospital" value="1"
+                                                    disabled="true" />转院，转入医院名称：
+                                                <input class="underline" style="width: 430px;" />
+                                            </span>
+                                            <span class="blanking">
+                                                <input type="radio" name="leaveHospital" value="2"
+                                                    disabled="true" />回常住地
+                                            </span>
+                                            <span class="blanking">
+                                                <input type="radio" name="leaveHospital" value="3"
+                                                    disabled="true" />非医嘱离院
+                                            </span>
+                                            <span class="blanking">
+                                                <input type="radio" name="leaveHospital" value="4" disabled="true" />死亡
+                                            </span>
+                                            <br>
+                                            <span class="blanking" style="margin-left:70px;">
+                                                <input type="radio" name="leaveHospital" value="5"
+                                                    disabled="true" />转社区卫生服务机构，转入社区卫生服务机构名称：
+                                                <input class="underline" style="width: 500px;" />
+                                            </span>
+                                        </span>
+                                        <br>
+                                        <span id="JN351">
+                                            <span class="fontBold">是否有出院31天内再住院计划：</span>
+                                            <span class="blanking">
+                                                <input type="radio" name="gt31" value="1" v-model="formitem.JN351"
+                                                    disabled="true" />无
+                                            </span>
+                                            <span class="blanking">
+                                                <input type="radio" name="gt31" value="2" v-model="formitem.JN351"
+                                                    disabled="true" />有，目的
+                                                <input class="underline" style="width: 574px;"
+                                                    v-model="formitem.JN351" />
+                                            </span>
+                                        </span>
+                                    </td>
+                                </tr>
+
+                                <tr class="textLeft">
+                                    <td colspan="15">
+                                        <span class="blanking" id="JN353">
+                                            <span class="fontBold">随诊：</span>
+                                            <input type="radio" name="followUp" value="1" v-model="formitem.JN353"
+                                                disabled="true" />是
+                                            <input type="radio" name="followUp" value="2" v-model="formitem.JN353"
+                                                disabled="true" />否
+                                        </span>
+                                        <span class="blanking">
+                                            <span class="fontBold">随诊期限：</span>
+                                            <span id="JN354">
+                                                <input class="underline lenUnderline" v-model="formitem.JN354" />周
+                                            </span>
+                                            <span id="JN355">
+                                                <input class="underline lenUnderline" v-model="formitem.JN355" />月
+                                            </span>
+                                            <span id="JN356">
+                                                <input class="underline lenUnderline" v-model="formitem.JN356" />年
+                                            </span>
+
+                                        </span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td rowspan="2" colspan="2">
+                                        <span class="fontStyle">手术操作日期</span>
+                                    </td>
+                                    <td rowspan="2">
+                                        <span class="fontStyle">手术类别</span>
+                                    </td>
+                                    <td rowspan="2" colspan="2">
+                                        <span class="fontStyle">手术操作名称</span>
+                                    </td>
+                                    <td colspan="3">
+                                        <span class="fontStyle">手术操作医师</span>
+                                    </td>
+                                    <td rowspan="2">
+                                        <span class="fontStyle">麻醉方式</span>
+                                    </td>
+                                    <td colspan="2" rowspan="2">
+                                        <span class="fontStyle">切口愈合等级</span>
+                                    </td>
+                                    <td rowspan="2" colspan="2">
+                                        <span class="fontStyle">麻醉医师</span>
+                                    </td>
+                                    <td rowspan="2" colspan="2">
+                                        <span class="fontStyle">ICD-9-CM-3</span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <span class="fontStyle">术者</span>
+                                    </td>
+                                    <td>
+                                        <span class="fontStyle">I助</span>
+                                    </td>
+                                    <td>
+                                        <span class="fontStyle">II助</span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="2"><span id="JN127">{{ formitem.JN127==''? '-': formitem.JN127}}</span>
+                                    </td>
+                                    <td><span id="JN485">{{ formitem.JN485 }}</span></td>
+                                    <td colspan="2"><span id="JN126">{{ formitem.JN126 }}</span></td>
+                                    <td><span id="JN129">{{ formitem.JN129 }}</span></td>
+                                    <td><span id="JN130">{{ formitem.JN130 }}</span></td>
+                                    <td><span id="JN131">{{ formitem.JN131 }}</span></td>
+                                    <td><span id="JN133">{{ formitem.JN133 }}</span></td>
+                                    <td colspan="2"><span id="JN132">{{ formitem.JN132 }}</span></td>
+                                    <td colspan="2"><span id="JN134">{{ formitem.JN134 }}</span></td>
+                                    <td colspan="2"><span id="JN125">{{ formitem.JN125 }}</span></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><span id="JN141">{{ formitem.JN141==''? '-':formitem.JN141 }}</span>
+                                    </td>
+                                    <td><span id="JN486">{{ formitem.JN486 }}</span></td>
+                                    <td colspan="2"><span id="JN140">{{ formitem.JN140 }}</span></td>
+                                    <td><span id="JN143">{{ formitem.JN143 }}</span></td>
+                                    <td><span id="JN144">{{ formitem.JN144 }}</span></td>
+                                    <td><span id="JN145">{{ formitem.JN145 }}</span></td>
+                                    <td><span id="JN147">{{ formitem.JN147 }}</span></td>
+                                    <td colspan="2"><span id="JN146">{{ formitem.JN146 }}</span></td>
+                                    <td colspan="2"><span id="JN148">{{ formitem.JN148 }}</span></td>
+                                    <td colspan="2"><span id="JN139">{{ formitem.JN139 }}</span></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><span id="JN155">{{ formitem.JN155==''? '-':formitem.JN155 }}</span>
+                                    </td>
+                                    <td><span id="JN487">{{ formitem.JN487 }}</span></td>
+                                    <td colspan="2"><span id="JN154">{{ formitem.JN154 }}</span></td>
+                                    <td><span id="JN157">{{ formitem.JN157 }}</span></td>
+                                    <td><span id="JN158">{{ formitem.JN158 }}</span></td>
+                                    <td><span id="JN159">{{ formitem.JN159 }}</span></td>
+                                    <td><span id="JN161">{{ formitem.JN161 }}</span></td>
+                                    <td colspan="2"><span id="JN160">{{ formitem.JN160 }}</span></td>
+                                    <td colspan="2"><span id="JN162">{{ formitem.JN162 }}</span></td>
+                                    <td colspan="2"><span id="JN153">{{ formitem.JN153 }}</span></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><span id="JN169">{{ formitem.JN169==''? '-':formitem.JN169 }}</span>
+                                    </td>
+                                    <td><span id="JN488">{{ formitem.JN488 }}</span></td>
+                                    <td colspan="2"><span id="JN168">{{ formitem.JN168 }}</span></td>
+                                    <td><span id="JN171">{{ formitem.JN171 }}</span></td>
+                                    <td><span id="JN172">{{ formitem.JN172 }}</span></td>
+                                    <td><span id="JN173">{{ formitem.JN173 }}</span></td>
+                                    <td><span id="JN175">{{ formitem.JN175 }}</span></td>
+                                    <td colspan="2"><span id="JN174">{{ formitem.JN174 }}</span></td>
+                                    <td colspan="2"><span id="JN176">{{ formitem.JN176 }}</span></td>
+                                    <td colspan="2"><span id="JN167">{{ formitem.JN167 }}</span></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><span id="JN183">{{ formitem.JN183==''? '-':formitem.JN183 }}</span>
+                                    </td>
+                                    <td><span id="JN489">{{ formitem.JN489 }}</span></td>
+                                    <td colspan="2"><span id="JN182">{{ formitem.JN182 }}</span></td>
+                                    <td><span id="JN185">{{ formitem.JN185 }}</span></td>
+                                    <td><span id="JN186">{{ formitem.JN186 }}</span></td>
+                                    <td><span id="JN187">{{ formitem.JN187 }}</span></td>
+                                    <td><span id="JN189">{{ formitem.JN189 }}</span></td>
+                                    <td colspan="2"><span id="JN188">{{ formitem.JN188 }}</span></td>
+                                    <td colspan="2"><span id="JN190">{{ formitem.JN190 }}</span></td>
+                                    <td colspan="2"><span id="JN181">{{ formitem.JN181 }}</span></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><span id="JN197">{{ formitem.JN197==''? '-':formitem.JN197 }}</span>
+                                    </td>
+                                    <td><span id="JN490">{{ formitem.JN490 }}</span></td>
+                                    <td colspan="2"><span id="JN196">{{ formitem.JN196 }}</span></td>
+                                    <td><span id="JN199">{{ formitem.JN199 }}</span></td>
+                                    <td><span id="JN200">{{ formitem.JN200 }}</span></td>
+                                    <td><span id="JN201">{{ formitem.JN201 }}</span></td>
+                                    <td><span id="JN203">{{ formitem.JN203 }}</span></td>
+                                    <td colspan="2"><span id="JN202">{{ formitem.JN202 }}</span></td>
+                                    <td colspan="2"><span id="JN204">{{ formitem.JN204 }}</span></td>
+                                    <td colspan="2"><span id="JN195">{{ formitem.JN195 }}</span></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><span id="JN211">{{ formitem.JN211==''? '-':formitem.JN211 }}</span>
+                                    </td>
+                                    <td><span id="JN491">{{ formitem.JN491 }}</span></td>
+                                    <td colspan="2"><span id="JN210">{{ formitem.JN210 }}</span></td>
+                                    <td><span id="JN213">{{ formitem.JN213 }}</span></td>
+                                    <td><span id="JN214">{{ formitem.JN214 }}</span></td>
+                                    <td><span id="JN215">{{ formitem.JN215 }}</span></td>
+                                    <td><span id="JN217">{{ formitem.JN217 }}</span></td>
+                                    <td colspan="2"><span id="JN216">{{ formitem.JN216 }}</span></td>
+                                    <td colspan="2"><span id="JN222">{{ formitem.JN222 }}</span></td>
+                                    <td colspan="2"><span id="JN209">{{ formitem.JN209 }}</span></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><span id="JN225">{{ formitem.JN225==''? '-':formitem.JN225 }}</span>
+                                    </td>
+                                    <td><span id="JN492">{{ formitem.JN492 }}</span></td>
+                                    <td colspan="2"><span id="JN224">{{ formitem.JN224 }}</span></td>
+                                    <td><span id="JN227">{{ formitem.JN227 }}</span></td>
+                                    <td><span id="JN228">{{ formitem.JN228 }}</span></td>
+                                    <td><span id="JN229">{{ formitem.JN229 }}</span></td>
+                                    <td><span id="JN231">{{ formitem.JN231 }}</span></td>
+                                    <td colspan="2"><span id="JN230">{{ formitem.JN230 }}</span></td>
+                                    <td colspan="2"><span id="JN232">{{ formitem.JN232 }}</span></td>
+                                    <td colspan="2"><span id="JN223">{{ formitem.JN223 }}</span></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><span id="JN239">{{ formitem.JN239==''? '-':formitem.JN239 }}</span>
+                                    </td>
+                                    <td><span id="JN493">{{ formitem.JN493 }}</span></td>
+                                    <td colspan="2"><span id="JN238">{{ formitem.JN238 }}</span></td>
+                                    <td><span id="JN241">{{ formitem.JN241 }}</span></td>
+                                    <td><span id="JN242">{{ formitem.JN242 }}</span></td>
+                                    <td><span id="JN243">{{ formitem.JN243 }}</span></td>
+                                    <td><span id="JN245">{{ formitem.JN245 }}</span></td>
+                                    <td colspan="2"><span id="JN244">{{ formitem.JN244 }}</span></td>
+                                    <td colspan="2"><span id="JN246">{{ formitem.JN246 }}</span></td>
+                                    <td colspan="2"><span id="JN237">{{ formitem.JN237 }}</span></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><span id="JN253">{{ formitem.JN253==''? '-':formitem.JN253 }}</span>
+                                    </td>
+                                    <td><span id="JN494">{{ formitem.JN494 }}</span></td>
+                                    <td colspan="2"><span id="JN252">{{ formitem.JN252 }}</span></td>
+                                    <td><span id="JN255">{{ formitem.JN255 }}</span></td>
+                                    <td><span id="JN256">{{ formitem.JN256 }}</span></td>
+                                    <td><span id="JN257">{{ formitem.JN257 }}</span></td>
+                                    <td><span id="JN259">{{ formitem.JN259 }}</span></td>
+                                    <td colspan="2"><span id="JN258">{{ formitem.JN258 }}</span></td>
+                                    <td colspan="2"><span id="JN260">{{ formitem.JN260 }}</span></td>
+                                    <td colspan="2"><span id="JN251">{{ formitem.JN251 }}</span></td>
+                                </tr>
+
+                                <tr class="textLeft">
+                                    <td colspan="15">
+                                        <span id="JN332">
+                                            <span class="fontBold">手术、治疗、检查、诊断为本院第一例：</span>
+                                            <input type="radio" name="theFirst" value="1" v-model="formitem.JN332"
+                                                disabled="true" />是
+                                            <input type="radio" name="theFirst" value="2" v-model="formitem.JN332"
+                                                disabled="true" />否
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr class="textLeft">
+                                    <td colspan="15">
+                                        <span class="blanking" id="JN14">
+                                            <span class="fontBold">新生儿出生体重：</span>
+                                            <input class="underline lenUnderline" v-model="formitem.JN14" />
+                                            <span class="fontBold">克（g）</span>
+                                        </span>
+                                        <span class="blanking" id="JN19">
+                                            <span class="fontBold">新生儿入院体重：</span>
+                                            <input class="underline lenUnderline" v-model="formitem.JN19" />
+                                            <span class="fontBold">克（g）</span>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr class="textLeft">
+                                    <td colspan="15">
+                                        <span id="JN4">
+                                            <span class="fontBold">医疗付款方式：</span>
+                                            <span class="blanking">
+                                                <input type="radio" name="payWay" value="1" v-model="formitem.JN4"
+                                                    disabled="true" />城镇职工基本医疗保险
+                                            </span>
+                                            <span class="blanking">
+                                                <input type="radio" name="payWay" value="2" v-model="formitem.JN4"
+                                                    disabled="true" />城镇居民基本医疗保险
+                                            </span>
+                                            <span class="blanking">
+                                                <input type="radio" name="payWay" value="3" v-model="formitem.JN4"
+                                                    disabled="true" />新农合
+                                            </span>
+                                            <span class="blanking">
+                                                <input type="radio" name="payWay" value="5" v-model="formitem.JN4"
+                                                    disabled="true" />商业保险
+                                            </span>
+                                            <span class="blanking">
+                                                <input type="radio" name="payWay" value="6" v-model="formitem.JN4"
+                                                    disabled="true" />公费医疗
+                                            </span>
+                                            <span class="blanking">
+                                                <input type="radio" name="payWay" value="7" v-model="formitem.JN4"
+                                                    disabled="true" />自费医疗
+                                            </span>
+
+                                            <span class="blanking">
+                                                <input type="radio" name="payWay" value="8" v-model="formitem.JN4"
+                                                    disabled="true" />异地医疗保险
+                                            </span>
+                                            <span class="blanking">
+                                                <input type="radio" name="payWay" value="9" v-model="formitem.JN4"
+                                                    disabled="true" />其他
+                                            </span>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <!-- 第四个表格 -->
+                            <table class="myTable2" border="1" cellspacing="0">
+                                <tr>
+                                    <td colspan="4" style="padding-top:10px;">
+                                        <span class="blanking" id="JN265">
+                                            <span class="fontBold">住院费用（元）：总费用：</span>
+                                            <input class="underline lenUnderline" v-model="formitem.JN265" />
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4">
+                                        <span class="blanking">
+                                            <span class="fontBold">1.医疗类：</span>
+                                            <span class="blanking" id="JN268">
+                                                （1）一般治疗费：
+                                                <input class="underline lenUnderline" v-model="formitem.JN268" />
+                                            </span>
+                                            <span class="blanking">
+                                                （2）特殊治疗费：
+                                                <input class="underline lenUnderline" />
+                                            </span>
+                                            <span class="blanking">
+                                                （3）诊疗费：
+                                                <input class="underline lenUnderline" />
+                                            </span>
+                                            <br />
+                                            <span class="blanking" id="JN279">
+                                                （4）手术费：
+                                                <input class="underline lenUnderline" v-model="formitem.JN279" />
+                                            </span>
+                                            <span class="blanking" id="JN278">
+                                                （5）麻醉费：
+                                                <input class="underline lenUnderline" v-model="formitem.JN278" />
+                                            </span>
+                                            <span class="blanking">
+                                                （6）接生费：
+                                                <input class="underline lenUnderline" />
+                                            </span>
+                                            <span class="blanking">
+                                                （7）婴儿费：
+                                                <input class="underline lenUnderline" />
+                                            </span>
+                                        </span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="4">
+                                        <span class="blanking">
+                                            <span class="fontBold">2.辅助医疗类：</span>
+                                            <span class="blanking">
+                                                （8）辅助医疗费：
+                                                <input class="underline lenUnderline" />
+                                            </span>
+                                            <span class="blanking">
+                                                （9）输氧费：
+                                                <input class="underline lenUnderline" />
+                                            </span>
+                                            <span class="blanking">
+                                                （10）呼吸机费：
+                                                <input class="underline lenUnderline" />
+                                            </span>
+                                            <br />
+                                            <span class="blanking">
+                                                （11）监护仪费：
+                                                <input class="underline lenUnderline" />
+                                            </span>
+                                            <span class="blanking">
+                                                （12）调温费：
+                                                <input class="underline lenUnderline" />
+                                            </span>
+                                        </span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="4">
+                                        <span class="blanking">
+                                            <span class="fontBold">3.检查检验类：</span>
+                                            <span class="blanking">
+                                                （13）化验费：
+                                                <input class="underline lenUnderline" />
+                                            </span>
+                                            <span class="blanking">
+                                                （14）放射费：
+                                                <input class="underline lenUnderline" />
+                                            </span>
+                                            <span class="blanking">
+                                                （15）核素费：
+                                                <input class="underline lenUnderline" />
+                                            </span>
+                                            <br />
+                                            <span class="blanking">
+                                                （16）超声费：
+                                                <input class="underline lenUnderline" />
+                                            </span>
+                                            <span class="blanking" id="JN271">
+                                                （17）病理费：
+                                                <input class="underline lenUnderline" v-model="formitem.JN271" />
+                                            </span>
+                                            <span class="blanking">
+                                                （18）内镜检查费：
+                                                <input class="underline lenUnderline" />
+                                            </span>
+                                            <span class="blanking">
+                                                （19）其他检查费：
+                                                <input class="underline lenUnderline" />
+                                            </span>
+                                        </span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="4">
+                                        <span class="blanking">
+                                            <span class="fontBold">4.护理类：</span>
+                                            <span class="blanking" id="JN269">
+                                                （20）护理费：
+                                                <input class="underline lenUnderline" v-model="formitem.JN269" />
+                                            </span>
+                                            <span class="blanking">
+                                                （21）护理治疗费：
+                                                <input class="underline lenUnderline" />
+                                            </span>
+                                        </span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="4">
+                                        <span class="blanking">
+                                            <span class="fontBold">5.西药类：</span>
+                                            <span class="blanking" id="JN282">
+                                                （22）西药费：
+                                                <input class="underline lenUnderline" v-model="formitem.JN282" />
+                                            </span>
+                                            <span id="JN283">
+                                                （抗菌药物费用：
+                                                <input class="underline lenUnderline" v-model="formitem.JN283" />）
+                                            </span>
+                                        </span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="4">
+                                        <span class="blanking">
+                                            <span class="fontBold">6.中药类：</span>
+                                            <span class="blanking" id="JN284">
+                                                （23）中成药费：
+                                                <input class="underline lenUnderline" v-model="formitem.JN284" />
+                                            </span>
+                                            <span class="blanking" id="JN285">
+                                                （24）中草药费：
+                                                <input class="underline lenUnderline" v-model="formitem.JN285" />
+                                            </span>
+                                        </span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="4">
+                                        <span class="blanking">
+                                            <span class="fontBold">7.耗材类：</span>
+                                            <span class="blanking" id="JN293">
+                                                （25）手术用一次性医用材料费：
+                                                <input class="underline lenUnderline" v-model="formitem.JN293" />
+                                            </span>
+                                            <span class="blanking" id="JN292">
+                                                （26）治疗用一次性医用材料费：
+                                                <input class="underline lenUnderline" v-model="formitem.JN292" />
+                                            </span>
+                                            <br />
+                                            <span class="blanking" id="JN291">
+                                                （27）检查用一次性医用材料费：
+                                                <input class="underline lenUnderline" v-model="formitem.JN291" />
+                                            </span>
+                                        </span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="4">
+                                        <span class="blanking">
+                                            <span class="fontBold">8.血液制品类：</span>
+                                            <span class="blanking" id="JN286">
+                                                （28）输血费：
+                                                <input class="underline lenUnderline" v-model="formitem.JN286" />
+                                            </span>
+                                        </span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="4">
+                                        <span class="blanking">
+                                            <span class="fontBold">9.床位类：</span>
+                                            <span class="blanking">
+                                                （29）床位费：
+                                                <input class="underline lenUnderline" />
+                                            </span>
+                                            <span class="blanking">
+                                                （30）陪床费：
+                                                <input class="underline lenUnderline" />
+                                            </span>
+                                        </span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="4">
+                                        <span class="blanking">
+                                            <span class="fontBold">10.其他类：</span>
+                                            <span class="blanking" id="JN294">
+                                                （31）其他费：
+                                                <input class="underline lenUnderline" v-model="formitem.JN294" />
+                                            </span>
+                                        </span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="4" style="border-top:1px solid #000;padding-top:10px;">
+                                        <span class="blanking">
+                                            <span class="fontBold">科主任或主（副主）任医师：</span>
+                                            <input class="underline lenUnderline" id="JN93" v-model="formitem.JN93" />
+                                            <input class="underline lenUnderline" id="JN94" v-model="formitem.JN94" />
+                                        </span>
+                                        <span class="blanking" id="JN95">
+                                            <span class="fontBold">主治医师：</span>
+                                            <input class="underline lenUnderline" v-model="formitem.JN95" />
+                                        </span>
+                                        <span class="blanking" id="JN96">
+                                            <span class="fontBold">住院医师：</span>
+                                            <input class="underline lenUnderline" v-model="formitem.JN96" />
+                                        </span>
+                                        <span class="blanking" id="JN99">
+                                            <span class="fontBold">实习医师：</span>
+                                            <input class="underline lenUnderline" v-model="formitem.JN99" />
+                                        </span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="4">
+                                        <span class="blanking" id="JN97">
+                                            <span class="fontBold">责任护士：</span>
+                                            <input class="underline" style="width: 90px;" v-model="formitem.JN97" />
+                                        </span>
+                                        <span class="blanking" id="JN102">
+                                            <span class="fontBold">病案质量：</span>
+                                            <input type="radio" name="quality" value="1" v-model="formitem.JN102"
+                                                disabled="true" />甲
+                                            <input type="radio" name="quality" value="2" v-model="formitem.JN102"
+                                                disabled="true" />乙
+                                            <input type="radio" name="quality" value="3" v-model="formitem.JN102"
+                                                disabled="true" />丙
+                                        </span>
+                                        <span class="blanking" id="JN103">
+                                            <span class="fontBold">质控医师：</span>
+                                            <input class="underline" style="width: 90px;" v-model="formitem.JN103" />
+                                        </span>
+                                        <span class="blanking" id="JN105">
+                                            <span class="fontBold">质检日期：</span>
+                                            <input class="underline" style="width: 160px;" v-model="formitem.JN105" />
+                                        </span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+
+                        <!-- 住院病案附页 -->
+                        <div :class="flagIndex == 1 ? 'showfirstPage' : 'showAttachedpage'">
+                            <div class="addPage">
+                                <div class="first">
+                                    <input class="underline" style="width: 140px;" v-model="formitem.JN3" />
+                                    医院（机构代码：
+                                    <input class="underline" style="width: 120px;" v-model="formitem.JN2" />）
+                                </div>
+                                <div class="second">住院病案附页</div>
+                                <div class="third">（医疗治疗管理用）</div>
+                                <div class="fourth borderLine">
+                                    病案号：
+                                    <input class="medicalRecord" v-model="formitem.JN7" style="border: none;" />
+                                    <span style="margin-left:20%;">
+                                        第
+                                        <input class="underline noBoder" v-model="formitem.JN6" style="width: 20px;" />
+                                        <span>次住院</span>
+                                    </span>
+                                </div>
+                                <div class="fifth">
+                                    患者诊断情况：
+                                    <span></span>
+                                </div>
+                            </div>
+
+                            <!-- 第五个表格 -->
+                            <table class="myTable1" cellspacing="0">
+                                <tr>
+                                    <td>
+                                        <span class="fontStyle">入院诊断</span>
+                                    </td>
+                                    <td colspan="2">
+                                        <span class="fontStyle">诊断名称</span>
+                                    </td>
+                                    <td>
+                                        <span class="fontStyle">ICD-10</span>
+                                    </td>
+                                    <td>
+                                        <span class="fontStyle">出院诊断</span>
+                                    </td>
+                                    <td colspan="2">
+                                        <span class="fontStyle">诊断名称</span>
+                                    </td>
+                                    <td>
+                                        <span class="fontStyle">ICD-10</span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <span>主要诊断</span>
+                                    </td>
+                                    <td colspan="2"><span></span></td>
+                                    <td></td>
+                                    <td>
+                                        <span>主要诊断</span>
+                                    </td>
+                                    <td colspan="2"><span>{{ formitem.JN49 }}</span></td>
+                                    <td>{{ formitem.JN50 }}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <span>其他诊断1</span>
+                                    </td>
+                                    <td colspan="2"><span></span></td>
+                                    <td></td>
+                                    <td>
+                                        <span>其他诊断1</span>
+                                    </td>
+                                    <td colspan="2">{{ formitem.JN53 }}</td>
+                                    <td>{{ formitem.JN54 }}</td>
+                                </tr>
+
+                                <tr>
+                                    <td><span>其他诊断2</span></td>
+                                    <td colspan="2"><span></span></td>
+                                    <td></td>
+                                    <td><span>其他诊断2</span></td>
+                                    <td colspan="2">{{ formitem.JN57 }}</td>
+                                    <td>{{ formitem.JN58 }}</td>
+                                </tr>
+
+                                <tr>
+                                    <td><span>其他诊断3</span></td>
+                                    <td colspan="2"><span></span></td>
+                                    <td></td>
+                                    <td><span>其他诊断3</span></td>
+                                    <td colspan="2">{{ formitem.JN61 }}</td>
+                                    <td>{{ formitem.JN62 }}</td>
+                                </tr>
+
+                                <tr>
+                                    <td><span>其他诊断4</span></td>
+                                    <td colspan="2"><span></span></td>
+                                    <td></td>
+                                    <td><span>其他诊断4</span></td>
+                                    <td colspan="2">{{ formitem.JN65 }}</td>
+                                    <td>{{ formitem.JN66 }}</td>
+                                </tr>
+
+                                <tr>
+                                    <td><span>其他诊断5</span></td>
+                                    <td colspan="2"><span></span></td>
+                                    <td></td>
+                                    <td><span>其他诊断5</span></td>
+                                    <td colspan="2">{{ formitem.JN69 }}</td>
+                                    <td>{{ formitem.JN70 }}</td>
+                                </tr>
+
+                                <tr>
+                                    <td><span>其他诊断6</span></td>
+                                    <td colspan="2"><span></span></td>
+                                    <td></td>
+                                    <td><span>其他诊断6</span></td>
+                                    <td colspan="2">{{ formitem.JN73 }}</td>
+                                    <td>{{ formitem.JN74 }}</td>
+                                </tr>
+
+                                <tr>
+                                    <td><span>其他诊断7</span></td>
+                                    <td colspan="2"><span></span></td>
+                                    <td></td>
+                                    <td><span>其他诊断7</span></td>
+                                    <td colspan="2">{{ formitem.JN77 }}</td>
+                                    <td>{{ formitem.JN78 }}</td>
+                                </tr>
+
+                                <tr>
+                                    <td><span>其他诊断8</span></td>
+                                    <td colspan="2"><span></span></td>
+                                    <td></td>
+                                    <td><span>其他诊断8</span></td>
+                                    <td colspan="2">{{ formitem.JN81 }}</td>
+                                    <td>{{ formitem.JN82 }}</td>
+                                </tr>
+                                <tr>
+                                    <td><span>其他诊断9</span></td>
+                                    <td colspan="2"><span></span></td>
+                                    <td></td>
+                                    <td><span>其他诊断9</span></td>
+                                    <td colspan="2">{{ formitem.JN85 }}</td>
+                                    <td>{{ formitem.JN86 }}</td>
+                                </tr>
+                                <tr>
+                                    <td><span>其他诊断10</span></td>
+                                    <td colspan="2"><span></span></td>
+                                    <td></td>
+                                    <td><span>其他诊断10</span></td>
+                                    <td colspan="2">{{ formitem.JN89 }}</td>
+                                    <td>{{ formitem.JN90 }}</td>
+                                </tr>
+                            </table>
+
+                            <!--  -->
+                            <div class="publicTitle">本次住院患者手术操作情况：</div>
+                            <span></span>
+
+                            <!-- 第六个表格 -->
+                            <table class="myTable1" cellspacing="0">
+                                <tr>
+                                    <td>
+                                        <span class="fontStyle">填写项目</span>
+                                    </td>
+                                    <td>
+                                        <span class="fontStyle">手术操作1</span>
+                                    </td>
+                                    <td>
+                                        <span class="fontStyle">手术操作2</span>
+                                    </td>
+                                    <td>
+                                        <span class="fontStyle">手术操作3</span>
+                                    </td>
+                                    <td>
+                                        <span class="fontStyle">手术操作4</span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td style="height:42px;">
+                                        <span>手术操作名称</span>
+                                    </td>
+                                    <td>
+                                        <span>{{ formitem.JN126 }}</span>
+                                    </td>
+                                    <td>
+                                        <span>{{ formitem.JN140 }}</span>
+                                    </td>
+                                    <td>
+                                        <span>{{ formitem.JN154 }}</span>
+                                    </td>
+                                    <td>
+                                        <span>{{ formitem.JN168 }}</span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <span>ICD-9-CM-3编码</span>
+                                    </td>
+                                    <td>
+                                        <span>{{ formitem.JN125 }}</span>
+                                    </td>
+                                    <td>
+                                        <span>{{ formitem.JN139 }}</span>
+                                    </td>
+                                    <td>
+                                        <span>{{ formitem.JN153 }}</span>
+                                    </td>
+                                    <td>
+                                        <span>{{ formitem.JN167 }}</span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <span>择期手术</span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <input type="radio" name="one" value="1" disabled="true" />是
+                                            <input type="radio" name="one" value="2" disabled="true" />否
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <input type="radio" name="two" value="1" disabled="true" />是
+                                            <input type="radio" name="two" value="2" disabled="true" />否
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <input type="radio" name="three" value="1" disabled="true" />是
+                                            <input type="radio" name="three" value="2" disabled="true" />否
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <input type="radio" name="four" value="1" disabled="true" />是
+                                            <input type="radio" name="four" value="2" disabled="true" />否
+                                        </span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <span>手术开始时间</span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <input class="caseLine" />年
+                                            <input class="caseLine" />月
+                                            <input class="caseLine" />日
+                                            <br>
+                                            <input class="caseLine" />时
+                                            <input class="caseLine" />分
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <input class="caseLine" />年
+                                            <input class="caseLine" />月
+                                            <input class="caseLine" />日
+                                            <br>
+                                            <input class="caseLine" />时
+                                            <input class="caseLine" />分
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <input class="caseLine" />年
+                                            <input class="caseLine" />月
+                                            <input class="caseLine" />日
+                                            <br>
+                                            <input class="caseLine" />时
+                                            <input class="caseLine" />分
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <input class="caseLine" />年
+                                            <input class="caseLine" />月
+                                            <input class="caseLine" />日
+                                            <br>
+                                            <input class="caseLine" />时
+                                            <input class="caseLine" />分
+                                        </span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <span>手术结束时间</span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <input class="caseLine" />时
+                                            <input class="caseLine" />分
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <input class="caseLine" />时
+                                            <input class="caseLine" />分
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <input class="caseLine" />时
+                                            <input class="caseLine" />分
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <input class="caseLine" />时
+                                            <input class="caseLine" />分
+                                        </span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <span>术前预防性抗菌<br>药物给药时间</span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <input class="caseLine" />时
+                                            <input class="caseLine" />分
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <input class="caseLine" />时
+                                            <input class="caseLine" />分
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <input class="caseLine" />时
+                                            <input class="caseLine" />分
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <input class="caseLine" />时
+                                            <input class="caseLine" />分
+                                        </span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <span>麻醉开始时间</span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <input class="caseLine" />时
+                                            <input class="caseLine" />分
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <input class="caseLine" />时
+                                            <input class="caseLine" />分
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <input class="caseLine" />时
+                                            <input class="caseLine" />分
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <input class="caseLine" />时
+                                            <input class="caseLine" />分
+                                        </span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <span>麻醉结束时间</span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <input class="caseLine" />时
+                                            <input class="caseLine" />分
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <input class="caseLine" />时
+                                            <input class="caseLine" />分
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <input class="caseLine" />时
+                                            <input class="caseLine" />分
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <input class="caseLine" />时
+                                            <input class="caseLine" />分
+                                        </span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <span>麻醉方式</span>
+                                    </td>
+                                    <td>
+                                        <span>{{ formitem.JN133 }}</span>
+                                    </td>
+                                    <td>
+                                        <span>{{ formitem.JN147 }}</span>
+                                    </td>
+                                    <td>
+                                        <span>{{ formitem.JN161 }}</span>
+                                    </td>
+                                    <td>
+                                        <span>{{ formitem.JN175 }}</span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <span>麻醉分级</span>
+                                    </td>
+                                    <td>
+                                        <span id="JN138">{{ formitem.JN138 }}</span>
+                                    </td>
+                                    <td>
+                                        <span id="JN152">{{ formitem.JN152 }}</span>
+                                    </td>
+                                    <td>
+                                        <span id="JN166">{{ formitem.JN166 }}</span>
+                                    </td>
+                                    <td>
+                                        <span id="JN180">{{ formitem.JN180 }}</span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <span>切口部位</span>
+                                    </td>
+                                    <td>
+                                        <span id="JN135">{{ formitem.JN135 }}</span>
+                                    </td>
+                                    <td>
+                                        <span id="JN149">{{ formitem.JN149 }}</span>
+                                    </td>
+                                    <td>
+                                        <span id="JN163">{{ formitem.JN163 }}</span>
+                                    </td>
+                                    <td>
+                                        <span id="JN177">{{ formitem.JN177 }}</span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <span>切口清洁程度</span>
+                                    </td>
+                                    <td>
+                                        <span></span>
+                                    </td>
+                                    <td>
+                                        <span></span>
+                                    </td>
+                                    <td>
+                                        <span></span>
+                                    </td>
+                                    <td>
+                                        <span></span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <span>NNIS分级</span>
+                                    </td>
+                                    <td>
+                                        <span id="JN499">{{ formitem.JN499 }}</span>
+                                    </td>
+                                    <td>
+                                        <span id="JN500">{{ formitem.JN500 }}</span>
+                                    </td>
+                                    <td>
+                                        <span id="JN501">{{ formitem.JN501 }}</span>
+                                    </td>
+                                    <td>
+                                        <span id="JN502">{{ formitem.JN502 }}</span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <span>有无重返手术室<br>手术计划</span>
+                                    </td>
+                                    <td>
+                                        <span id="JN400">
+                                            <input type="radio" name="noone" value="2" v-model="formitem.JN400"
+                                                disabled="true" />无
+                                            <input type="radio" name="noone" value="1" v-model="formitem.JN400"
+                                                disabled="true" />有
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <input type="radio" name="noone" value="2" v-model="formitem.JN400"
+                                                disabled="true" />无
+                                            <input type="radio" name="noone" value="1" v-model="formitem.JN400"
+                                                disabled="true" />有
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <input type="radio" name="noone" value="2" v-model="formitem.JN400"
+                                                disabled="true" />无
+                                            <input type="radio" name="noone" value="1" v-model="formitem.JN400"
+                                                disabled="true" />有
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <input type="radio" name="noone" value="2" v-model="formitem.JN400"
+                                                disabled="true" />无
+                                            <input type="radio" name="noone" value="1" v-model="formitem.JN400"
+                                                disabled="true" />有
+                                        </span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <span>重返手术室目的</span>
+                                    </td>
+                                    <td>
+                                        <span></span>
+                                    </td>
+                                    <td>
+                                        <span></span>
+                                    </td>
+                                    <td>
+                                        <span></span>
+                                    </td>
+                                    <td>
+                                        <span></span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <span>手术部位感染</span>
+                                    </td>
+                                    <td>
+                                        <span id="JN389">
+                                            <input type="radio" name="noone" value="2" v-model="formitem.JN389"
+                                                disabled="true" />无
+                                            <input type="radio" name="noone" value="1" v-model="formitem.JN389"
+                                                disabled="true" />有
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <input type="radio" name="noone" value="2" v-model="formitem.JN389"
+                                                disabled="true" />无
+                                            <input type="radio" name="noone" value="1" v-model="formitem.JN389"
+                                                disabled="true" />有
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <input type="radio" name="noone" value="2" v-model="formitem.JN389"
+                                                disabled="true" />无
+                                            <input type="radio" name="noone" value="1" v-model="formitem.JN389"
+                                                disabled="true" />有
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <input type="radio" name="noone" value="2" v-model="formitem.JN389"
+                                                disabled="true" />无
+                                            <input type="radio" name="noone" value="1" v-model="formitem.JN389"
+                                                disabled="true" />有
+                                        </span>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <!--  -->
+                            <div class="publicTitle">患者入住重症监护室（ICU）情况：</div>
+                            <span></span>
+
+                            <!-- 第七个表格 -->
+                            <table class="myTable1" cellspacing="0">
+                                <tr>
+                                    <td>
+                                        <span class="fontStyle">次数</span>
+                                    </td>
+                                    <td>
+                                        <span class="fontStyle">ICU类型</span>
+                                    </td>
+                                    <td>
+                                        <span class="fontStyle">入住时间</span>
+                                    </td>
+                                    <td>
+                                        <span class="fontStyle">转出时间</span>
+                                    </td>
+                                    <td>
+                                        <span class="fontStyle">有无再次入住ICU计划及原因</span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <span>1</span>
+                                    </td>
+                                    <td>
+                                        <span id="JN315">{{ formitem.JN315 }}</span>
+                                    </td>
+                                    <td>
+                                        <span id="JN316">
+                                            <input class="underline" v-model="this.inICU1year" />年
+                                            <input class="underline" v-model="this.inICU1month" />月
+                                            <input class="underline" v-model="this.inICU1day" />日
+                                            <br>
+                                            <input class="underline" />时
+                                            <input class="underline" />分
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <input class="underline" />月
+                                            <input class="underline" />日
+                                            <input class="underline" />时
+                                            <input class="underline" />分
+                                            <br>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <input type="radio" name="infection" value="1" disabled="true" />无
+                                            <input type="radio" name="infection" value="2" disabled="true" />有，原因
+                                            <input class="underline" style="width: 120px;" />
+                                        </span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <span>2</span>
+                                    </td>
+                                    <td>
+                                        <span id="JN318">{{ formitem.JN318 }}</span>
+                                    </td>
+                                    <td>
+                                        <span id="JN319">
+                                            <input class="underline" v-model="this.inICU2year" />年
+                                            <input class="underline" v-model="this.inICU2month" />月
+                                            <input class="underline" v-model="this.inICU2day" />日
+                                            <br>
+                                            <input class="underline" />时
+                                            <input class="underline" />分
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <input class="underline" />月
+                                            <input class="underline" />日
+                                            <input class="underline" />时
+                                            <input class="underline" />分
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <input type="radio" name="infection" value="1" disabled="true" />无
+                                            <input type="radio" name="infection" value="2" disabled="true" />有，原因
+                                            <input class="underline" style="width: 120px;" />
+                                        </span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <span>3</span>
+                                    </td>
+                                    <td>
+                                        <span id="JN321">{{ formitem.JN321 }}</span>
+                                    </td>
+                                    <td>
+                                        <span id="JN322">
+                                            <input class="underline" v-model="this.inICU3year" />年
+                                            <input class="underline" v-model="this.inICU3month" />月
+                                            <input class="underline" v-model="this.inICU3day" />日
+                                            <br>
+                                            <input class="underline" />时
+                                            <input class="underline" />分
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <input class="underline" />月
+                                            <input class="underline" />日
+                                            <input class="underline" />时
+                                            <input class="underline" />分
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <input type="radio" name="infection" value="1" disabled="true" />无
+                                            <input type="radio" name="infection" value="2" disabled="true" />有，原因
+                                            <input class="underline" style="width: 120px;" />
+                                        </span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <span>4</span>
+                                    </td>
+                                    <td>
+                                        <span id="JN324">{{ formitem.JN324 }}</span>
+                                    </td>
+                                    <td>
+                                        <span id="JN325">
+                                            <input class="underline" v-model="this.inICU4year" />年
+                                            <input class="underline" v-model="this.inICU4month" />月
+                                            <input class="underline" v-model="this.inICU4day" />日
+                                            <br>
+                                            <input class="underline" />时
+                                            <input class="underline" />分
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <input class="underline" />月
+                                            <input class="underline" />日
+                                            <input class="underline" />时
+                                            <input class="underline" />分
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <input type="radio" name="infection" value="1" disabled="true" />无
+                                            <input type="radio" name="infection" value="2" disabled="true" />有，原因
+                                            <input class="underline" style="width: 120px;" />
+                                        </span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <span>5</span>
+                                    </td>
+                                    <td>
+                                        <span id="JN327">{{ formitem.JN327 }}</span>
+                                    </td>
+                                    <td>
+                                        <span id="JN328">
+                                            <input class="underline" v-model="this.inICU5year" />年
+                                            <input class="underline" v-model="this.inICU5month" />月
+                                            <input class="underline" v-model="this.inICU5day" />日
+                                            <br>
+                                            <input class="underline" />时
+                                            <input class="underline" />分
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <input class="underline" />月
+                                            <input class="underline" />日
+                                            <input class="underline" />时
+                                            <input class="underline" />分
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <input type="radio" name="infection" value="1" disabled="true" />无
+                                            <input type="radio" name="infection" value="2" disabled="true" />有，原因
+                                            <input class="underline" style="width: 120px;" />
+                                        </span>
+                                    </td>
+                                </tr>
+
+
+                            </table>
+
+                            <!--  -->
+                            <div class="publicTitle">患者入住重症监护室期间器械使用情况：</div>
+                            <span></span>
+
+                            <!-- 第八个表格 -->
+                            <table class="myTable1" cellspacing="0">
+                                <tr>
+                                    <td>
+                                        <span class="fontStyle">ICU类型</span>
+                                    </td>
+                                    <td>
+                                        <span class="fontStyle">使用器械类型</span>
+                                    </td>
+                                    <td>
+                                        <span class="fontStyle">开始使用时间</span>
+                                    </td>
+                                    <td>
+                                        <span class="fontStyle">结束使用时间</span>
+                                    </td>
+                                    <td>
+                                        <span class="fontStyle">是否发生器械相关感染</span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <span>1</span>
+                                    </td>
+                                    <td>
+                                        <span>
+
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <input class="underline" />年
+                                            <input class="underline" />月
+                                            <input class="underline" />日
+                                            <br>
+                                            <input class="underline" />时
+                                            <input class="underline" />分
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <input class="underline" />月
+                                            <input class="underline" />日
+                                            <input class="underline" />时
+                                            <input class="underline" />分
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <input type="radio" name="infection" value="1" checked="checked"
+                                                disabled="true" />是
+                                            <input type="radio" name="infection" value="2" disabled="true" />否
+                                        </span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <span>2</span>
+                                    </td>
+                                    <td>
+                                        <span>
+
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <input class="underline" />年
+                                            <input class="underline" />月
+                                            <input class="underline" />日
+                                            <br>
+                                            <input class="underline" />时
+                                            <input class="underline" />分
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <input class="underline" />月
+                                            <input class="underline" />日
+                                            <input class="underline" />时
+                                            <input class="underline" />分
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <input type="radio" name="infection" value="1" checked="checked"
+                                                disabled="true" />是
+                                            <input type="radio" name="infection" value="2" disabled="true" />否
+                                        </span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <span>3</span>
+                                    </td>
+                                    <td>
+                                        <span>
+
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <input class="underline" />年
+                                            <input class="underline" />月
+                                            <input class="underline" />日
+                                            <br>
+                                            <input class="underline" />时
+                                            <input class="underline" />分
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <input class="underline" />月
+                                            <input class="underline" />日
+                                            <input class="underline" />时
+                                            <input class="underline" />分
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <input type="radio" name="infection" value="1" checked="checked"
+                                                disabled="true" />是
+                                            <input type="radio" name="infection" value="2" disabled="true" />否
+                                        </span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <span>4</span>
+                                    </td>
+                                    <td>
+                                        <span>
+
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <input class="underline" />年
+                                            <input class="underline" />月
+                                            <input class="underline" />日
+                                            <br>
+                                            <input class="underline" />时
+                                            <input class="underline" />分
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <input class="underline" />月
+                                            <input class="underline" />日
+                                            <input class="underline" />时
+                                            <input class="underline" />分
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <input type="radio" name="infection" value="1" checked="checked"
+                                                disabled="true" />是
+                                            <input type="radio" name="infection" value="2" disabled="true" />否
+                                        </span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <span>5</span>
+                                    </td>
+                                    <td>
+                                        <span>
+
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <input class="underline" />年
+                                            <input class="underline" />月
+                                            <input class="underline" />日
+                                            <br>
+                                            <input class="underline" />时
+                                            <input class="underline" />分
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <input class="underline" />月
+                                            <input class="underline" />日
+                                            <input class="underline" />时
+                                            <input class="underline" />分
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <input type="radio" name="infection" value="1" checked="checked"
+                                                disabled="true" />是
+                                            <input type="radio" name="infection" value="2" disabled="true" />否
+                                        </span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <span>6</span>
+                                    </td>
+                                    <td>
+                                        <span>
+
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <input class="underline" />年
+                                            <input class="underline" />月
+                                            <input class="underline" />日
+                                            <br>
+                                            <input class="underline" />时
+                                            <input class="underline" />分
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <input class="underline" />月
+                                            <input class="underline" />日
+                                            <input class="underline" />时
+                                            <input class="underline" />分
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <input type="radio" name="infection" value="1" checked="checked"
+                                                disabled="true" />是
+                                            <input type="radio" name="infection" value="2" disabled="true" />否
+                                        </span>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <!--  -->
+                            <div class="publicTitle">
+                                医院感染情况：
+                                <input type="radio" name="cdd" value="1" v-model="formitem.JN389" disabled="true" />有
+                                <input type="radio" name="cdd" value="2" v-model="formitem.JN389" disabled="true" />无
+                            </div>
+                            <span></span>
+
+                            <!-- 第九个表格 -->
+                            <table class="myTable1" cellspacing="0">
+                                <tr class="textLeft">
+                                    <td>
+                                        <span class="blanking" style="margin-left: 12px;" id="JN495">
+                                            <span>细菌名称：</span>
+                                            1.<input class="underline" style="width: 150px;" v-model="formitem.JN495" />
+                                        </span>
+
+                                        <span class="blanking">
+                                            2.<input class="underline" style="width: 150px;" />
+                                        </span>
+
+                                        <span class="blanking">
+                                            3.<input class="underline" style="width: 150px;" />
+                                        </span>
+
+                                        <span class="blanking">
+                                            4.<input class="underline" style="width: 150px;" />
+                                        </span>
+
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <!--  -->
+                            <div class="publicTitle">患者护理相关情况：</div>
+                            <span></span>
+
+                            <!-- 第十个表格 -->
+                            <table class="myTable1" cellspacing="0">
+                                <tr class="textLeft">
+                                    <td colspan="5">
+                                        <span class="blanking" id="JN380">
+                                            <span class="fontBold">是否发生压疮：</span>
+                                            <input type="radio" name="ppp" value="1" v-model="formitem.JN380"
+                                                disabled="true" />是
+                                            <input type="radio" name="ppp" value="2" v-model="formitem.JN380"
+                                                disabled="true" />否
+                                        </span>
+
+                                        <span class="blanking">
+                                            <span>是否住院期间发生：</span>
+                                            <input type="radio" name="pppa" value="1" disabled="true" />是
+                                            <input type="radio" name="pppa" value="2" disabled="true" />否
+                                        </span>
+                                        <br>
+
+                                        <span class="blanking" id="JN382">
+                                            <span class="fontBold">压疮分期：</span>
+                                            <input type="radio" name="fgb" value="1" v-model="formitem.JN382"
+                                                disabled="true" />1期
+                                            <input type="radio" name="fgb" value="2" v-model="formitem.JN382"
+                                                disabled="true" />2期
+                                            <input type="radio" name="fgb" value="3" v-model="formitem.JN382"
+                                                disabled="true" />3期
+                                            <input type="radio" name="fgb" value="4" v-model="formitem.JN382"
+                                                disabled="true" />4期
+                                        </span>
+                                    </td>
+                                </tr>
+
+                                <tr class="textLeft">
+                                    <td colspan="5">
+                                        <span class="blanking" id="JN383">
+                                            <span class="fontBold">住院期间是否发生跌倒或坠床：</span>
+                                            <input type="radio" name="ppp" value="1" v-model="formitem.JN383"
+                                                disabled="true" />是
+                                            <input type="radio" name="ppp" value="2" v-model="formitem.JN383"
+                                                disabled="true" />否
+                                        </span>
+                                        <br>
+
+                                        <span class="blanking" id="JN384">
+                                            <span class="fontBold">住院期间跌倒或坠床的伤害程度：</span>
+                                            <input type="radio" name="bgh" value="1" v-model="formitem.JN384"
+                                                disabled="true" />一级
+                                            <input type="radio" name="bgh" value="2" v-model="formitem.JN384"
+                                                disabled="true" />二级
+                                            <input type="radio" name="bgh" value="3" v-model="formitem.JN384"
+                                                disabled="true" />三级
+                                            <input type="radio" name="bgh" value="0" v-model="formitem.JN384"
+                                                disabled="true" />未造成伤害
+                                        </span>
+                                        <br>
+
+                                        <span class="blanking" id="JN385">
+                                            <span class="fontBold">跌倒或坠床的原因：</span>
+                                            <input type="radio" name="mjk" value="1" v-model="formitem.JN385"
+                                                disabled="true" />健康原因
+                                            <input type="radio" name="mjk" value="2" v-model="formitem.JN385"
+                                                disabled="true" />治疗、药物、麻醉原因
+                                            <input type="radio" name="mjk" value="3" v-model="formitem.JN385"
+                                                disabled="true" />环境因素
+                                            <input type="radio" name="mjk" value="4" v-model="formitem.JN385"
+                                                disabled="true" />其他原因
+                                        </span>
+                                    </td>
+                                </tr>
+
+                                <tr class="textLeft">
+                                    <td colspan="5">
+                                        <span class="blanking" id="JN442">
+                                            <span class="fontBold">住院期间身体约束：</span>
+                                            <input type="radio" name="feg" value="1" v-model="formitem.JN442"
+                                                disabled="true" />有
+                                            <input type="radio" name="feg" value="2" v-model="formitem.JN442"
+                                                disabled="true" />无
+                                        </span>
+
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <span class="fontBold">次数</span>
+                                    </td>
+                                    <td>
+                                        <span class="fontBold">身体约束方式</span>
+                                    </td>
+                                    <td>
+                                        <span class="fontBold">约束使用工具</span>
+                                    </td>
+                                    <td>
+                                        <span class="fontBold">身体约束原因</span>
+                                    </td>
+
+                                    <td rowspan="6" class="textLeft">
+                                        <span class="blanking">
+                                            <span class="fontBold">身体约束方式：</span>
+                                            <span>1.一处</span>
+                                        </span>
+                                        <span class="blanking">
+                                            <span>2.两处</span>
+                                        </span>
+                                        <span class="blanking">
+                                            <span>3.三处</span>
+                                        </span>
+                                        <span class="blanking">
+                                            <span>4.其他</span>
+                                        </span>
+                                        <br>
+                                        <span class="blanking">
+                                            <span class="fontBold">约束使用工具：</span>
+                                            <span>1.软式管</span>
+                                        </span>
+                                        <span class="blanking">
+                                            <span>2.硬式管</span>
+                                        </span>
+                                        <span class="blanking">
+                                            <span>3.背心</span>
+                                        </span>
+                                        <br>
+                                        <span class="blanking">
+                                            <span style="margin-left:12px;">4.老人椅</span>
+                                        </span>
+                                        <span class="blanking">
+                                            <span>5.约束带</span>
+                                        </span>
+                                        <span class="blanking">
+                                            <span>6.其他</span>
+                                        </span>
+                                        <br>
+
+                                        <span class="blanking">
+                                            <span class="fontBold">身体约束原因：</span>
+                                            <span>1.认知障碍</span>
+                                        </span>
+                                        <span class="blanking">
+                                            <span>2.可能跌到</span>
+                                        </span>
+                                        <span class="blanking">
+                                            <span>3.行为紊乱</span>
+                                        </span>
+                                        <br>
+                                        <span class="blanking" style="margin-left:12px;">
+                                            <span>4.治疗需要</span>
+                                        </span>
+                                        <span class="blanking">
+                                            <span>5.躁动</span>
+                                        </span>
+                                        <span class="blanking">
+                                            <span>6.医疗限制</span>
+                                        </span>
+                                        <span class="blanking">
+                                            <span>7.其他</span>
+                                        </span>
+
+                                    </td>
+                                </tr>
+
+                                <tr style="text-align: center;">
+                                    <td>
+                                        <span>1</span>
+                                    </td>
+                                    <td>
+                                        <span id="JN444">{{ formitem.JN444 }}</span>
+                                    </td>
+                                    <td>
+                                        <span id="JN445">{{ formitem.JN445 }}</span>
+                                    </td>
+                                    <td>
+                                        <span id="JN446">{{ formitem.JN446 }}</span>
+                                    </td>
+                                </tr>
+
+                                <tr style="text-align: center;">
+                                    <td>
+                                        <span>2</span>
+                                    </td>
+                                    <td>
+                                        <span></span>
+                                    </td>
+                                    <td>
+                                        <span></span>
+                                    </td>
+                                    <td>
+                                        <span></span>
+                                    </td>
+                                </tr>
+
+                                <tr style="text-align: center;">
+                                    <td>
+                                        <span>3</span>
+                                    </td>
+                                    <td>
+                                        <span></span>
+                                    </td>
+                                    <td>
+                                        <span></span>
+                                    </td>
+                                    <td>
+                                        <span></span>
+                                    </td>
+                                </tr>
+
+                                <tr style="text-align: center;">
+                                    <td>
+                                        <span>4</span>
+                                    </td>
+                                    <td>
+                                        <span></span>
+                                    </td>
+                                    <td>
+                                        <span></span>
+                                    </td>
+                                    <td>
+                                        <span></span>
+                                    </td>
+                                </tr>
+
+                                <tr style="text-align: center;">
+                                    <td>
+                                        <span>5</span>
+                                    </td>
+                                    <td>
+                                        <span></span>
+                                    </td>
+                                    <td>
+                                        <span></span>
+                                    </td>
+                                    <td>
+                                        <span></span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div id="myKui" class="myKui" v-show="myIndex==0">
+                        <el-row :gutter="20">
+                            <el-col :span="5" @click.native="Indexsui(item.hospitalId)" v-for="(item,i) in conste">
+                                <div class="blueTop"></div>
+                                <div class="cardContent">
+                                    <div class="normal">
+                                        <div>
+                                            <span class="patientName">{{item.name}}</span>
+                                            <span class="sickbedNumber">{{item.sickbedNumber}}床</span>
+                                        </div>
+                                        <div class="sexAge">
+                                            <span style="margin-right: 20px">性别：{{item.sex}}</span>
+                                            <span>年龄：{{item.age}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="nextCon">
+                                        <div class="hospitalId">
+                                            住院号：{{item.hospitalId}}
+                                        </div>
+                                        <div>入院日期：{{item.hospitalDate}}</div>
+                                        <div class="cardDiagnose">诊断：{{item.diagnosis}}</div>
+                                    </div>
+                                </div>
+                            </el-col>
+
+
+                        </el-row>
+                    </div>
+                </div>
+            </el-main>
+        </el-container>
+
+        <!-- <div class="hospital">
+            <div class="content" id="content">
+
+               
+                <div class="personInfor">
+
+                </div>
+
+                
+               
+
+            </div>
+        </div> -->
+
+
+
+        <!-- <el-button @click="Keios">默认按钮</el-button> -->
+        <!-- <button onclick="demo()">4545</button> -->
+    </div>
+
+
+</body>
+<!-- import Vue before Element -->
+<script src="http://cdn.bootcss.com/jquery/1.12.3/jquery.min.js"></script>
+
+<script src="js/vue.js"></script>
+<script src="js/axios.js"></script>
+<!-- import JavaScript -->
+<!-- <script src="https://unpkg.com/element-ui/lib/index.js"></script> -->
+<!-- <script src="js/jsjs.js"></script> -->
+<script src="js/jsjsneir.js"></script>
+<script src="js/layer.js"></script>
+
+<script>
+    // const axios = require('axios')
+    var vm = new Vue({
+        el: '#app',
+        data: function () {
+            return {
+                tableData: [],
+
+                newVselet: null, //上次点击的id
+
+                formitem: {
+                    JN127: '',
+                    JN141: '',
+                    JN155: '',
+                    JN169: '',
+                    JN183: '',
+                    JN197: '',
+                    JN211: '',
+                    JN225: '',
+                    JN239: '',
+                    JN253: '',
+                }, //明细datas
+
+                //出生年月日
+                year: '',
+                month: '',
+                day: '',
+                // 出生地
+                // province: '',
+                // county: '',
+                //入院时间
+                JN39year: '',
+                JN39month: '',
+                JN39day: '',
+                JN39hours: '',
+                //出院日期
+                JN42year: '',
+                JN42month: '',
+                JN42day: '',
+                JN42hours: '',
+                // 入院诊断日期
+                JN300year: '',
+                JN300month: '',
+                JN300day: '',
+                //ICU入院时间
+                inICU1year: '',
+                inICU1month: '',
+                inICU1day: '',
+                // inICU1hours: '',
+                // inICU1mins: '',
+                //ICU出院时间
+                // outICU1year: '',
+                // outICU1month: '',
+                // outICU1day: '',
+                // outICU1hours: '',
+                // outICU1mins: '',
+                inICU2year: '',
+                inICU2month: '',
+                inICU2day: '',
+                // inICU2hours: '',
+                // inICU2mins: '',
+                inICU3year: '',
+                inICU3month: '',
+                inICU3day: '',
+                // inICU3hours: '',
+                // inICU3mins: '',
+                inICU4year: '',
+                inICU4month: '',
+                inICU4day: '',
+                // inICU4hours: '',
+                // inICU4mins: '',
+                inICU5year: '',
+                inICU5month: '',
+                inICU5day: '',
+                // inICU5hours: '',
+                // inICU5mins: '',
+                flagIndex: 0,
+                myIndex: 0,
+                conste: [] //病人卡片信息
+            }
+        },
+
+        created() {
+            this.GetList(this.id);
+            axios.get('http://192.168.3.252:8081/api/demo/getusers').then(res => {
+                var arr = [];
+                var ress = res.data.user;
+                for (var i = 0; i < res.data.user.length; i++) {
+                    // function getStr(string, str) {
+                    //     var str_before = string.split(str)[0];
+                    //     var str_after = string.split(str)[1];
+                    //     alert('前：' + str_before + ' - 后：' + str_after);
+                    // }
+                    var str_before = ress[i].BedNumber.split('号')[0];
+                    arr.push({
+                        "name": ress[i].JN8,
+                        "sickbedNumber": str_before,
+                        "sex": ress[i].JN9 == 1 ? '男' : '女',
+                        "age": ress[i].JN11,
+                        "hospitalId": ress[i].JN7,
+                        "hospitalDate": ress[i].JN39,
+                        "diagnosis": ress[i].JN49
+                    })
+                }
+                this.conste = arr
+            })
+        },
+        mounted() {
+            let parm = {
+                mdId: this.id
+            };
+            this.Guding();
+        },
+        methods: {
+            FistPage() {
+                this.myIndex = 0
+            },
+            attachedPage() {
+                // this.flagIndex = 1
+                if (this.flagIndex == 0) {
+                    this.flagIndex = 1
+                } else {
+                    this.flagIndex = 0
+                }
+            },
+            Indexsui(data) {
+                console.log(data)
+                this.myIndex = 1
+                let _this = this;
+                axios.get('http://192.168.3.252:8081/api/demo/getuserinfo/' + data).then(res => {
+                    console.log(res)
+                    _this.formitem = res.data.jnInfo
+
+                    this.year = res.data.jnInfo.JN10.substr(0, 4)
+                    this.month = res.data.jnInfo.JN10.substr(4, 2)
+                    this.day = res.data.jnInfo.JN10.substr(6, 2)
+
+                    this.JN39year = res.data.jnInfo.JN39.substr(0, 4)
+                    this.JN39month = res.data.jnInfo.JN39.substr(5, 2)
+                    this.JN39day = res.data.jnInfo.JN39.substr(8, 2)
+                    this.JN39hours = res.data.jnInfo.JN39.substr(11, 2)
+
+                    this.JN42year = res.data.jnInfo.JN42.substr(0, 4)
+                    this.JN42month = res.data.jnInfo.JN42.substr(5, 2)
+                    this.JN42day = res.data.jnInfo.JN42.substr(8, 2)
+                    this.JN42hours = res.data.jnInfo.JN42.substr(11, 2)
+
+                    this.JN300year = res.data.jnInfo.JN300.substr(0, 4)
+                    this.JN300month = res.data.jnInfo.JN300.substr(5, 2)
+                    this.JN300day = res.data.jnInfo.JN300.substr(8, 2)
+
+                    this.inICU1year = res.data.jnInfo.JN316.substr(0, 4)
+                    this.inICU1month = res.data.jnInfo.JN316.substr(5, 2)
+                    this.inICU1day = res.data.jnInfo.JN316.substr(8, 2)
+
+                    this.inICU2year = res.data.jnInfo.JN319.substr(0, 4)
+                    this.inICU2month = res.data.jnInfo.JN319.substr(5, 2)
+                    this.inICU2day = res.data.jnInfo.JN319.substr(8, 2)
+
+                    this.inICU3year = res.data.jnInfo.JN322.substr(0, 4)
+                    this.inICU3month = res.data.jnInfo.JN322.substr(5, 2)
+                    this.inICU3day = res.data.jnInfo.JN322.substr(8, 2)
+
+                    this.inICU4year = res.data.jnInfo.JN325.substr(0, 4)
+                    this.inICU4month = res.data.jnInfo.JN325.substr(5, 2)
+                    this.inICU4day = res.data.jnInfo.JN325.substr(8, 2)
+
+                    this.inICU5year = res.data.jnInfo.JN328.substr(0, 4)
+                    this.inICU5month = res.data.jnInfo.JN328.substr(5, 2)
+                    this.inICU5day = res.data.jnInfo.JN328.substr(8, 2)
+                })
+            },
+            //计算屏幕尺寸
+            Guding() {
+                var client = document.documentElement.clientHeight;
+                var content = document.getElementById('content');
+                var myKui = document.getElementById('myKui');
+                var my = document.getElementById('my');
+                content.style.height = (client - 61) + 'px'
+                my.style.height = (client - 260) + "px"
+                myKui.style.height = (client - 260) + "px"
+            },
+            Keio() {
+                console.log(this.formitem)
+                // this.fromeiu.cuise = false
+                return this.formitem
+            },
+            KeioS() {
+                console.log("22465465");
+                this.formitem.JN127 = "123465"
+            },
+            handleClick(tab, event) {
+                console.log(tab, event);
+            },
+
+
+            GetList(data) {
+                console.log(data);
+            },
+
+            //随者页面的滚动
+            handleClick(data) {
+                // console.log(data)
+                if (this.newVselet != "null") {
+                    var suisele = this.newVselet;
+                }
+                console.log(suisele)
+                $("#" + suisele).css("color", "black")
+
+                var dataid = data.fId
+                var sio = $("#" + dataid);
+
+                var oneDivHeight = $("#my").height();
+                //  console.log(oneDivHeight )
+
+
+                console.log(sio.offset().top - 431)
+                console.log($("#my").scrollTop())
+
+                // console.log($("#my").scrollTop()>sui,$("#my").scrollTop() <sui - $("#my").height())
+                // if(!($("#my").scrollTop() > sio.offset().top-240) && !($("#my").scrollTop() < sio.offset().top- $("#my").height())) {
+                //           console.log("出现了")
+                //       } else {
+                //           console.log("消失了")
+                //       }
+                if (!(oneDivHeight < sio.offset().top - 240) && !($("#my").scrollTop() < sio.offset().top - $(
+                            "#my")
+                        .height()) && sio.offset().top - 240 > 0) {
+                    console.log("出现了")
+                    sio.css("color", "red")
+                } else {
+                    //  $("#my").animate({scrollTop:sio.offset().top},500)
+                    //  $("#my").animate({scrollTop:sio.offset().top+600},500)
+                    $("#my").animate({
+                        scrollTop: $("#my").scrollTop() + sio.offset().top - 431
+                    }, 500)
+                    sio.css("color", "red")
+                    // $("#my").animate({scrollTop:0},500)
+                }
+                // console.log(suikio)
+                //   const offsetTop = suikio.top;
+                // const offsetBottom = suikio.bottom;
+                // // const offsetHeight = suikio.height;
+                // if (offsetTop <= window.innerHeight && offsetBottom >= 0) {
+                //   console.log("进入可视区域");
+                //   // do something...
+                // } else {
+                //   console.log("移出可视区域");
+                //   // do something...
+                // }
+
+                this.newVselet = data.fId
+                // id:this.$route.query.id
+            },
+
+
+        },
+
+    })
+
+    function demo() {
+        let ari = vm.Keio()
+        ari = JSON.stringify(ari)
+        $.ajax({
+            url: "http://192.168.3.252:8081/recordAudit", //请求的url地址
+            dataType: "json", //返回格式为json
+            async: true, //请求是否异步，默认为异步，这也是ajax重要特性
+            data: {
+                "recordInfo": ari
+            }, //参数值
+            type: "post", //请求方式
+            beforeSend: function () {
+                //请求前的处理
+            },
+            success: function (req) {
+                if (req.code == 002) {
+                    console.log(req.auditRuleResults)
+                    layer.open({
+                        type: 2,
+                        title: '病案首页智能质控',
+                        maxmin: true,
+                        area: ['1000px', '700px'],
+                        // content: 'http://layer.layui.com/test/welcome.html',
+                        content: 'detailedrew.html',
+                        success: function (layero, index) {
+                            var iframe = window['layui-layer-iframe' + index];
+                            iframe.child(req.auditRuleResults);
+                        },
+                        end: function () {
+                            var sui = vm.KeioS()
+                            // layer.tips('Hi', '#about', {
+                            //     tips: 1
+                            // })
+                        }
+                    });
+                }
+            },
+            complete: function () {
+                //请求完成的处理
+            },
+            error: function () {
+                //请求出错处理
+            }
+        });
+
+    }
+</script>
+
+</html>
