@@ -269,17 +269,18 @@
 }
 
 .blueTr {
-    background: #B7DDF8;
+    background:rgba(16,142,233,0.17);
 }
 
 .tipaImg {
     margin-top: 7px;
     margin-right: 5px;
     width: 14px;
+    margin-left: 5px;
 }
 
 .inputContent {
-    width: 200px;
+    width:100%;
     line-height: 16px;
     border: none;
 }
@@ -317,4 +318,31 @@
     margin-left: 10px;
     /* margin-right: 10px; */
     border: 1px solid #108EE9;
+}
+#fullCheckResult{
+    display:block;
+    height:300px;
+  
+    overflow-y:scroll;
+}
+#logicCheckResult{
+    display:block;
+    height:300px;
+    overflow-y:scroll;
+}
+.theOne{
+    border-radius:5px ;
+    /* overflow: hidden; */
+}
+.oneTable thead,.oneTable>tbody tr {
+    display:table;
+    width:100%;
+  /* overflow: hidden; */
+    table-layout:fixed;
+}
+.oneTable td{
+    border-bottom:1px solid #ccc;
+    border-left:1px solid #ccc;
+    border-top:none;
+    border-right: none;
 }

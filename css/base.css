@@ -46,3 +46,6 @@ a:active { color:#ff4a00; }
 .cssSelect .oNormal { }
 .cssSelect .oHover{ background: #FF824D; color: #fff; }
 .cssSelect .selected{ background: #ff4a00; color: #fff; }
+#fullCheckResult input{
+    width: 100%;
+}
