@@ -194,8 +194,8 @@
                     <span>提示：满足相关要求后不可修改</span>
                 </div>
                 <div style="float: right;">
-                    <button class="bgc">效验</button>
-                    <button class="Baocun">提交</button>
+                    <button onclick="getDRGContent()" class="bgc">效验</button>
+                    <button onclick="commitDRGContent()" class="Baocun">提交</button>
                 </div>
             </ul>
 
@@ -220,6 +220,9 @@
 
 <!--模糊搜索-->
 <script src="js/jquery-ui-1.9.2.custom.js"></script>
+
+<script src="js/region_select.js"></script>
+<script src="js/json2.js"></script>
 <script>
     $(function () {
         //选项卡
@@ -277,7 +280,7 @@
                 // if (newData.fullCheckResult[i].showType == "1"&& arrContry.in_array(newData.fullCheckResult[i].fId)) {
                 str += "<td><input  showType='" + newData.fullCheckResult[i].showType + "' fId='" + newData
                     .fullCheckResult[i].fId + "' rangeId='" + newData.fullCheckResult[i].rangeId +
-                    "' onmouseover='selectClick(this," + JSON.stringify(kksui[i].rangeList) + ")'  id='DUI" + i +
+                    "'onmouseover='selectClick(this," + JSON.stringify(kksui[i].rangeList) + ")'  id='DUI" + i +
                     "'type='text' class='cioso inputContent' autocomplete='off' ><input type='hidden' value='" + newData
                     .fullCheckResult[i].rangeId + "'>" +
                     "<div class='control-group' style='text-align: center'><div class='controls'><select name='location_p' id='location_p'>" +
@@ -285,12 +288,12 @@
                     newData.fullCheckResult[i].fId[1] + "</select><br><select name='location_a' id='location_a'>" +
                     newData.fullCheckResult[i].fId[2] + "</select></div></div>" + "</td>"
             } else if (newData.fullCheckResult[i].showType == "1" && arrContry.indexOf(newData.fullCheckResult[i]
-                .fId) <= -1) {
+                    .fId) <= -1) {
                 // else if (newData.fullCheckResult[i].showType == "1" && !arrContry.in_array(newData.fullCheckResult[i].fId)) {
 
                 str += "<td><input  showType='" + newData.fullCheckResult[i].showType + "' fId='" + newData
                     .fullCheckResult[i].fId + "' rangeId='" + newData.fullCheckResult[i].rangeId +
-                    "' onmouseover='selectClick(this," + JSON.stringify(kksui[i].rangeList) + ")'  id='DUI" + i +
+                    "'onmouseover='selectClick(this," + JSON.stringify(kksui[i].rangeList) + ")'  id='DUI" + i +
                     "'type='text' class='cioso inputContent' autocomplete='off' ><input type='hidden' value='" + newData
                     .fullCheckResult[i].rangeId + "'></td>"
             } else if (newData.fullCheckResult[i].showType == "2" && arrContry.indexOf(newData.fullCheckResult[i].fId) >
@@ -306,7 +309,7 @@
                     newData.fullCheckResult[i].fId[1] + "</select><br><select name='location_a' id='location_a'>" +
                     newData.fullCheckResult[i].fId[2] + "</select></div></div>" + "</td>"
             } else if (newData.fullCheckResult[i].showType == "2" && arrContry.indexOf(newData.fullCheckResult[i]
-                .fId) <= -1) {
+                    .fId) <= -1) {
                 //else if (newData.fullCheckResult[i].showType == "2" && !arrContry.in_array(newData.fullCheckResult[i].fId)) {
 
                 str += "<td><input fId='" + newData.fullCheckResult[i].fId + "' rangeId='" + newData.fullCheckResult[i]
@@ -325,7 +328,7 @@
                     newData.fullCheckResult[i].fId[1] + "</select><br><select name='location_a' id='location_a'>" +
                     newData.fullCheckResult[i].fId[2] + "</select></div></div>" + "</td>"
             } else if (newData.fullCheckResult[i].showType == "3" && arrContry.indexOf(newData.fullCheckResult[i]
-                .fId) <= -1) {
+                    .fId) <= -1) {
                 //else if (newData.fullCheckResult[i].showType == "3" &&  !arrContry.in_array(newData.fullCheckResult[i].fId)) {
                 str += "<td><input fId='" + newData.fullCheckResult[i].fId + "' rangeId='" + newData.fullCheckResult[i]
                     .rangeId + "' onclick='drgclick(this)'  id='DUI" + i +
@@ -378,7 +381,7 @@
             } else if (newData.logicCheckResult[i].showType == "1") {
                 str1 += "<td><input showType='" + newData.logicCheckResult[i].showType + "' fId='" + newData
                     .logicCheckResult[i].fId + "' rangeId='" + newData.logicCheckResult[i].rangeId +
-                    "' onclick='selectClick(this," + JSON.stringify(yylogn[i].rangeList) + ")' id='LOG" + i +
+                    "'onclick='selectClick(this," + JSON.stringify(yylogn[i].rangeList) + ")' id='LOG" + i +
                     "'type='text' class='ciosio inputContent' autocomplete='off' ><input type='hidden' value='" +
                     newData.logicCheckResult[i].rangeId + "'></td>"
             } else {
@@ -428,6 +431,610 @@
         }
         $("#drgOperationFieldResult").append(str3)
     }
+
+
+    //下拉框
+    function selectClick(data, rangeList) {
+
+        var obj = data;
+        var cuis = obj.id;
+
+        var arrList = [];
+        for (var i = 0; i < rangeList.length; i++) {
+            var sui = rangeList[i];
+            arrList.push({
+                value: sui.code,
+                label: sui.name
+            })
+        }
+        $("#" + cuis).autocomplete({
+            minLength: 0,
+            source: arrList,
+            focus: function (event, ui) {
+                // console.log(ui);
+                $("#" + cuis).val(ui.item.label);
+                $("#" + cuis).attr("code", ui.item.value)
+                return false;
+            },
+            select: function (event, ui) {
+                // console.log(ui)
+                return false;
+            }
+        }).focus(function () {
+            $(this).autocomplete('search')
+        })
+
+    }
+
+
+
+
+    function btnclick(data) {
+        console.log(data);
+        var obj = data;
+        var cuis = obj.id
+        var txt = document.getElementById(cuis);
+        txt.onkeydown = throttle(handle, 1000, 500)
+    }
+
+    // txt.onkeydown = throttle(handle, 1000,500);
+    //第一次事件触发，则先执行debounce函数，在执行闭包函数，一步一步执行，第一次以后的每次事件触发都是直接执行debounce函数中的闭包函数
+
+    //函数节流与防抖结合
+    function throttle(fn, delay, duration) {
+        var timer = null;
+        //获取开始时间（时间戳）
+        var begin = new Date();
+        return function () {
+            var context = this;
+            var args = arguments;
+            //获取当前时间
+            var current = new Date();
+            clearTimeout(timer);
+            //节流
+            if (current - begin >= duration) {
+                fn.apply(context, args);
+                begin = current;
+            } else {
+                //防抖
+                timer = setTimeout(function () {
+                    fn.call(context);
+                }, delay);
+            }
+        }
+    }
+
+    //事件处理函数(下拉框）
+    function handle() {
+        console.log($(this).val())
+        var rangeType = $(this).attr("rangeid")
+        console.log(rangeType)
+        // var projects = [];
+        // var syu = this;
+        var id = this.id;
+
+        $("#" + id).autocomplete({
+            minLength: 0,
+            source: function (request, response) {
+                $.ajax({
+                    type: "post",
+                    url: "/range/rangeResult",
+                    data: {
+                        "rangeType": rangeType
+                    },
+                    dataType: "json",
+                    success: function (data) {
+
+                        var arrList = [];
+
+                        for (var i = 0; i < data.data.length; i++) {
+                            var sui = data.data[i];
+                            arrList.push({
+                                value: sui.rangeCode,
+                                label: sui.rangeName
+                            })
+                        }
+                        response(arrList)
+                    }
+                })
+
+            },
+            focus: function (event, ui) {
+                console.log(ui)
+                $("#" + id).val(ui.item.label);
+
+                return false;
+            },
+            select: function (event, ui) {
+                console.log(ui)
+                return false;
+            }
+        }).focus(function () {
+            $(this).autocomplete('search')
+        })
+
+    }
+
+
+    function drgclick(data) {
+        console.log(data);
+        var obj = data;
+        var cuis = obj.id
+        var txt = document.getElementById(cuis);
+        txt.onkeydown = throttle(drghandle, 1000, 500)
+    }
+
+    function drghandle() {
+        console.log($(this).val())
+        // var drgkeyword = $(this).val()
+        // var rangeType = $(this).attr("rangeid")
+        // console.log(rangeType)
+        // var projects = [];
+        var syu = $(this);
+        var id = this.id;
+        $("#" + id).autocomplete({
+            minLength: 1,
+            source: function (request, response) {
+                console.log(request.term)
+                if (request.term != '') {
+                    $.ajax({
+                        type: "post",
+                        url: "/queryRange",
+                        data: {
+                            "showType": "3",
+                            "code": request.term
+                        },
+                        dataType: "json",
+                        success: function (data) {
+                            console.log(data)
+                            var arrList = [];
+
+                            for (var i = 0; i < data.length; i++) {
+                                var sui = data[i];
+                                arrList.push({
+                                    value: sui.code,
+                                    label: sui.name,
+                                    codename: sui.codename
+                                })
+                            }
+                            response(arrList)
+                        }
+                    })
+                }
+
+            },
+            focus: function (event, ui) {
+
+                $("#" + id).val(ui.item.codename);
+                return false;
+            },
+            select: function (event, ui) {
+                $("#" + id).val(ui.item.codename);
+                console.log("1111")
+                // var ciuo = $("#" + id).parent().parent();
+                // ciuo.children("td:eq(1)").text(ui.item.value)
+                // ciuo.children("td:eq(2)").text(ui.item.label)
+                return false;
+            }
+        }).focus(function () {
+            $(this).autocomplete('search')
+        })
+
+
+    }
+
+
+    function drgclick10(data) {
+        console.log(data);
+        var obj = data;
+        var cuis = obj.id
+        var txt = document.getElementById(cuis);
+        txt.onkeydown = throttle(drghandle10, 1000, 500)
+    }
+
+    function drghandle10() {
+
+        // var drgkeyword = $(this).val()
+        // var rangeType = $(this).attr("rangeid")
+        // console.log(rangeType)
+        // var projects = [];
+        var syu = $(this);
+        var id = this.id;
+        $("#" + id).autocomplete({
+            minLength: 1,
+            source: function (request, response) {
+                console.log(request.term)
+                if (request.term != '') {
+                    $.ajax({
+                        type: "post",
+                        url: "/queryRange",
+                        data: {
+                            "showType": "2",
+                            "code": request.term
+                        },
+                        dataType: "json",
+                        success: function (data) {
+                            console.log(data)
+                            var arrList = [];
+
+                            for (var i = 0; i < data.length; i++) {
+                                var sui = data[i];
+                                arrList.push({
+                                    value: sui.code,
+                                    label: sui.name,
+                                    codeName: sui.codeName
+                                })
+                            }
+                            response(arrList)
+                        }
+                    })
+                }
+
+            },
+            focus: function (event, ui) {
+
+                $("#" + id).val(ui.item.codeName);
+                return false;
+            },
+            select: function (event, ui) {
+                $("#" + id).val(ui.item.codeName);
+                console.log("1111")
+                var ciuo = $("#" + id).parent().parent();
+                // ciuo.children("td:eq(1)").text(ui.item.value)
+                // ciuo.children("td:eq(2)").text(ui.item.label)
+                return false;
+            }
+        }).focus(function () {
+            $(this).autocomplete('search')
+        })
+
+
+    }
+
+    //DRG修改
+    //ICD-10
+    function drgEvent(data) {
+        console.log(data);
+        var obj = data;
+        var cuis = obj.id
+        var txt = document.getElementById(cuis);
+        txt.onkeydown = throttle(drgEventhandle, 1000, 500)
+    }
+
+    function drgEventhandle() {
+        console.log($(this).val())
+        // var drgkeyword = $(this).val()
+        // var rangeType = $(this).attr("rangeid")
+        // console.log(rangeType)
+        // var projects = [];
+        var syu = $(this);
+        var id = this.id;
+        $("#" + id).autocomplete({
+            minLength: 1,
+            source: function (request, response) {
+                console.log(request.term)
+                if (request.term != '') {
+                    $.ajax({
+                        type: "post",
+                        url: "/queryRange",
+                        data: {
+                            "showType": "2",
+                            "code": request.term
+                        },
+                        dataType: "json",
+                        success: function (data) {
+                            console.log(data)
+                            var arrList = [];
+
+                            for (var i = 0; i < data.length; i++) {
+                                var sui = data[i];
+                                arrList.push({
+                                    value: sui.code,
+                                    label: sui.name,
+                                    codeName: sui.codeName
+                                })
+                            }
+                            response(arrList)
+                        }
+                    })
+                }
+
+            },
+            focus: function (event, ui) {
+
+                // $("#" + id).val(ui.item.label);
+                $("#" + id).val(ui.item.codeName);
+                return false;
+            },
+            select: function (event, ui) {
+                // $("#" + id).val(ui.item.label);
+                $("#" + id).val(ui.item.codeName);
+                console.log("1111")
+                var ciuo = $("#" + id).parent().parent();
+                ciuo.children("td:eq(1)").text(ui.item.value)
+                ciuo.children("td:eq(2)").text(ui.item.label)
+                return false;
+            }
+        }).focus(function () {
+            $(this).autocomplete('search')
+        })
+
+
+    }
+
+    //ICD-9
+    function drgEventor(data) {
+        console.log(data);
+        var obj = data;
+        var cuis = obj.id
+        var txt = document.getElementById(cuis);
+        txt.onkeydown = throttle(drgEventorhandle, 1000, 500)
+    }
+
+    function drgEventorhandle() {
+        console.log($(this).val())
+        // var drgkeyword = $(this).val()
+        // var rangeType = $(this).attr("rangeid")
+        // console.log(rangeType)
+        // var projects = [];
+        var syu = $(this);
+        var id = this.id;
+        $("#" + id).autocomplete({
+            minLength: 1,
+            source: function (request, response) {
+                console.log(request.term)
+                if (request.term != '') {
+                    $.ajax({
+                        type: "post",
+                        url: "/queryRange",
+                        data: {
+                            "showType": "3",
+                            "code": request.term
+                        },
+                        dataType: "json",
+                        success: function (data) {
+                            console.log(data)
+                            var arrList = [];
+
+                            for (var i = 0; i < data.length; i++) {
+                                var sui = data[i];
+                                arrList.push({
+                                    value: sui.code,
+                                    label: sui.name,
+                                    codeName: sui.codeName
+                                })
+                            }
+                            response(arrList)
+                        }
+                    })
+                }
+
+            },
+            focus: function (event, ui) {
+
+                $("#" + id).val(ui.item.codeName);
+                return false;
+            },
+            select: function (event, ui) {
+                $("#" + id).val(ui.item.codeName);
+                console.log("1111")
+                var ciuo = $("#" + id).parent().parent();
+                ciuo.children("td:eq(1)").text(ui.item.value)
+                ciuo.children("td:eq(2)").text(ui.item.label)
+                return false;
+            }
+        }).focus(function () {
+            $(this).autocomplete('search')
+        })
+
+
+    }
+
+
+
+    //校验
+    function getDRGContent() {
+        var fulMessage = {};
+        var DrgFull = ["JN48", "JN50", "JN54", "JN58", "JN62", "JN66", "JN70", "JN74", "JN78", "JN82", "JN86", "JN90",
+            "JN107", "JN111", "JN115", "JN119", "JN121", "JN123", "JN125", "JN139", "JN153", "JN167", "JN181",
+            "JN195", "JN209", "JN223", "JN237", "JN251"
+        ]
+        //完整性校验
+        //tbody的tr
+        var trs = $("#fullCheckResult").children("tr");
+
+        // console.log(trs)
+        for (var i = 0; i < trs.length; i++) {
+            var inputCon = trs.eq(i).children('td:eq(2)').children(":first");
+            var inputKey = inputCon.attr("fId")
+
+            if (inputCon.attr("showType") == 1) {
+                fulMessage[inputKey] = inputCon.attr("code")
+            } else {
+                fulMessage[inputKey] = inputCon.val()
+            }
+        }
+        console.log(fulMessage)
+        //逻辑性校验
+        //tbody的tr
+        var trs1 = $("#logicCheckResult").children("tr");
+        // console.log(trs1)
+        for (var i = 0; i < trs1.length; i++) {
+            var inputCon = trs1.eq(i).children('td:eq(2)').children(":first");
+            var inputKey = inputCon.attr("fId")
+            if (inputCon.attr("showType") == 1) {
+                fulMessage[inputKey] = inputCon.attr("code")
+            } else {
+                fulMessage[inputKey] = inputCon.val()
+            }
+        }
+        var Logic = [];
+
+        for (var i = 0; i < DrgFull.length; i++) {
+            if (Object.prototype.hasOwnProperty.call(fulMessage, DrgFull[i]) == true) {
+
+                if (fulMessage[DrgFull[i]] != '') {
+                    Logic.push(DrgFull[i])
+                }
+            }
+
+        }
+        console.log(fulMessage)
+        var DRGfull = {};
+        var codeArray = ["JN48", "JN50", "JN54", "JN58", "JN62", "JN66", "JN70", "JN74", "JN78", "JN82", "JN86", "JN90",
+            "JN107", "JN111", "JN115", "JN119", "JN121", "JN123",
+        ]
+        //DRG校验
+        //tbody的tr
+        var trs2 = $("#drgDiagnoseFieldResult").children("tr");
+        // console.log(trs2)
+        for (var i = 0; i < trs2.length; i++) {
+            // var inputCon = trs2.eq(i).children('td:eq(3)').children(":first");
+            // var inputKey = inputCon.attr("codeId")
+            for (var j = 0; j < codeArray.length; j++) {
+                if (i == j) {
+                    var inputKey = codeArray[j];
+                    // var inputCode = trs2.eq(i).children('td:eq(1)').html()
+                    var inputCon = trs2.eq(i).children('td:eq(3)').children(":first").val();
+                    DRGfull[inputKey] = inputCon
+                }
+            }
+
+
+
+        }
+
+        var operationArray = ["JN125", "JN139", "JN153", "JN167", "JN181", "JN195", "JN209", "JN223", "JN237", "JN251"]
+        var trs3 = $("#drgOperationFieldResult").children("tr");
+        for (var i = 0; i < trs3.length; i++) {
+            for (var o = 0; o < operationArray.length; o++) {
+                if (i == o) {
+                    var inputKey = operationArray[o];
+                    // var inputCon = trs3.eq(i).children('td:eq(1)').html()
+                    var inputCon = trs3.eq(i).children('td:eq(3)').children(":first").val();
+                    fulMessage[inputKey] = inputCon
+                }
+            }
+            var inputCon = trs3.eq(i).children('td:eq(1)').html()
+            var inputCon = trs3.eq(i).children('td:eq(3)').children(":first").val();
+            DRGfull[inputKey] = inputCon
+
+        }
+        if (typeof Object.assign != 'function') {
+            Object.assign = function (target) {
+                'use strict';
+                if (target == null) {
+                    throw new TypeError('Cannot convert undefined or null to object');
+                }
+
+                target = Object(target);
+                for (var index = 1; index < arguments.length; index++) {
+                    var source = arguments[index];
+                    if (source != null) {
+                        for (var key in source) {
+                            if (Object.prototype.hasOwnProperty.call(source, key)) {
+                                target[key] = source[key];
+                            }
+                        }
+                    }
+                }
+                return target;
+            };
+        }
+        // Object.assign(window, view);
+        if (Logic.length == 0) {
+            Object.assign(fulMessage, DRGfull);
+        } else {
+            for (var i = 0; i < Logic.length; i++) {
+                delete DRGfull[Logic[i]]
+                // console.log(DRGfull[Logic[i]])
+            }
+            Object.assign(fulMessage, DRGfull);
+        }
+
+
+
+        fulMessage = JSON.stringify(fulMessage)
+        var mId = $("#mId").text();
+        console.log(fulMessage)
+        $.ajax({
+            type: "post",
+            url: "http://192.168.3.252:8081/recordCheck",
+            data: {
+                "recordInfo": fulMessage,
+                "recordId": mId
+            },
+            dataType: "json",
+            success: function (data) {
+                // console.log(data.auditRuleResults)
+                // newData = data.auditRuleResults
+                console.log(data)
+
+                // $('#inputAll').val(JSON.stringify(data));
+                // 数据
+                var segmentData = JSON.stringify(data);
+                // var newData = JSON.parse(segmentData)
+                var newData = eval('(' + segmentData + ')');
+                // newData = newData.auditRuleResults;
+                // window.location.reload()
+                $("#unreasontext").empty();
+                $("#fullCheckResult").children().remove()
+                $("#logicCheckResult").children().remove()
+                $("#drgDiagnoseFieldResult").children().remove()
+                $("#drgOperationFieldResult").children().remove()
+                dataShowing();
+            }
+        })
+
+    }
+
+
+
+    // var submitResult = "";
+    // //提交
+    // function commitDRGContent() {
+    //     // 数据
+    //     var segmentData = $('#inputAll').val();
+    //     // var newData = JSON.parse(segmentData)
+    //     var newData = eval('(' + segmentData + ')');
+    //     // newData = newData.auditRuleResults;
+    //     console.log(newData)
+
+
+    //     //type == 1预警
+    //     var allType = [];
+    //     for (var i = 0; i < newData.fullCheckResult.length; i++) {
+    //         allType.push(newData.fullCheckResult[i].type)
+    //     }
+    //     for (var i = 0; i < newData.logicCheckResult.length; i++) {
+    //         allType.push(newData.logicCheckResult[i].type)
+    //     }
+    //     for (var i = 0; i < newData.drgCheckResult.length; i++) {
+    //         allType.push(newData.drgCheckResult[i].type)
+    //     }
+    //     // console.log(allType)
+    //     if (!allType.in_array('1')) {
+    //         submitResult = "-1";
+    //         alert("请修改页面中预警违规项");
+    //     } else {
+    //         var mId = $("#mId").text();
+    //         console.log(mId)
+    //         newData = JSON.stringify(newData)
+    //         $.ajax({
+    //             type: "post",
+    //             url: "/recordAuditSave",
+    //             async: false,
+    //             data: {
+    //                 "auditResult": newData,
+    //                 "recordId": mId
+    //             },
+    //             dataType: "json",
+    //             success: function (data) {
+    //                 submitResult = JSON.stringify(data.medicalDataTemp);
+    //             }
+    //         })
+    //     }
+    // }
 </script>
 
 </html>
