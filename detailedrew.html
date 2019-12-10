@@ -233,9 +233,10 @@
         })
     })
 
-    function child(d) {
-        var newData = d
-        console.log(newData)
+
+    // 数据渲染
+    function dataShowing(newData) {
+        // 数据
 
         $('#mId').text(newData.mId)
         $('#name').text(newData.name)
@@ -259,7 +260,7 @@
         $("#unreasontext").append(unreasonableStr)
 
         //省市区的数组
-        var arrContry = ['JN480', 'JN481', 'JN482']
+        var arrContry = [ 'JN480','JN481','JN482']
         //完整性校验结果集
         var str = '';
         var kksui = newData.fullCheckResult
@@ -267,85 +268,50 @@
 
             str += "<tr>";
             if (newData.fullCheckResult[i].type == 1) {
-                str += "<td><img src='image/warning.png' alt='' class='tipaImg'>" + newData.fullCheckResult[i]
-                    .fieldMeaning + " [" + newData.fullCheckResult[i].fieldValve + "]" + "</td>"
+                str += "<td><img src='image/warning.png' alt='' class='tipaImg'>" + newData.fullCheckResult[i].fieldMeaning + " [" + newData.fullCheckResult[i].fieldValve + "]" + "</td>"
             } else {
-                str += "<td><img src='image/tips.png' alt='' class='tipaImg'>" + newData.fullCheckResult[i]
-                    .fieldMeaning + " [" + newData.fullCheckResult[i].fieldValve + "]" + "</td>"
+                str += "<td><img src='image/tips.png' alt='' class='tipaImg'>" + newData.fullCheckResult[i].fieldMeaning + " [" + newData.fullCheckResult[i].fieldValve + "]" + "</td>"
             }
 
             str += "<td>" + newData.fullCheckResult[i].reason + "</td>"
 
-            if (newData.fullCheckResult[i].showType == "1" && arrContry.indexOf(newData.fullCheckResult[i].fId) > -1) {
-                // if (newData.fullCheckResult[i].showType == "1"&& arrContry.in_array(newData.fullCheckResult[i].fId)) {
-                str += "<td><input  showType='" + newData.fullCheckResult[i].showType + "' fId='" + newData
-                    .fullCheckResult[i].fId + "' rangeId='" + newData.fullCheckResult[i].rangeId +
-                    "'onmouseover='selectClick(this," + JSON.stringify(kksui[i].rangeList) + ")'  id='DUI" + i +
-                    "'type='text' class='cioso inputContent' autocomplete='off' ><input type='hidden' value='" + newData
-                    .fullCheckResult[i].rangeId + "'>" +
-                    "<div class='control-group' style='text-align: center'><div class='controls'><select name='location_p' id='location_p'>" +
-                    newData.fullCheckResult[i].fId[0] + "</select><br><select name='location_c' id='location_c'>" +
-                    newData.fullCheckResult[i].fId[1] + "</select><br><select name='location_a' id='location_a'>" +
-                    newData.fullCheckResult[i].fId[2] + "</select></div></div>" + "</td>"
-            } else if (newData.fullCheckResult[i].showType == "1" && arrContry.indexOf(newData.fullCheckResult[i]
-                    .fId) <= -1) {
-                // else if (newData.fullCheckResult[i].showType == "1" && !arrContry.in_array(newData.fullCheckResult[i].fId)) {
+            if (newData.fullCheckResult[i].showType == "1"&& arrContry.indexOf(newData.fullCheckResult[i].fId)>-1) {
+            // if (newData.fullCheckResult[i].showType == "1"&& arrContry.in_array(newData.fullCheckResult[i].fId)) {
+                str += "<td><input showType='"+newData.fullCheckResult[i].showType+"' fId='" + newData.fullCheckResult[i].fId + "' rangeId='" + newData.fullCheckResult[i].rangeId + "' onmouseover='selectClick(this,"+ JSON.stringify(kksui[i].rangeList) +")'  id='DUI" + i + "'type='text' class='cioso inputContent' autocomplete='off' ><input type='hidden' value='" + newData.fullCheckResult[i].rangeId + "'>" +
+                    "<div class='control-group' style='text-align: center'><div class='controls'><select name='location_p' id='location_p'>"+newData.fullCheckResult[i].fId[0]+"</select><br><select name='location_c' id='location_c'>"+newData.fullCheckResult[i].fId[1]+"</select><br><select name='location_a' id='location_a'>"+newData.fullCheckResult[i].fId[2]+"</select></div></div>" +"</td>"
+            }
+            else if (newData.fullCheckResult[i].showType == "1" && arrContry.indexOf(newData.fullCheckResult[i].fId)<=-1) {
+            // else if (newData.fullCheckResult[i].showType == "1" && !arrContry.in_array(newData.fullCheckResult[i].fId)) {
 
-                str += "<td><input  showType='" + newData.fullCheckResult[i].showType + "' fId='" + newData
-                    .fullCheckResult[i].fId + "' rangeId='" + newData.fullCheckResult[i].rangeId +
-                    "'onmouseover='selectClick(this," + JSON.stringify(kksui[i].rangeList) + ")'  id='DUI" + i +
-                    "'type='text' class='cioso inputContent' autocomplete='off' ><input type='hidden' value='" + newData
-                    .fullCheckResult[i].rangeId + "'></td>"
-            } else if (newData.fullCheckResult[i].showType == "2" && arrContry.indexOf(newData.fullCheckResult[i].fId) >
-                -1) {
-                //else if (newData.fullCheckResult[i].showType == "2"&& arrContry.in_array(newData.fullCheckResult[i].fId)) {
+                str += "<td><input  showType='"+newData.fullCheckResult[i].showType+"' fId='" + newData.fullCheckResult[i].fId + "' rangeId='" + newData.fullCheckResult[i].rangeId + "' onmouseover='selectClick(this,"+ JSON.stringify(kksui[i].rangeList) +")'  id='DUI" + i + "'type='text' class='cioso inputContent' autocomplete='off' ><input type='hidden' value='" + newData.fullCheckResult[i].rangeId + "'></td>"
+            }
+            else if (newData.fullCheckResult[i].showType == "2"&& arrContry.indexOf(newData.fullCheckResult[i].fId)>-1) {
+            // else if (newData.fullCheckResult[i].showType == "2"&& arrContry.in_array(newData.fullCheckResult[i].fId)) {
 
-                str += "<td><input fId='" + newData.fullCheckResult[i].fId + "' rangeId='" + newData.fullCheckResult[i]
-                    .rangeId + "' onclick='drgclick10(this)'  id='DUI" + i +
-                    "'type='text' class='cioso inputContent' autocomplete='off' ><input type='hidden' value='" + newData
-                    .fullCheckResult[i].rangeId + "'>" +
-                    "<div class='control-group' style='text-align: center'><div class='controls'><select name='location_p' id='location_p'>" +
-                    newData.fullCheckResult[i].fId[0] + "</select><br><select name='location_c' id='location_c'>" +
-                    newData.fullCheckResult[i].fId[1] + "</select><br><select name='location_a' id='location_a'>" +
-                    newData.fullCheckResult[i].fId[2] + "</select></div></div>" + "</td>"
-            } else if (newData.fullCheckResult[i].showType == "2" && arrContry.indexOf(newData.fullCheckResult[i]
-                    .fId) <= -1) {
-                //else if (newData.fullCheckResult[i].showType == "2" && !arrContry.in_array(newData.fullCheckResult[i].fId)) {
+                str += "<td><input fId='" + newData.fullCheckResult[i].fId + "' rangeId='" + newData.fullCheckResult[i].rangeId + "' onclick='drgclick10(this)'  id='DUI" + i + "'type='text' class='cioso inputContent' autocomplete='off' ><input type='hidden' value='" + newData.fullCheckResult[i].rangeId + "'>" +
+                    "<div class='control-group' style='text-align: center'><div class='controls'><select name='location_p' id='location_p'>"+newData.fullCheckResult[i].fId[0]+"</select><br><select name='location_c' id='location_c'>"+newData.fullCheckResult[i].fId[1]+"</select><br><select name='location_a' id='location_a'>"+newData.fullCheckResult[i].fId[2]+"</select></div></div>" +"</td>"
+            }
+            else if (newData.fullCheckResult[i].showType == "2" && arrContry.indexOf(newData.fullCheckResult[i].fId)<=-1) {
+            // else if (newData.fullCheckResult[i].showType == "2" && !arrContry.in_array(newData.fullCheckResult[i].fId)) {
 
-                str += "<td><input fId='" + newData.fullCheckResult[i].fId + "' rangeId='" + newData.fullCheckResult[i]
-                    .rangeId + "' onclick='drgclick10(this)'  id='DUI" + i +
-                    "'type='text' class='cioso inputContent' autocomplete='off' ><input type='hidden' value='" + newData
-                    .fullCheckResult[i].rangeId + "'></td>"
-            } else if (newData.fullCheckResult[i].showType == "3" && arrContry.indexOf(newData.fullCheckResult[i].fId) >
-                -1) {
-                //else if (newData.fullCheckResult[i].showType == "3"&& arrContry.in_array(newData.fullCheckResult[i].fId)) {
-                str += "<td><input fId='" + newData.fullCheckResult[i].fId + "' rangeId='" + newData.fullCheckResult[i]
-                    .rangeId + "' onclick='drgclick(this)'  id='DUI" + i +
-                    "'type='text' class='cioso inputContent' autocomplete='off' ><input type='hidden' value='" + newData
-                    .fullCheckResult[i].rangeId + "'>" +
-                    "<div class='control-group' style='text-align: center'><div class='controls'><select name='location_p' id='location_p'>" +
-                    newData.fullCheckResult[i].fId[0] + "</select><br><select name='location_c' id='location_c'>" +
-                    newData.fullCheckResult[i].fId[1] + "</select><br><select name='location_a' id='location_a'>" +
-                    newData.fullCheckResult[i].fId[2] + "</select></div></div>" + "</td>"
-            } else if (newData.fullCheckResult[i].showType == "3" && arrContry.indexOf(newData.fullCheckResult[i]
-                    .fId) <= -1) {
-                //else if (newData.fullCheckResult[i].showType == "3" &&  !arrContry.in_array(newData.fullCheckResult[i].fId)) {
-                str += "<td><input fId='" + newData.fullCheckResult[i].fId + "' rangeId='" + newData.fullCheckResult[i]
-                    .rangeId + "' onclick='drgclick(this)'  id='DUI" + i +
-                    "'type='text' class='cioso inputContent' autocomplete='off' ><input type='hidden' value='" + newData
-                    .fullCheckResult[i].rangeId + "'></td>"
-            } else if (newData.fullCheckResult[i].showType == "0" && arrContry.indexOf(newData.fullCheckResult[i].fId) >
-                -1) {
-                //else if (newData.fullCheckResult[i].showType == "0"&& arrContry.in_array(newData.fullCheckResult[i].fId)) {
-                str += "<td><input fId='" + newData.fullCheckResult[i].fId + "' id='DUI" + i +
-                    "'type='text' class='inputContent' autocomplete='off' >" +
-                    "<div class='control-group' style='text-align: center;'><div class='controls'><select name='location_p' id='location_p'>" +
-                    newData.fullCheckResult[i].fId[0] + "</select><br><select name='location_c' id='location_c'>" +
-                    newData.fullCheckResult[i].fId[1] + "</select><br><select name='location_a' id='location_a'>" +
-                    newData.fullCheckResult[i].fId[2] + "</select></div></div>" + "</td>"
-            } else {
-                str += "<td><input fId='" + newData.fullCheckResult[i].fId + "' id='DUI" + i +
-                    "'type='text' class='inputContent' autocomplete='off' ></td>"
+                str += "<td><input fId='" + newData.fullCheckResult[i].fId + "' rangeId='" + newData.fullCheckResult[i].rangeId + "' onclick='drgclick10(this)'  id='DUI" + i + "'type='text' class='cioso inputContent' autocomplete='off' ><input type='hidden' value='" + newData.fullCheckResult[i].rangeId + "'></td>"
+            }
+            else if (newData.fullCheckResult[i].showType == "3"&& arrContry.indexOf(newData.fullCheckResult[i].fId)>-1) {
+            // else if (newData.fullCheckResult[i].showType == "3"&& arrContry.in_array(newData.fullCheckResult[i].fId)) {
+                str += "<td><input fId='" + newData.fullCheckResult[i].fId + "' rangeId='" + newData.fullCheckResult[i].rangeId + "' onclick='drgclick(this)'  id='DUI" + i + "'type='text' class='cioso inputContent' autocomplete='off' ><input type='hidden' value='" + newData.fullCheckResult[i].rangeId + "'>" +
+                    "<div class='control-group' style='text-align: center'><div class='controls'><select name='location_p' id='location_p'>"+newData.fullCheckResult[i].fId[0]+"</select><br><select name='location_c' id='location_c'>"+newData.fullCheckResult[i].fId[1]+"</select><br><select name='location_a' id='location_a'>"+newData.fullCheckResult[i].fId[2]+"</select></div></div>" +"</td>"
+            }
+            else if (newData.fullCheckResult[i].showType == "3" &&  arrContry.indexOf(newData.fullCheckResult[i].fId)<=-1) {
+            // else if (newData.fullCheckResult[i].showType == "3" &&  !arrContry.in_array(newData.fullCheckResult[i].fId)) {
+                str += "<td><input fId='" + newData.fullCheckResult[i].fId + "' rangeId='" + newData.fullCheckResult[i].rangeId + "' onclick='drgclick(this)'  id='DUI" + i + "'type='text' class='cioso inputContent' autocomplete='off' ><input type='hidden' value='" + newData.fullCheckResult[i].rangeId + "'></td>"
+            }
+            else if (newData.fullCheckResult[i].showType == "0"&& arrContry.indexOf(newData.fullCheckResult[i].fId)>-1) {
+            // else if (newData.fullCheckResult[i].showType == "0"&& arrContry.in_array(newData.fullCheckResult[i].fId)) {
+                str += "<td><input fId='" + newData.fullCheckResult[i].fId + "' id='DUI" + i + "'type='text' class='inputContent' autocomplete='off' >"+
+                    "<div class='control-group' style='text-align: center;'><div class='controls'><select name='location_p' id='location_p'>"+newData.fullCheckResult[i].fId[0]+"</select><br><select name='location_c' id='location_c'>"+newData.fullCheckResult[i].fId[1]+"</select><br><select name='location_a' id='location_a'>"+newData.fullCheckResult[i].fId[2]+"</select></div></div>" +"</td>"
+            }
+            else {
+                str += "<td><input fId='" + newData.fullCheckResult[i].fId + "' id='DUI" + i + "'type='text' class='inputContent' autocomplete='off' ></td>"
             }
 
             str += "</tr>"
@@ -360,34 +326,20 @@
         for (var i = 0; i < newData.logicCheckResult.length; i++) {
             str1 += "<tr>";
             if (newData.logicCheckResult[i].type == 1) {
-                str1 += "<td><img src='image/warning.png' alt='' class='tipaImg'>" + newData.logicCheckResult[i]
-                    .fieldMeaning + " [" + newData.logicCheckResult[i].fieldValve + "]" + "</td>"
+                str1 += "<td><img src='image/warning.png' alt='' class='tipaImg'>" + newData.logicCheckResult[i].fieldMeaning + " [" + newData.logicCheckResult[i].fieldValve + "]" + "</td>"
             } else {
-                str1 += "<td><img src='image/tips.png' alt='' class='tipaImg'>" + newData.logicCheckResult[i]
-                    .fieldMeaning + " [" + newData.logicCheckResult[i].fieldValve + "]" + "</td>"
+                str1 += "<td><img src='image/tips.png' alt='' class='tipaImg'>" + newData.logicCheckResult[i].fieldMeaning + " [" + newData.logicCheckResult[i].fieldValve + "]" + "</td>"
             }
             str1 += "<td>" + newData.logicCheckResult[i].reason + "</td>"
             // console.log(newData.logicCheckResult[i].showType);
             if (newData.logicCheckResult[i].showType == "2") {
-                str1 += "<td><input fId='" + newData.logicCheckResult[i].fId + "' rangeId='" + newData.logicCheckResult[
-                        i].rangeId + "' onclick='drgclick10(this)' id='LOG" + i +
-                    "'type='text' class='ciosio inputContent' autocomplete='off' ><input type='hidden' value='" +
-                    newData.logicCheckResult[i].rangeId + "'></td>"
+                str1 += "<td><input fId='" + newData.logicCheckResult[i].fId + "' rangeId='" + newData.logicCheckResult[i].rangeId + "' onclick='drgclick10(this)' id='LOG" + i + "'type='text' class='ciosio inputContent' autocomplete='off' ><input type='hidden' value='" + newData.logicCheckResult[i].rangeId + "'></td>"
             } else if (newData.logicCheckResult[i].showType == "3") {
-                str1 += "<td><input fId='" + newData.logicCheckResult[i].fId + "' rangeId='" + newData.logicCheckResult[
-                        i].rangeId + "' onclick='drgclick(this)' id='LOG" + i +
-                    "'type='text' class='ciosio inputContent' autocomplete='off' ><input type='hidden' value='" +
-                    newData.logicCheckResult[i].rangeId + "'></td>"
+                str1 += "<td><input fId='" + newData.logicCheckResult[i].fId + "' rangeId='" + newData.logicCheckResult[i].rangeId + "' onclick='drgclick(this)' id='LOG" + i + "'type='text' class='ciosio inputContent' autocomplete='off' ><input type='hidden' value='" + newData.logicCheckResult[i].rangeId + "'></td>"
             } else if (newData.logicCheckResult[i].showType == "1") {
-                str1 += "<td><input showType='" + newData.logicCheckResult[i].showType + "' fId='" + newData
-                    .logicCheckResult[i].fId + "' rangeId='" + newData.logicCheckResult[i].rangeId +
-                    "'onclick='selectClick(this," + JSON.stringify(yylogn[i].rangeList) + ")' id='LOG" + i +
-                    "'type='text' class='ciosio inputContent' autocomplete='off' ><input type='hidden' value='" +
-                    newData.logicCheckResult[i].rangeId + "'></td>"
+                str1 += "<td><input showType='"+newData.logicCheckResult[i].showType+"' fId='" + newData.logicCheckResult[i].fId + "' rangeId='" + newData.logicCheckResult[i].rangeId + "' onclick='selectClick(this,"+ JSON.stringify(yylogn[i].rangeList) +")' id='LOG" + i + "'type='text' class='ciosio inputContent' autocomplete='off' ><input type='hidden' value='" + newData.logicCheckResult[i].rangeId + "'></td>"
             } else {
-                str1 += "<td><input  showType='" + newData.logicCheckResult[i].showType + "' fId='" + newData
-                    .logicCheckResult[i].fId + "' id='LOG" + i +
-                    "'type='text' class='inputContent' autocomplete='off' ></td>"
+                str1 += "<td><input  showType='"+newData.logicCheckResult[i].showType+"' fId='" + newData.logicCheckResult[i].fId + "' id='LOG" + i + "'type='text' class='inputContent' autocomplete='off' ></td>"
             }
 
             str1 += "</tr>"
@@ -401,14 +353,10 @@
             // console.log(newData.drgDiagnoseFieldResult[i].showType);
             str2 += "<tr>";
             str2 += "<td>" + newData.drgDiagnoseFieldResult[i].fieldName + "</td>"
-            str2 += "<td id='" + newData.drgDiagnoseFieldResult[i].codeId + "'>" + newData.drgDiagnoseFieldResult[i]
-                .code + "</td>"
-            str2 += "<td id='" + newData.drgDiagnoseFieldResult[i].nameId + "'>" + newData.drgDiagnoseFieldResult[i]
-                .name + "</td>"
-            str2 += "<td><input codeId='" + newData.drgDiagnoseFieldResult[i].codeId + "' id='DRGDF" + i +
-                "' onclick='drgEvent(this)' type='text' class='inputContent' autocomplete='off' value='' ></td>"
-            str2 +=
-                "<td><span class='moveUpOrDown'>上移</span> | <span class='moveUpOrDown'>下移</span> | <span class='moveUpOrDown'>置顶</span></td>"
+            str2 += "<td id='"+ newData.drgDiagnoseFieldResult[i].codeId +"'>" + newData.drgDiagnoseFieldResult[i].code + "</td>"
+            str2 += "<td id='"+ newData.drgDiagnoseFieldResult[i].nameId +"'>" + newData.drgDiagnoseFieldResult[i].name + "</td>"
+            str2 += "<td><input codeId='"+ newData.drgDiagnoseFieldResult[i].codeId +"' id='DRGDF" + i + "' onclick='drgEvent(this)' type='text' class='inputContent' autocomplete='off' value='' ></td>"
+            str2 += "<td><span class='moveUpOrDown'>上移</span> | <span class='moveUpOrDown'>下移</span> | <span class='moveUpOrDown'>置顶</span></td>"
             str2 += "</tr>"
         }
         $("#drgDiagnoseFieldResult").append(str2)
@@ -419,17 +367,22 @@
             // console.log(newData.drgDiagnoseFieldResult[i].showType);
             str3 += "<tr>";
             str3 += "<td>" + newData.drgOperationFieldResult[i].fieldName + "</td>"
-            str3 += "<td id='" + newData.drgOperationFieldResult[i].codeId + "'>" + newData.drgOperationFieldResult[i]
-                .code + "</td>"
-            str3 += "<td id='" + newData.drgOperationFieldResult[i].nameId + "'>" + newData.drgOperationFieldResult[i]
-                .name + "</td>"
-            str3 += "<td><input codeId='" + newData.drgOperationFieldResult[i].codeId + "' id='DRGOF" + i +
-                "' rangeid='DMB01' onclick='drgEventor(this)' type='text' class='inputContent' autocomplete='off' ></td>"
-            str3 +=
-                "<td><span class='moveUpOrDown'>上移</span> | <span class='moveUpOrDown'>下移</span> | <span class='moveUpOrDown'>置顶</span></td>"
+            str3 += "<td id='"+ newData.drgOperationFieldResult[i].codeId +"'>" + newData.drgOperationFieldResult[i].code + "</td>"
+            str3 += "<td id='"+ newData.drgOperationFieldResult[i].nameId +"'>" + newData.drgOperationFieldResult[i].name + "</td>"
+            str3 += "<td><input codeId='"+ newData.drgOperationFieldResult[i].codeId +"' id='DRGOF" + i + "' rangeid='DMB01' onclick='drgEventor(this)' type='text' class='inputContent' autocomplete='off' ></td>"
+            str3 += "<td><span class='moveUpOrDown'>上移</span> | <span class='moveUpOrDown'>下移</span> | <span class='moveUpOrDown'>置顶</span></td>"
             str3 += "</tr>"
         }
         $("#drgOperationFieldResult").append(str3)
+    }
+
+
+
+    function child(d) {
+        var newData = d
+        console.log(newData)
+
+        dataShowing(newData);
     }
 
 
