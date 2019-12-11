@@ -241,10 +241,17 @@
     border: 1px solid #ccc;
 }
 
+#drgDiagnoseFieldResult td {
+    line-height: 45px;
+}
+#drgOperationFieldResult td {
+    line-height: 45px;
+}
 .dg th {
     /* border: none; */
     border: 1px solid #DBEEFC;
     border-bottom: #ccc;
+    line-height: 45px;
 }
 
 .content:after {
@@ -369,3 +376,5 @@
     height: 40px;
     line-height: 40px;
 }
+
+
