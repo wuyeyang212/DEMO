@@ -79,7 +79,8 @@ $.fn.extend({
 
 	zIndex: function( zIndex ) {
 		if ( zIndex !== undefined ) {
-			return this.css( "zIndex", zIndex );
+			//console.log(zIndex)
+			return this.css( "zIndex", 99999 );
 		}
 
 		if ( this.length ) {
@@ -8569,6 +8570,7 @@ $.widget("ui.dialog", {
 		if ( this.overlay ) {
 			$.ui.dialog.maxZ += 1;
 			$.ui.dialog.overlay.maxZ = $.ui.dialog.maxZ;
+			console.log( $.ui.dialog.overlay.maxZ)
 			this.overlay.$el.css( "z-index", $.ui.dialog.overlay.maxZ );
 		}
 
@@ -8580,6 +8582,7 @@ $.widget("ui.dialog", {
 			scrollLeft: this.element.scrollLeft()
 		};
 		$.ui.dialog.maxZ += 1;
+		console.log($.ui.dialog.maxZ)
 		this.uiDialog.css( "z-index", $.ui.dialog.maxZ );
 		this.element.attr( saveScroll );
 		this._trigger( "focus", event );
@@ -9037,6 +9040,7 @@ $.extend( $.ui.dialog.overlay, {
 		$.each( this.instances, function() {
 			maxZ = Math.max( maxZ, this.css( "z-index" ) );
 		});
+		console.log(maxZ)
 		this.maxZ = maxZ;
 	},
 

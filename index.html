@@ -2953,12 +2953,14 @@
             },
             success: function (req) {
                 if (req.code == 002) {
-                    console.log(req.auditRuleResults)
+                    
                     layer.open({
                         type: 2,
-                        title: '病案首页智能质控',
-                        maxmin: true,
-                        area: ['1000px', '700px'],
+                        
+                       
+                        title: false,
+                        maxmin:false,
+                        area: ['1000px', '660px'],
                         // content: 'http://layer.layui.com/test/welcome.html',
                         content: 'detailedrew.html',
                         success: function (layero, index) {
