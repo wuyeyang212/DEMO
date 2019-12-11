@@ -80,7 +80,7 @@ $.fn.extend({
 	zIndex: function( zIndex ) {
 		if ( zIndex !== undefined ) {
 			//console.log(zIndex)
-			return this.css( "zIndex", 99999 );
+			return this.css( "zIndex", 99891017 );
 		}
 
 		if ( this.length ) {
