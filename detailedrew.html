@@ -268,7 +268,7 @@
     // 数据渲染
     function dataShowing(newData) {
         // 数据
-
+        console.log(newData)
         $('#mId').text(newData.mId)
         $('#name').text(newData.name)
         $('#claimType').text(newData.claimType)
@@ -376,8 +376,13 @@
                     newData.fullCheckResult[i].fId[1] + "</select><br><select name='location_a' id='location_a'>" +
                     newData.fullCheckResult[i].fId[2] + "</select></div></div>" + "</td>"
             } else {
+<<<<<<< HEAD
                 str += "<td><div><input fId='" + newData.fullCheckResult[i].fId + "' id='DUI" + i +
                     "'type='text' class='inputContent' autocomplete='off' ></div></td>"
+=======
+                str += "<td><input fId='" + newData.fullCheckResult[i].fId + "' id='DUI" + i +
+                    "'type='text' class='inputContent' autocomplete='off' ></td>"
+>>>>>>> ec807d784b6b29fb9d9630014b61300bd9c43d3c
             }
 
             str += "</tr>"
@@ -401,15 +406,15 @@
             str1 += "<td>" + newData.logicCheckResult[i].reason + "</td>"
             // console.log(newData.logicCheckResult[i].showType);
             if (newData.logicCheckResult[i].showType == "2") {
-                str1 += "<td><input fId='" + newData.logicCheckResult[i].fId + "' rangeId='" + newData.logicCheckResult[
+                str1 += "<td><div><input fId='" + newData.logicCheckResult[i].fId + "' rangeId='" + newData.logicCheckResult[
                         i].rangeId + "' onclick='drgclick10(this)' id='LOG" + i +
                     "'type='text' class='ciosio inputContent' autocomplete='off' ><input type='hidden' value='" +
-                    newData.logicCheckResult[i].rangeId + "'></td>"
+                    newData.logicCheckResult[i].rangeId + "'></div></td>"
             } else if (newData.logicCheckResult[i].showType == "3") {
-                str1 += "<td><input fId='" + newData.logicCheckResult[i].fId + "' rangeId='" + newData.logicCheckResult[
+                str1 += "<td><div><input fId='" + newData.logicCheckResult[i].fId + "' rangeId='" + newData.logicCheckResult[
                         i].rangeId + "' onclick='drgclick(this)' id='LOG" + i +
                     "'type='text' class='ciosio inputContent' autocomplete='off' ><input type='hidden' value='" +
-                    newData.logicCheckResult[i].rangeId + "'></td>"
+                    newData.logicCheckResult[i].rangeId + "'></div></td>"
             } else if (newData.logicCheckResult[i].showType == "1") {
                 str1 += "<td><div class='dropDownList'><input placeholder='请选择' showType='" + newData.logicCheckResult[
                         i].showType + "' fId='" + newData.logicCheckResult[i].fId + "' rangeId='" + newData
@@ -418,9 +423,9 @@
                     "'type='text' class='ciosio inputContent' autocomplete='off' ><input type='hidden' value='" +
                     newData.logicCheckResult[i].rangeId + "'></div></td>"
             } else {
-                str1 += "<td><input  showType='" + newData.logicCheckResult[i].showType + "' fId='" + newData
+                str1 += "<td><div><input sshowType='" + newData.logicCheckResult[i].showType + "' fId='" + newData
                     .logicCheckResult[i].fId + "' id='LOG" + i +
-                    "'type='text' class='inputContent' autocomplete='off' ></td>"
+                    "'type='text' class='inputContent' autocomplete='off' ></div></td>"
             }
 
             str1 += "</tr>"
@@ -466,8 +471,10 @@
     }
 
 
-
+    // 提交需要的数据
+    var globalVariableData = {};
     function child(d) {
+        globalVariableData = d
         var newData = d
         console.log(newData)
         dataShowing(newData);
@@ -639,7 +646,7 @@
                 if (request.term != '') {
                     $.ajax({
                         type: "post",
-                        url: "http://192.168.3.252:8081/queryRange",
+                        url: "http://192.168.3.135:8081/queryRange",
                         data: {
                             "showType": "3",
                             "code": request.term
@@ -707,7 +714,7 @@
                 if (request.term != '') {
                     $.ajax({
                         type: "post",
-                        url: "http://192.168.3.252:8081/queryRange",
+                        url: "http://192.168.3.135:8081/queryRange",
                         data: {
                             "showType": "2",
                             "code": request.term
@@ -776,7 +783,7 @@
                 if (request.term != '') {
                     $.ajax({
                         type: "post",
-                        url: "http://192.168.3.252:8081/queryRange",
+                        url: "http://192.168.3.135:8081/queryRange",
                         data: {
                             "showType": "2",
                             "code": request.term
@@ -846,7 +853,7 @@
                 if (request.term != '') {
                     $.ajax({
                         type: "post",
-                        url: "http://192.168.3.252:8081/queryRange",
+                        url: "http://192.168.3.135:8081/queryRange",
                         data: {
                             "showType": "3",
                             "code": request.term
@@ -905,7 +912,7 @@
 
         // console.log(trs)
         for (var i = 0; i < trs.length; i++) {
-            var inputCon = trs.eq(i).children('td:eq(2)').children(":first");
+            var inputCon = trs.eq(i).children('td:eq(2)').children(":first").children(":first");
             var inputKey = inputCon.attr("fId")
 
             if (inputCon.attr("showType") == 1) {
@@ -914,13 +921,13 @@
                 fulMessage[inputKey] = inputCon.val()
             }
         }
-        console.log(fulMessage)
+        // console.log(fulMessage)
         //逻辑性校验
         //tbody的tr
         var trs1 = $("#logicCheckResult").children("tr");
         // console.log(trs1)
         for (var i = 0; i < trs1.length; i++) {
-            var inputCon = trs1.eq(i).children('td:eq(2)').children(":first");
+            var inputCon = trs1.eq(i).children('td:eq(2)').children(":first").children(":first");
             var inputKey = inputCon.attr("fId")
             if (inputCon.attr("showType") == 1) {
                 fulMessage[inputKey] = inputCon.attr("code")
@@ -939,7 +946,7 @@
             }
 
         }
-        console.log(fulMessage)
+        // console.log(fulMessage)
         var DRGfull = {};
         var codeArray = ["JN48", "JN50", "JN54", "JN58", "JN62", "JN66", "JN70", "JN74", "JN78", "JN82", "JN86", "JN90",
             "JN107", "JN111", "JN115", "JN119", "JN121", "JN123",
@@ -959,9 +966,6 @@
                     DRGfull[inputKey] = inputCon
                 }
             }
-
-
-
         }
 
         var operationArray = ["JN125", "JN139", "JN153", "JN167", "JN181", "JN195", "JN209", "JN223", "JN237", "JN251"]
@@ -1013,13 +1017,13 @@
         }
 
 
-
+        console.log(fulMessage)
         fulMessage = JSON.stringify(fulMessage)
         var mId = $("#mId").text();
-        console.log(fulMessage)
+        
         $.ajax({
             type: "post",
-            url: "http://192.168.3.252:8081/recordCheck",
+            url: "http://192.168.3.135:8081/recordCheck",
             data: {
                 "recordInfo": fulMessage,
                 "recordId": mId
@@ -1028,17 +1032,16 @@
             success: function (data) {
                 // console.log(data.auditRuleResults)
                 // newData = data.auditRuleResults
-                console.log(data)
+                // console.log(data)
 
                 // $('#inputAll').val(JSON.stringify(data));
                 // 数据
-                var segmentData = JSON.stringify(data);
+                var segmentData = JSON.stringify(data.auditRuleResults);
                 // var newData = JSON.parse(segmentData)
                 var newData = eval('(' + segmentData + ')');
                 // newData = newData.auditRuleResults;
                 // window.location.reload()
-
-                dataShowing(newData);
+                console.log(newData)
 
                 $("#unreasontext").empty();
                 $("#fullCheckResult").children().remove()
@@ -1046,7 +1049,8 @@
                 $("#drgDiagnoseFieldResult").children().remove()
                 $("#drgOperationFieldResult").children().remove()
 
-
+                
+                dataShowing(newData);
             }
         })
 
@@ -1054,6 +1058,7 @@
 
 
 
+<<<<<<< HEAD
     // var submitResult = "";
     // //提交
     // function commitDRGContent() {
@@ -1100,6 +1105,60 @@
     //         })
     //     }
     // }
+=======
+    var submitResult = "";
+    //提交
+    function commitDRGContent() {
+        // 数据
+        // var segmentData = $('#inputAll').val();
+        // var newData = JSON.parse(segmentData)
+        // var newData = eval('(' + segmentData + ')');
+        // newData = newData.auditRuleResults;
+        // console.log(newData)
+
+        console.log(globalVariableData)
+        newData = globalVariableData
+
+        //type == 1预警
+        var allType = [];
+        for (var i = 0; i < newData.fullCheckResult.length; i++) {
+            allType.push(newData.fullCheckResult[i].type)
+        }
+        for (var i = 0; i < newData.logicCheckResult.length; i++) {
+            allType.push(newData.logicCheckResult[i].type)
+        }
+        for (var i = 0; i < newData.drgCheckResult.length; i++) {
+            allType.push(newData.drgCheckResult[i].type)
+        }
+        // console.log(allType)
+        if (allType.indexOf('1') > -1) {
+        // if (!allType.in_array('1')) {
+            submitResult = "-1";
+            alert("请修改页面中预警违规项");
+        } else {
+            var mId = $("#mId").text();
+            console.log(mId)
+            newData = JSON.stringify(newData)
+            $.ajax({
+                type: "post",
+                url: "http://192.168.3.135:8081/recordAuditSave",
+                async: false,
+                data: {
+                    "auditResult": newData,
+                    "recordId": mId
+                },
+                dataType: "json",
+                success: function (data) {
+                    submitResult = JSON.stringify(data.medicalDataTemp);
+                }
+            })
+        }
+    }
+
+
+
+
+>>>>>>> ec807d784b6b29fb9d9630014b61300bd9c43d3c
 </script>
 
 </html>
