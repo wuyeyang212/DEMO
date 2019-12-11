@@ -281,7 +281,8 @@
 }
 
 .inputContent {
-    width:100%;
+    /* width:100%; */
+    padding-left: 15px;
     line-height: 16px;
     border: none;
 }
@@ -329,6 +330,7 @@
 #logicCheckResult{
     display:block;
     height:300px;
+    overflow-x:hidden ;
     overflow-y:scroll;
 }
 .theOne{
@@ -355,9 +357,17 @@
 }
 
 .dropDownList{
-    padding: 1px 14px;
+    /* padding: 1px 14px; */
     border: 1px solid #DBEEFC;
     border-radius:4px;
     line-height: 35px;
+    overflow: hidden;
+    /* width: 100%; */
+    position: relative;
     margin: 2px;
+}
+#logicCheckResult input{
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
 }
