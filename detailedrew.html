@@ -376,13 +376,8 @@
                     newData.fullCheckResult[i].fId[1] + "</select><br><select name='location_a' id='location_a'>" +
                     newData.fullCheckResult[i].fId[2] + "</select></div></div>" + "</td>"
             } else {
-<<<<<<< HEAD
-                str += "<td><div><input fId='" + newData.fullCheckResult[i].fId + "' id='DUI" + i +
-                    "'type='text' class='inputContent' autocomplete='off' ></div></td>"
-=======
                 str += "<td><input fId='" + newData.fullCheckResult[i].fId + "' id='DUI" + i +
                     "'type='text' class='inputContent' autocomplete='off' ></td>"
->>>>>>> ec807d784b6b29fb9d9630014b61300bd9c43d3c
             }
 
             str += "</tr>"
@@ -503,6 +498,7 @@
             change: function (event, ui) {
                 if (!ui.item) {
                     $(this).val('');
+                    $("#" + cuis).attr("code","")
                 }
             },
             focus: function (event, ui) {
@@ -1058,54 +1054,6 @@
 
 
 
-<<<<<<< HEAD
-    // var submitResult = "";
-    // //提交
-    // function commitDRGContent() {
-    //     // 数据
-    //     var segmentData = $('#inputAll').val();
-    //     // var newData = JSON.parse(segmentData)
-    //     var newData = eval('(' + segmentData + ')');
-    //     // newData = newData.auditRuleResults;
-
-    //     console.log(newData)
-
-
-    //     //type == 1预警
-    //     var allType = [];
-    //     for (var i = 0; i < newData.fullCheckResult.length; i++) {
-    //         allType.push(newData.fullCheckResult[i].type)
-    //     }
-    //     for (var i = 0; i < newData.logicCheckResult.length; i++) {
-    //         allType.push(newData.logicCheckResult[i].type)
-    //     }
-    //     for (var i = 0; i < newData.drgCheckResult.length; i++) {
-    //         allType.push(newData.drgCheckResult[i].type)
-    //     }
-    //     // console.log(allType)
-    //     if (!allType.in_array('1')) {
-    //         submitResult = "-1";
-    //         alert("请修改页面中预警违规项");
-    //     } else {
-    //         var mId = $("#mId").text();
-    //         console.log(mId)
-    //         newData = JSON.stringify(newData)
-    //         $.ajax({
-    //             type: "post",
-    //             url: "http://192.168.3.252:8081/recordAuditSave",
-    //             async: false,
-    //             data: {
-    //                 "auditResult": newData,
-    //                 "recordId": mId
-    //             },
-    //             dataType: "json",
-    //             success: function (data) {
-    //                 submitResult = JSON.stringify(data.medicalDataTemp);
-    //             }
-    //         })
-    //     }
-    // }
-=======
     var submitResult = "";
     //提交
     function commitDRGContent() {
@@ -1158,7 +1106,6 @@
 
 
 
->>>>>>> ec807d784b6b29fb9d9630014b61300bd9c43d3c
 </script>
 
 </html>
