@@ -376,8 +376,13 @@
                     newData.fullCheckResult[i].fId[1] + "</select><br><select name='location_a' id='location_a'>" +
                     newData.fullCheckResult[i].fId[2] + "</select></div></div>" + "</td>"
             } else {
+<<<<<<< HEAD
                 str += "<td><div><input fId='" + newData.fullCheckResult[i].fId + "' id='DUI" + i +
                     "'type='text' class='inputContent' autocomplete='off' ></div></td>"
+=======
+                str += "<td><input fId='" + newData.fullCheckResult[i].fId + "' id='DUI" + i +
+                    "'type='text' class='inputContent' autocomplete='off' ></td>"
+>>>>>>> 8b49d235d39ee6de8eadd7b401e8d72883761a5e
             }
 
             str += "</tr>"
@@ -498,6 +503,7 @@
             change: function (event, ui) {
                 if (!ui.item) {
                     $(this).val('');
+                    $("#" + cuis).attr("code","")
                 }
             },
             focus: function (event, ui) {
