@@ -376,13 +376,8 @@
                     newData.fullCheckResult[i].fId[1] + "</select><br><select name='location_a' id='location_a'>" +
                     newData.fullCheckResult[i].fId[2] + "</select></div></div>" + "</td>"
             } else {
-<<<<<<< HEAD
                 str += "<td><div><input fId='" + newData.fullCheckResult[i].fId + "' id='DUI" + i +
                     "'type='text' class='inputContent' autocomplete='off' ></div></td>"
-=======
-                str += "<td><input fId='" + newData.fullCheckResult[i].fId + "' id='DUI" + i +
-                    "'type='text' class='inputContent' autocomplete='off' ></td>"
->>>>>>> 8b49d235d39ee6de8eadd7b401e8d72883761a5e
             }
 
             str += "</tr>"
@@ -1068,9 +1063,10 @@
         // var newData = eval('(' + segmentData + ')');
         // newData = newData.auditRuleResults;
         // console.log(newData)
+        
 
         console.log(globalVariableData)
-        newData = globalVariableData
+        var newData = globalVariableData
 
         //type == 1预警
         var allType = [];
