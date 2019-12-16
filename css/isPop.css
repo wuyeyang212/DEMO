@@ -113,6 +113,16 @@
     white-space: nowrap;
 }
 
+#diagnose {
+    line-height: 13px;
+    display: inline-block;
+    height: 13px;
+    width: 220px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 .grade {
     width: 100px;
     display: inline-block;
