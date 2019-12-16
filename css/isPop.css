@@ -383,3 +383,54 @@
     line-height: 40px;
     font-family: "PingFang SC", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", "FreeSans, Arimo", "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", "FontAwesome", sans-serif;
 }
+#drgDiagnoseFieldResult input{
+    height: 40px;
+    line-height: 40px;
+    font-family: "PingFang SC", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", "FreeSans, Arimo", "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", "FontAwesome", sans-serif;
+}
+span{
+    font-family: "PingFang SC", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", "FreeSans, Arimo", "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", "FontAwesome", sans-serif;
+}
+button{
+    font-family: "PingFang SC", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", "FreeSans, Arimo", "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", "FontAwesome", sans-serif;
+}
+.rightsider>li{
+    position: relative;
+}
+.rightsider i{
+   position: absolute;
+   width: 20px;
+   height: 20px;
+   top:24px;
+   left:88px;
+}
+.inhopital{
+    background: url(../image/inhospital.png);
+    background-size: 100% ;
+}
+.patiencode{
+    background: url(../image/patiencode.png);
+    background-size: 100% ;
+}
+.index{
+    background: url(../image/index.png);
+    background-size: 100% ;
+}
+.oupatiien{
+    background: url(../image/oupatiien.png);
+    background-size: 100% ; 
+}
+.chcksui{
+    background: url(../image/chcksui.png);
+    background-size: 142% ;
+    background-position: 20px;
+}
+.shoushu{
+    background: url(../image/shoushu.png);
+    background-size: 100% ;
+    
+}
+.cje{
+    background: url(../image/cje.png);
+    background-size: 100% ; 
+}

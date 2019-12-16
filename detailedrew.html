@@ -401,12 +401,14 @@
             str1 += "<td>" + newData.logicCheckResult[i].reason + "</td>"
             // console.log(newData.logicCheckResult[i].showType);
             if (newData.logicCheckResult[i].showType == "2") {
-                str1 += "<td><div><input fId='" + newData.logicCheckResult[i].fId + "' rangeId='" + newData.logicCheckResult[
+                str1 += "<td><div><input fId='" + newData.logicCheckResult[i].fId + "' rangeId='" + newData
+                    .logicCheckResult[
                         i].rangeId + "' onclick='drgclick10(this)' id='LOG" + i +
                     "'type='text' class='ciosio inputContent' autocomplete='off' ><input type='hidden' value='" +
                     newData.logicCheckResult[i].rangeId + "'></div></td>"
             } else if (newData.logicCheckResult[i].showType == "3") {
-                str1 += "<td><div><input fId='" + newData.logicCheckResult[i].fId + "' rangeId='" + newData.logicCheckResult[
+                str1 += "<td><div><input fId='" + newData.logicCheckResult[i].fId + "' rangeId='" + newData
+                    .logicCheckResult[
                         i].rangeId + "' onclick='drgclick(this)' id='LOG" + i +
                     "'type='text' class='ciosio inputContent' autocomplete='off' ><input type='hidden' value='" +
                     newData.logicCheckResult[i].rangeId + "'></div></td>"
@@ -468,6 +470,7 @@
 
     // 提交需要的数据
     var globalVariableData = {};
+
     function child(d) {
         globalVariableData = d
         var newData = d
@@ -498,7 +501,7 @@
             change: function (event, ui) {
                 if (!ui.item) {
                     $(this).val('');
-                    $("#" + cuis).attr("code","")
+                    $("#" + cuis).attr("code", "")
                 }
             },
             focus: function (event, ui) {
@@ -917,7 +920,7 @@
                 fulMessage[inputKey] = inputCon.val()
             }
         }
-        // console.log(fulMessage)
+       
         //逻辑性校验
         //tbody的tr
         var trs1 = $("#logicCheckResult").children("tr");
@@ -1013,10 +1016,10 @@
         }
 
 
-        console.log(fulMessage)
+
         fulMessage = JSON.stringify(fulMessage)
         var mId = $("#mId").text();
-        
+        alert(fulMessage)
         $.ajax({
             type: "post",
             url: "http://192.168.3.135:8081/recordCheck",
@@ -1045,7 +1048,7 @@
                 $("#drgDiagnoseFieldResult").children().remove()
                 $("#drgOperationFieldResult").children().remove()
 
-                
+
                 dataShowing(newData);
             }
         })
@@ -1065,8 +1068,13 @@
         // console.log(newData)
         
 
+<<<<<<< HEAD
         console.log(globalVariableData)
         var newData = globalVariableData
+=======
+        // console.log(globalVariableData)
+        newData = globalVariableData
+>>>>>>> a454ae61989b146cf3bef509a9d930d74d98da16
 
         //type == 1预警
         var allType = [];
@@ -1079,34 +1087,17 @@
         for (var i = 0; i < newData.drgCheckResult.length; i++) {
             allType.push(newData.drgCheckResult[i].type)
         }
-        // console.log(allType)
+
+
         if (allType.indexOf('1') > -1) {
-        // if (!allType.in_array('1')) {
+            // if (!allType.in_array('1')) {
             submitResult = "-1";
             alert("请修改页面中预警违规项");
         } else {
-            var mId = $("#mId").text();
-            console.log(mId)
-            newData = JSON.stringify(newData)
-            $.ajax({
-                type: "post",
-                url: "http://192.168.3.135:8081/recordAuditSave",
-                async: false,
-                data: {
-                    "auditResult": newData,
-                    "recordId": mId
-                },
-                dataType: "json",
-                success: function (data) {
-                    submitResult = JSON.stringify(data.medicalDataTemp);
-                }
-            })
+            var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+            parent.layer.close(index);
         }
     }
-
-
-
-
 </script>
 
 </html>

@@ -13,10 +13,9 @@
     <!-- 弹窗CSS -->
     <link rel="stylesheet" href="css/isPop.css">
     <style>
-    body {
+        body {
             font-family: "PingFang SC", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", "FreeSans, Arimo", "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", "FontAwesome", sans-serif
-    }
-    
+        }
     </style>
 </head>
 
@@ -52,25 +51,25 @@
             <el-aside width="300px" class="personInfor">
                 <ul class="rightsider">
                     <li>
-                        入院记录
+                        <i class="inhopital"></i>入院记录
                     </li>
                     <li>
-                        病情记录
+                        <i class="patiencode"></i> 病情记录
                     </li>
                     <li class="dIAN-sui">
-                        病案首页
+                        <i class="index"></i> 病案首页
                     </li>
                     <li>
-                        出院记录
+                        <i class="oupatiien"></i> 出院记录
                     </li>
                     <li>
-                        辅助检查
+                        <i class="chcksui"></i> 辅助检查
                     </li>
                     <li>
-                        手术情况
+                        <i class="shoushu"></i> 手术情况
                     </li>
                     <li>
-                        诊断情况
+                        <i class="cje"></i> 诊断情况
                     </li>
                 </ul>
             </el-aside>
@@ -154,20 +153,21 @@
                                         </span>
 
                                         <span class="blanking" id="JN22">
-                                            <span class="fontBold">婚姻：</span>
-                                            <input type="radio" name="marry" value="2" v-model="formitem.JN22"
+                                            <span class="fontBold">婚姻 ：</span>
+                                            <input type="radio" name="marry" value="20" v-model="formitem.JN22"
                                                 disabled="true" />已
-                                            <input type="radio" name="marry" value="1" v-model="formitem.JN22"
+                                            <input type="radio" name="marry" value="10" v-model="formitem.JN22"
                                                 disabled="true" />未
-                                            <input type="radio" name="marry" value="4" v-model="formitem.JN22"
+                                            <input type="radio" name="marry" value="40" v-model="formitem.JN22"
                                                 disabled="true" />离
-                                            <input type="radio" name="marry" value="3" v-model="formitem.JN22"
+                                            <input type="radio" name="marry" value="30" v-model="formitem.JN22"
                                                 disabled="true" />丧偶
                                         </span>
 
                                         <span class="blanking" id="JN25">
                                             <span class="fontBold">民族：</span>
-                                            <input class="underline" style="width: 100px;" v-model="formitem.nameJN25" />
+                                            <input class="underline" style="width: 100px;"
+                                                v-model="formitem.nameJN25" />
                                         </span>
 
                                         <span class="blanking" id="JN12">
@@ -186,7 +186,8 @@
                                     <td colspan="4">
                                         <span class="blanking" id="JN21">
                                             <span class="fontBold">职业：</span>
-                                            <input class="underline" style="width: 120px;" v-model="formitem.nameJN21" />
+                                            <input class="underline" style="width: 120px;"
+                                                v-model="formitem.nameJN21" />
                                         </span>
 
                                         <span class="blanking" id="JN26">
@@ -2619,9 +2620,9 @@
                     </div>
                     <div id="myKui" class="myKui" v-show="myIndex==0">
                         <el-row :gutter="20">
-                            <el-col :span="5" @click.native="Indexsui(item.hospitalId)" v-for="(item,i) in conste">
+                            <el-col :span="5"  @click.native="Indexsui(item.hospitalId)" v-for="(item,i) in conste">
                                 <div class="blueTop"></div>
-                                <div class="cardContent">
+                                <div class="cardContent" >
                                     <div class="normal">
                                         <div>
                                             <span class="patientName">{{item.name}}</span>
@@ -2689,7 +2690,7 @@
         data: function () {
             return {
                 tableData: [],
-
+                taileId:null,
                 newVselet: null, //上次点击的id
 
                 formitem: {
@@ -2770,10 +2771,10 @@
                 var arr = [];
                 var ress = res.data.user;
                 for (var i = 0; i < res.data.user.length; i++) {
-                   
+
                     var str_before = ress[i].BedNumber.split('号')[0];
-                    if(str_before<10){
-                        str_before = "0"+str_before
+                    if (str_before < 10) {
+                        str_before = "0" + str_before
                     }
                     arr.push({
                         "name": ress[i].JN8,
@@ -2784,7 +2785,7 @@
                         "hospitalDate": ress[i].JN39.split(" ")[0],
                         "diagnosis": ress[i].JN49
                     })
-                //    console.log(ress[i].JN39.format('yyyy-MM-dd'))
+                    //    console.log(ress[i].JN39.format('yyyy-MM-dd'))
                 }
                 this.conste = arr
             })
@@ -2809,49 +2810,52 @@
             },
             Indexsui(data) {
                 // console.log(data)
-                this.myIndex = 1
+                this.taileId = data
                 let _this = this;
                 axios.get('http://192.168.3.135:8081/api/demo/getuserinfo/' + data).then(res => {
-                    // console.log(res)
-                    _this.formitem = res.data.jnInfo
+                    if (res.status == 200) {
+                        _this.myIndex = 1
+                        _this.formitem = res.data.jnInfo
 
-                    this.year = res.data.jnInfo.JN10.substr(0, 4)
-                    this.month = res.data.jnInfo.JN10.substr(4, 2)
-                    this.day = res.data.jnInfo.JN10.substr(6, 2)
+                        this.year = res.data.jnInfo.JN10.substr(0, 4)
+                        this.month = res.data.jnInfo.JN10.substr(4, 2)
+                        this.day = res.data.jnInfo.JN10.substr(6, 2)
 
-                    this.JN39year = res.data.jnInfo.JN39.substr(0, 4)
-                    this.JN39month = res.data.jnInfo.JN39.substr(5, 2)
-                    this.JN39day = res.data.jnInfo.JN39.substr(8, 2)
-                    this.JN39hours = res.data.jnInfo.JN39.substr(11, 2)
+                        this.JN39year = res.data.jnInfo.JN39.substr(0, 4)
+                        this.JN39month = res.data.jnInfo.JN39.substr(5, 2)
+                        this.JN39day = res.data.jnInfo.JN39.substr(8, 2)
+                        this.JN39hours = res.data.jnInfo.JN39.substr(11, 2)
 
-                    this.JN42year = res.data.jnInfo.JN42.substr(0, 4)
-                    this.JN42month = res.data.jnInfo.JN42.substr(5, 2)
-                    this.JN42day = res.data.jnInfo.JN42.substr(8, 2)
-                    this.JN42hours = res.data.jnInfo.JN42.substr(11, 2)
+                        this.JN42year = res.data.jnInfo.JN42.substr(0, 4)
+                        this.JN42month = res.data.jnInfo.JN42.substr(5, 2)
+                        this.JN42day = res.data.jnInfo.JN42.substr(8, 2)
+                        this.JN42hours = res.data.jnInfo.JN42.substr(11, 2)
 
-                    this.JN300year = res.data.jnInfo.JN300.substr(0, 4)
-                    this.JN300month = res.data.jnInfo.JN300.substr(5, 2)
-                    this.JN300day = res.data.jnInfo.JN300.substr(8, 2)
+                        this.JN300year = res.data.jnInfo.JN300.substr(0, 4)
+                        this.JN300month = res.data.jnInfo.JN300.substr(5, 2)
+                        this.JN300day = res.data.jnInfo.JN300.substr(8, 2)
 
-                    this.inICU1year = res.data.jnInfo.JN316.substr(0, 4)
-                    this.inICU1month = res.data.jnInfo.JN316.substr(5, 2)
-                    this.inICU1day = res.data.jnInfo.JN316.substr(8, 2)
+                        this.inICU1year = res.data.jnInfo.JN316.substr(0, 4)
+                        this.inICU1month = res.data.jnInfo.JN316.substr(5, 2)
+                        this.inICU1day = res.data.jnInfo.JN316.substr(8, 2)
 
-                    this.inICU2year = res.data.jnInfo.JN319.substr(0, 4)
-                    this.inICU2month = res.data.jnInfo.JN319.substr(5, 2)
-                    this.inICU2day = res.data.jnInfo.JN319.substr(8, 2)
+                        this.inICU2year = res.data.jnInfo.JN319.substr(0, 4)
+                        this.inICU2month = res.data.jnInfo.JN319.substr(5, 2)
+                        this.inICU2day = res.data.jnInfo.JN319.substr(8, 2)
 
-                    this.inICU3year = res.data.jnInfo.JN322.substr(0, 4)
-                    this.inICU3month = res.data.jnInfo.JN322.substr(5, 2)
-                    this.inICU3day = res.data.jnInfo.JN322.substr(8, 2)
+                        this.inICU3year = res.data.jnInfo.JN322.substr(0, 4)
+                        this.inICU3month = res.data.jnInfo.JN322.substr(5, 2)
+                        this.inICU3day = res.data.jnInfo.JN322.substr(8, 2)
 
-                    this.inICU4year = res.data.jnInfo.JN325.substr(0, 4)
-                    this.inICU4month = res.data.jnInfo.JN325.substr(5, 2)
-                    this.inICU4day = res.data.jnInfo.JN325.substr(8, 2)
+                        this.inICU4year = res.data.jnInfo.JN325.substr(0, 4)
+                        this.inICU4month = res.data.jnInfo.JN325.substr(5, 2)
+                        this.inICU4day = res.data.jnInfo.JN325.substr(8, 2)
 
-                    this.inICU5year = res.data.jnInfo.JN328.substr(0, 4)
-                    this.inICU5month = res.data.jnInfo.JN328.substr(5, 2)
-                    this.inICU5day = res.data.jnInfo.JN328.substr(8, 2)
+                        this.inICU5year = res.data.jnInfo.JN328.substr(0, 4)
+                        this.inICU5month = res.data.jnInfo.JN328.substr(5, 2)
+                        this.inICU5day = res.data.jnInfo.JN328.substr(8, 2)
+                    }
+
                 })
             },
             //计算屏幕尺寸
@@ -2870,8 +2874,7 @@
                 return this.formitem
             },
             KeioS() {
-                // console.log("22465465");
-                // this.formitem.JN127 = "123465"
+               this.Indexsui(this.taileId)
             },
             handleClick(tab, event) {
                 console.log(tab, event);
@@ -2958,13 +2961,13 @@
             },
             success: function (req) {
                 if (req.code == 002) {
-                    
+
                     layer.open({
                         type: 2,
-                        
-                       
+
+
                         title: false,
-                        maxmin:false,
+                        maxmin: false,
                         area: ['1000px', '700px'],
                         // content: 'http://layer.layui.com/test/welcome.html',
                         content: 'detailedrew.html',
