@@ -186,32 +186,34 @@
                             不合理原因：<span id="unreasontext"></span>
                         </div>
 
-                        <table class="dg leftText" cellspacing="0">
-                            <thead>
-                                <tr class="blueTr">
-                                    <th style="width: 120px">字段名</th>
-                                    <th style="width: 120px">ICD-10</th>
-                                    <th>ICD-10中文名称</th>
-                                    <th>修改</th>
-                                    <th>操作</th>
-                                </tr>
-                            </thead>
-                            <tbody id="drgDiagnoseFieldResult"></tbody>
-
-                        </table>
-
-                        <table class="dg leftText" cellspacing="0">
-                            <thead>
-                                <tr class="blueTr">
-                                    <th style="width: 120px">字段名</th>
-                                    <th style="width: 120px">ICD-9</th>
-                                    <th>ICD-9中文名称</th>
-                                    <th>修改</th>
-                                    <th>操作</th>
-                                </tr>
-                            </thead>
-                            <tbody id="drgOperationFieldResult"></tbody>
-                        </table>
+                        <div class="connTables">
+                            <table class="dg leftText" cellspacing="0">
+                                <thead>
+                                    <tr class="blueTr">
+                                        <th style="width: 120px">字段名</th>
+                                        <th style="width: 120px">ICD-10</th>
+                                        <th>ICD-10中文名称</th>
+                                        <th>修改</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="drgDiagnoseFieldResult"></tbody>
+    
+                            </table>
+    
+                            <table class="dg leftText" cellspacing="0">
+                                <thead>
+                                    <tr class="blueTr">
+                                        <th style="width: 120px">字段名</th>
+                                        <th style="width: 120px">ICD-9</th>
+                                        <th>ICD-9中文名称</th>
+                                        <th>修改</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="drgOperationFieldResult"></tbody>
+                            </table>
+                        </div>
                     </div>
                 </li>
             </ul>
@@ -256,6 +258,11 @@
 <script src="js/json2.js"></script>
 <script>
     $(function () {
+        // DRG
+        // var unreasonableHei = $("#unreasonable").height();
+        // console.log(unreasonableHei)
+
+
         //选项卡
         $('.tab').find('li').click(function () {
             var index = $(this).index();
@@ -1121,7 +1128,7 @@
 
         fulMessage = JSON.stringify(fulMessage)
         var mId = $("#mId").text();
-        alert(fulMessage)
+        // alert(fulMessage)
         $.ajax({
             type: "post",
             url: "http://192.168.3.135:8081/recordCheck",
