@@ -234,6 +234,11 @@
 
         </div>
 
+        <!-- 悬浮层 -->
+        <!-- <div class="popover">
+            【{ZA2}】不用于根本死因的编码，因此当患者死亡后，不可作为【主要诊断=编码】。
+        </div> -->
+
 
     </div>
 
@@ -544,7 +549,7 @@
         for (var i = 0; i < newData.drgDiagnoseFieldResult.length; i++) {
             // console.log(newData.drgDiagnoseFieldResult[i].showType);
             str2 += "<tr>";
-            str2 += "<td>" + newData.drgDiagnoseFieldResult[i].fieldName + "</td>"
+            str2 += "<td><div class='firstTd'>" + newData.drgDiagnoseFieldResult[i].fieldName + "<div class='popover'>【{ZA2}】不用于根本死因的编码，因此当患者死亡后，不可作为【主要诊断=编码】。</div></div></td>"
             str2 += "<td id='" + newData.drgDiagnoseFieldResult[i].codeId + "'>" + newData.drgDiagnoseFieldResult[i]
                 .code + "</td>"
             str2 += "<td id='" + newData.drgDiagnoseFieldResult[i].nameId + "'>" + newData.drgDiagnoseFieldResult[i]

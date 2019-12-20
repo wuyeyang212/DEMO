@@ -444,3 +444,24 @@ button{
     background: url(../image/cje.png);
     background-size: 100% ; 
 }
+
+
+/* 悬浮层 */
+.popover {
+    position: absolute;
+    top: -47px;
+    left: 24px;
+    z-index: 99;
+    width: 300px;
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
+    background-color: #fff;
+    font-size: 12px;
+    padding: 10px 14px;
+    border-radius: 6px;
+    line-height: 20px;
+    text-align: left;
+}
+
+.firstTd {
+    position: relative;
+}
