@@ -460,6 +460,7 @@ button{
     border-radius: 6px;
     line-height: 20px;
     text-align: left;
+    display: none;
 }
 
 .firstTd {
