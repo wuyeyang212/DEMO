@@ -2973,6 +2973,7 @@
                         content: 'detailedrew.html',
                         success: function (layero, index) {
                             var iframe = window['layui-layer-iframe' + index];
+                           
                             iframe.child(req.auditRuleResults);
                         },
                         end: function () {

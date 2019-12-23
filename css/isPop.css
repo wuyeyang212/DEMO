@@ -448,7 +448,7 @@ button{
 
 /* 悬浮层 */
 .popover {
-    position: absolute;
+    position: fixed;
     top: -47px;
     left: 24px;
     z-index: 99;
