@@ -452,7 +452,8 @@ button{
     top: -47px;
     left: 24px;
     z-index: 99;
-    width: 300px;
+    width: 400px;
+    /* max-width: 600px; */
     box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
     background-color: #fff;
     font-size: 12px;
