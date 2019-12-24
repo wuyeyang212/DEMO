@@ -1096,6 +1096,11 @@
         var codeArray = ["JN48", "JN50", "JN54", "JN58", "JN62", "JN66", "JN70", "JN74", "JN78", "JN82", "JN86", "JN90",
             "JN107", "JN111", "JN115", "JN119", "JN121", "JN123",
         ]
+
+        // DRG表格d code/name 对应的字段
+        var NameAp = ["JN47", "JN49", "JN53", "JN57", "JN61", "JN65", "JN69", "JN73", "JN77", "JN81", "JN85", "JN89",];
+        
+        var kuioOP = [ "JN126", "JN140", "JN154", "JN168", "JN182", "JN196", "JN210", "JN224", "JN238", "JN252"];
         //DRG校验
         //tbody的tr
         var trs2 = $("#drgDiagnoseFieldResult").children("tr");
@@ -1106,22 +1111,34 @@
             for (var j = 0; j < codeArray.length; j++) {
                 if (i == j) {
                     var inputKey = codeArray[j];
+                    var kuiKey = NameAp[j];
                     // var inputCode = trs2.eq(i).children('td:eq(1)').html()
                     var inputCon = trs2.eq(i).children('td:eq(3)').children(":first").children(":first").val();
-                    DRGfull[inputKey] = inputCon
+                    if (inputCon == '-') {
+                        DRGfull[kuiKey] = "-"
+                    } else {
+                        DRGfull[inputKey] = inputCon
+                    }
                 }
             }
         }
 
         var operationArray = ["JN125", "JN139", "JN153", "JN167", "JN181", "JN195", "JN209", "JN223", "JN237", "JN251"]
+
         var trs3 = $("#drgOperationFieldResult").children("tr");
         for (var i = 0; i < trs3.length; i++) {
             for (var o = 0; o < operationArray.length; o++) {
                 if (i == o) {
                     var inputKey = operationArray[o];
+                    var kuiKey = kuioOP[o];
+                    console.log(kuiKey)
                     // var inputCon = trs3.eq(i).children('td:eq(1)').html()
                     var inputCon = trs3.eq(i).children('td:eq(3)').children(":first").children(":first").val();
-                    fulMessage[inputKey] = inputCon
+                    if (inputCon == "-") {
+                        fulMessage[kuiKey] = "-"
+                    } else {
+                        fulMessage[inputKey] = inputCon
+                    }
                 }
             }
             var inputCon = trs3.eq(i).children('td:eq(1)').html()
@@ -1150,7 +1167,7 @@
                 return target;
             };
         }
-        // Object.assign(window, view);
+        console.log(DRGfull)
         if (Logic.length == 0) {
             Object.assign(fulMessage, DRGfull);
         } else {
@@ -1294,7 +1311,7 @@
         // },true)
         e.removeEventListener("mousemove", testFunc)
         setTimeout(() => {
-          sui.empty()
+            sui.empty()
         }, 250)
         console.log("1111")
     }
