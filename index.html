@@ -2814,6 +2814,7 @@
                 let _this = this;
                 axios.get('http://192.168.3.135:8081/api/demo/getuserinfo/' + data).then(res => {
                     if (res.status == 200) {
+                        console.log(res.data)
                         _this.myIndex = 1
                         _this.formitem = res.data.jnInfo
 
