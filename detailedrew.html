@@ -1165,39 +1165,39 @@
 
         fulMessage = JSON.stringify(fulMessage)
         var mId = $("#mId").text();
-        // alert(fulMessage)
-        $.ajax({
-            type: "post",
-            url: "http://192.168.3.135:8081/recordCheck",
-            data: {
-                "recordInfo": fulMessage,
-                "recordId": mId
-            },
-            dataType: "json",
-            success: function (data) {
-                // console.log(data.auditRuleResults)
-                // newData = data.auditRuleResults
-                // console.log(data)
+        alert(fulMessage)
+        // $.ajax({
+        //     type: "post",
+        //     url: "http://192.168.3.135:8081/recordCheck",
+        //     data: {
+        //         "recordInfo": fulMessage,
+        //         "recordId": mId
+        //     },
+        //     dataType: "json",
+        //     success: function (data) {
+        //         // console.log(data.auditRuleResults)
+        //         // newData = data.auditRuleResults
+        //         // console.log(data)
 
-                // $('#inputAll').val(JSON.stringify(data));
-                // 数据
-                var segmentData = JSON.stringify(data.auditRuleResults);
-                // var newData = JSON.parse(segmentData)
-                var newData = eval('(' + segmentData + ')');
-                // newData = newData.auditRuleResults;
-                // window.location.reload()
-                console.log(newData)
+        //         // $('#inputAll').val(JSON.stringify(data));
+        //         // 数据
+        //         var segmentData = JSON.stringify(data.auditRuleResults);
+        //         // var newData = JSON.parse(segmentData)
+        //         var newData = eval('(' + segmentData + ')');
+        //         // newData = newData.auditRuleResults;
+        //         // window.location.reload()
+        //         console.log(newData)
 
-                $("#unreasontext").empty();
-                $("#fullCheckResult").children().remove()
-                $("#logicCheckResult").children().remove()
-                $("#drgDiagnoseFieldResult").children().remove()
-                $("#drgOperationFieldResult").children().remove()
+        //         $("#unreasontext").empty();
+        //         $("#fullCheckResult").children().remove()
+        //         $("#logicCheckResult").children().remove()
+        //         $("#drgDiagnoseFieldResult").children().remove()
+        //         $("#drgOperationFieldResult").children().remove()
 
 
-                dataShowing(newData);
-            }
-        })
+        //         dataShowing(newData);
+        //     }
+        // })
 
     }
 
@@ -1240,24 +1240,28 @@
         }
     }
 
-    // let testFunc = throttle(realFunc,500,2000)   
+   
     //鼠标经过事件
     let testFunc = debounce(function (item) {
         let sui = $(this).find(".sco")
+        var d = JSON.parse($(this).attr('ErrData'))
         var pageX, pageY;
         pageX = item.x + "px";
         pageY = item.y + "px";
         sui.empty()
-        sui.append("<div class='popover' style='top:" + pageY + ";left:" + pageX +
-            ";display:block'>【{ZA2}】不用于根本死因的编码，因此当患者死亡后，不可作为【主要诊断=编码】。</div>")
+        for(var i = 0;i<errData.length;i++){
+            if(errData[i].fId==d.nameId){
+                sui.append("<div class='popover' style='top:" + pageY + ";left:" + pageX +
+            ";display:block'>"+errData[i].reason+"</div>")
+            }else if(errData[i].fId==d.codeId){
+                sui.append("<div class='popover' style='top:" + pageY + ";left:" + pageX +
+            ";display:block'>"+errData[i].reason+"</div>")
+            }
+        }
     }, 250)
 
     function coem(d, e) {
-        // let sui = $(e).find(".tdFist")
-        console.log("22222")
-
-
-        // sui.empty()
+       
         // e.addEventListener("mousemove",function(event){
         //     pageX = event.x+"px";
         //     pageY= event.y+"px";
@@ -1282,21 +1286,13 @@
         };
     };
     // 实际想绑定在 scroll 事件上的 handler
-    function realFunc(event) {
-
-    }
 
     function MouseLeave(d, e) {
         let sui = $(e).find(".sco")
-        // e.addEventListener("mousemove",function(event){  
-        //     sui.empty()
-
-        // },true)
         e.removeEventListener("mousemove", testFunc)
         setTimeout(() => {
           sui.empty()
         }, 250)
-        console.log("1111")
     }
 </script>
 
