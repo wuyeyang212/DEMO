@@ -673,7 +673,12 @@
             $(this).autocomplete('search')
 
             return false;
-        })
+        }).data( "ui-autocomplete" )._renderItem = function( ul, item ) {
+          return $( "<li>" )
+            .append( "<a>" + item.label + "-" + item.value + "</a>" )
+            .appendTo( ul );
+        };
+
 
     }
 
