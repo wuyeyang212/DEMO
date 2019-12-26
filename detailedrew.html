@@ -559,10 +559,10 @@
             // console.log(newData.drgDiagnoseFieldResult[i].showType);
             str2 += "<tr>";
             if (arrS.indexOf(newData.drgDiagnoseFieldResult[i].nameId) > -1) {
-                str2 += "<td onmouseover='coem(" + JSON.stringify(newData.drgDiagnoseFieldResult[i]) +
+                str2 += "<td ErrData=" + JSON.stringify(newData.drgDiagnoseFieldResult[i]) +
+                    " onmouseover='coem(" + JSON.stringify(newData.drgDiagnoseFieldResult[i]) +
                     ",this)' onmouseout='MouseLeave(" + JSON.stringify(newData.drgDiagnoseFieldResult[i]) +
-                    ",this)' ErrData='" + JSON.stringify(newData.drgDiagnoseFieldResult[i]) +
-                    "><div class='firstTd' style='color:red'>" + newData.drgDiagnoseFieldResult[i].fieldName +
+                    ",this)'><div class='firstTd' style='color:red'>" + newData.drgDiagnoseFieldResult[i].fieldName +
                     "<div class='sco' style='color:#444'></div></div></td>"
             } else {
                 str2 += "<td ><div class='firstTd'>" + newData.drgDiagnoseFieldResult[i].fieldName +
@@ -1195,39 +1195,39 @@
 
         fulMessage = JSON.stringify(fulMessage)
         var mId = $("#mId").text();
-        alert(fulMessage)
-        // $.ajax({
-        //     type: "post",
-        //     url: "http://192.168.3.135:8081/recordCheck",
-        //     data: {
-        //         "recordInfo": fulMessage,
-        //         "recordId": mId
-        //     },
-        //     dataType: "json",
-        //     success: function (data) {
-        //         // console.log(data.auditRuleResults)
-        //         // newData = data.auditRuleResults
-        //         // console.log(data)
+     
+        $.ajax({
+            type: "post",
+            url: "http://192.168.3.135:8081/recordCheck",
+            data: {
+                "recordInfo": fulMessage,
+                "recordId": mId
+            },
+            dataType: "json",
+            success: function (data) {
+                // console.log(data.auditRuleResults)
+                // newData = data.auditRuleResults
+                // console.log(data)
 
-        //         // $('#inputAll').val(JSON.stringify(data));
-        //         // 数据
-        //         var segmentData = JSON.stringify(data.auditRuleResults);
-        //         // var newData = JSON.parse(segmentData)
-        //         var newData = eval('(' + segmentData + ')');
-        //         // newData = newData.auditRuleResults;
-        //         // window.location.reload()
-        //         console.log(newData)
+                // $('#inputAll').val(JSON.stringify(data));
+                // 数据
+                var segmentData = JSON.stringify(data.auditRuleResults);
+                // var newData = JSON.parse(segmentData)
+                var newData = eval('(' + segmentData + ')');
+                // newData = newData.auditRuleResults;
+                // window.location.reload()
+                console.log(newData)
 
-        //         $("#unreasontext").empty();
-        //         $("#fullCheckResult").children().remove()
-        //         $("#logicCheckResult").children().remove()
-        //         $("#drgDiagnoseFieldResult").children().remove()
-        //         $("#drgOperationFieldResult").children().remove()
+                $("#unreasontext").empty();
+                $("#fullCheckResult").children().remove()
+                $("#logicCheckResult").children().remove()
+                $("#drgDiagnoseFieldResult").children().remove()
+                $("#drgOperationFieldResult").children().remove()
 
 
-        //         dataShowing(newData);
-        //     }
-        // })
+                dataShowing(newData);
+            }
+        })
 
     }
 
@@ -1274,7 +1274,9 @@
     //鼠标经过事件
     let testFunc = debounce(function (item) {
         let sui = $(this).find(".sco")
-        var d = JSON.parse($(this).attr('ErrData'))
+        var xui = $(this).attr('ErrData');
+        var d = JSON.parse(xui)
+       
         var pageX, pageY;
         pageX = item.x + "px";
         pageY = item.y + "px";
