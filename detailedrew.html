@@ -294,7 +294,6 @@
                 }
                 var trsyu = SMOtable.find("tr");
                 var suiCui = trsyu.eq(0).children('td:eq(0)').text();
-                console.log(suiCui)
                 SortTdName(SMOtable, suiCui)
             } else if (text == "下移") {
                 var nextTr = $(this).parent().parent().next();
@@ -321,7 +320,6 @@
         });
 
         function SortTdName(sui, TableName) {
-            console.log(TableName)
             var trsyu = sui.find("tr");
             if (TableName == "门(急)诊诊断" || TableName == "主要诊断") {
                 trsyu.each(function (el, index) {
@@ -380,7 +378,6 @@
     // 数据渲染
     function dataShowing(newData) {
         // 数据
-        console.log(newData)
         $('#mId').text(newData.mId)
         $('#name').text(newData.name)
         $('#claimType').text(newData.claimType)
@@ -586,7 +583,6 @@
         //手术操作结果集ICD9
         var str3 = '';
         for (var i = 0; i < newData.drgOperationFieldResult.length; i++) {
-            // console.log(newData.drgDiagnoseFieldResult[i].showType);
             str3 += "<tr>";
             if (arrS.indexOf(newData.drgOperationFieldResult[i].codeId) > -1) {
                 str3 += "<td onmouseover='coem(" + JSON.stringify(newData.drgOperationFieldResult[i]) +
@@ -686,7 +682,6 @@
 
 
     function btnclick(data) {
-        console.log(data);
         var obj = data;
         var cuis = obj.id
         var txt = document.getElementById(cuis);
@@ -722,9 +717,7 @@
 
     //事件处理函数(下拉框）
     function handle() {
-        console.log($(this).val())
         var rangeType = $(this).attr("rangeid")
-        console.log(rangeType)
         // var projects = [];
         // var syu = this;
         var id = this.id;
@@ -774,7 +767,6 @@
 
 
     function drgclick(data) {
-        console.log(data);
         var obj = data;
         var cuis = obj.id
         var txt = document.getElementById(cuis);
@@ -782,7 +774,6 @@
     }
 
     function drghandle() {
-        console.log($(this).val())
         // var drgkeyword = $(this).val()
         // var rangeType = $(this).attr("rangeid")
         // console.log(rangeType)
@@ -792,7 +783,6 @@
         $("#" + id).autocomplete({
             minLength: 1,
             source: function (request, response) {
-                console.log(request.term)
                 if (request.term != '') {
                     $.ajax({
                         type: "post",
@@ -803,7 +793,6 @@
                         },
                         dataType: "json",
                         success: function (data) {
-                            console.log(data)
                             var arrList = [];
 
                             for (var i = 0; i < data.length; i++) {
@@ -827,7 +816,6 @@
             },
             select: function (event, ui) {
                 $("#" + id).val(ui.item.codename);
-                console.log("1111")
                 // var ciuo = $("#" + id).parent().parent();
                 // ciuo.children("td:eq(1)").text(ui.item.value)
                 // ciuo.children("td:eq(2)").text(ui.item.label)
@@ -842,7 +830,6 @@
 
 
     function drgclick10(data) {
-        console.log(data);
         var obj = data;
         var cuis = obj.id
         var txt = document.getElementById(cuis);
@@ -860,7 +847,6 @@
         $("#" + id).autocomplete({
             minLength: 1,
             source: function (request, response) {
-                console.log(request.term)
                 if (request.term != '') {
                     $.ajax({
                         type: "post",
@@ -871,7 +857,6 @@
                         },
                         dataType: "json",
                         success: function (data) {
-                            console.log(data)
                             var arrList = [];
 
                             for (var i = 0; i < data.length; i++) {
@@ -895,7 +880,6 @@
             },
             select: function (event, ui) {
                 $("#" + id).val(ui.item.codeName);
-                console.log("1111")
                 var ciuo = $("#" + id).parent().parent();
                 // ciuo.children("td:eq(1)").text(ui.item.value)
                 // ciuo.children("td:eq(2)").text(ui.item.label)
@@ -911,7 +895,6 @@
     //DRG修改
     //ICD-10
     function drgEvent(data) {
-        console.log(data);
         var obj = data;
         var cuis = obj.id
         var txt = document.getElementById(cuis);
@@ -919,7 +902,6 @@
     }
 
     function drgEventhandle() {
-        console.log($(this).val())
         // var drgkeyword = $(this).val()
         // var rangeType = $(this).attr("rangeid")
         // console.log(rangeType)
@@ -929,7 +911,6 @@
         $("#" + id).autocomplete({
             minLength: 1,
             source: function (request, response) {
-                console.log(request.term)
                 if (request.term != '') {
                     $.ajax({
                         type: "post",
@@ -940,7 +921,6 @@
                         },
                         dataType: "json",
                         success: function (data) {
-                            console.log(data)
                             var arrList = [];
 
                             for (var i = 0; i < data.length; i++) {
@@ -966,7 +946,7 @@
             select: function (event, ui) {
                 // $("#" + id).val(ui.item.label);
                 $("#" + id).val(ui.item.codeName);
-                console.log("1111")
+               
                 var ciuo = $("#" + id).parent().parent();
                 ciuo.children("td:eq(1)").text(ui.item.value)
                 ciuo.children("td:eq(2)").text(ui.item.label)
@@ -985,7 +965,7 @@
 
     //ICD-9
     function drgEventor(data) {
-        console.log(data);
+      
         var obj = data;
         var cuis = obj.id
         var txt = document.getElementById(cuis);
@@ -993,7 +973,7 @@
     }
 
     function drgEventorhandle() {
-        console.log($(this).val())
+    
         // var drgkeyword = $(this).val()
         // var rangeType = $(this).attr("rangeid")
         // console.log(rangeType)
@@ -1003,7 +983,7 @@
         $("#" + id).autocomplete({
             minLength: 1,
             source: function (request, response) {
-                console.log(request.term)
+               
                 if (request.term != '') {
                     $.ajax({
                         type: "post",
@@ -1014,7 +994,7 @@
                         },
                         dataType: "json",
                         success: function (data) {
-                            console.log(data)
+                           
                             var arrList = [];
 
                             for (var i = 0; i < data.length; i++) {
@@ -1038,7 +1018,7 @@
             },
             select: function (event, ui) {
                 $("#" + id).val(ui.item.codeName);
-                console.log("1111")
+              
                 var ciuo = $("#" + id).parent().parent();
                 ciuo.children("td:eq(1)").text(ui.item.value)
                 ciuo.children("td:eq(2)").text(ui.item.label)
@@ -1144,7 +1124,7 @@
                 if (i == o) {
                     var inputKey = operationArray[o];
                     var kuiKey = kuioOP[o];
-                    console.log(kuiKey)
+                    
                     // var inputCon = trs3.eq(i).children('td:eq(1)').html()
                     var inputCon = trs3.eq(i).children('td:eq(3)').children(":first").children(":first").val();
                     if (inputCon == "-") {
@@ -1216,7 +1196,7 @@
                 var newData = eval('(' + segmentData + ')');
                 // newData = newData.auditRuleResults;
                 // window.location.reload()
-                console.log(newData)
+                // console.log(newData)
 
                 $("#unreasontext").empty();
                 $("#fullCheckResult").children().remove()
@@ -1244,7 +1224,6 @@
         // console.log(newData)
 
 
-        console.log(globalVariableData)
         var newData = globalVariableData
 
         //type == 1预警
@@ -1276,7 +1255,6 @@
         let sui = $(this).find(".sco")
         var xui = $(this).attr('ErrData');
         var d = JSON.parse(xui)
-       
         var pageX, pageY;
         pageX = item.x + "px";
         pageY = item.y + "px";
