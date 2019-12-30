@@ -100,7 +100,7 @@
                 <div>
                     <span class="left" style="letter-spacing:3px;">DRG支付标准</span>
                     <span class="left">：</span>
-                    <span class="right" id="drgAmount">3000</span>
+                    <span class="right" id="drgAmount">2000</span>
                     <span class="right">元</span>
                 </div>
                 <!--<div>-->
@@ -377,6 +377,7 @@
 
     // 数据渲染
     function dataShowing(newData) {
+        console.log(newData)
         // 数据
         $('#mId').text(newData.mId)
         $('#name').text(newData.name)
@@ -411,6 +412,7 @@
         for (var i = 0; i < newData.fullCheckResult.length; i++) {
 
             str += "<tr>";
+            // 预警、提示图片（type）
             if (newData.fullCheckResult[i].type == 1) {
                 str += "<td><img src='image/warning.png' alt='' class='tipaImg'>" + newData.fullCheckResult[i]
                     .fieldMeaning + " [" + newData.fullCheckResult[i].fieldValve + "]" + "</td>"
@@ -421,6 +423,7 @@
 
             str += "<td>" + newData.fullCheckResult[i].reason + "</td>"
 
+            // 输入框0、下拉框1、搜索框2/3（showType）
             if (newData.fullCheckResult[i].showType == "1" && arrContry.indexOf(newData.fullCheckResult[i].fId) > -1) {
                 // if (newData.fullCheckResult[i].showType == "1"&& arrContry.in_array(newData.fullCheckResult[i].fId)) {
                 str += "<td><div class='dropDownList'><input placeholder='请选择' showType='" + newData.fullCheckResult[i]
@@ -508,6 +511,7 @@
         var yylogn = newData.logicCheckResult;
         for (var i = 0; i < newData.logicCheckResult.length; i++) {
             str1 += "<tr>";
+            // 预警、提示图片（type）
             if (newData.logicCheckResult[i].type == 1) {
                 str1 += "<td><img src='image/warning.png' alt='' class='tipaImg'>" + newData.logicCheckResult[i]
                     .fieldMeaning + " [" + newData.logicCheckResult[i].fieldValve + "]" + "</td>"
@@ -517,6 +521,7 @@
             }
             str1 += "<td>" + newData.logicCheckResult[i].reason + "</td>"
             // console.log(newData.logicCheckResult[i].showType);
+            // 输入框0、下拉框1、搜索框2/3（showType）
             if (newData.logicCheckResult[i].showType == "2") {
                 str1 += "<td><div class='dropDownList'><input placeholder='请搜索' fId='" + newData.logicCheckResult[i]
                     .fId + "' rangeId='" + newData
@@ -549,8 +554,8 @@
         }
         $("#logicCheckResult").append(str1)
 
-        //诊断结果集ICD10
 
+        //诊断结果集ICD10
         var str2 = '';
         for (var i = 0; i < newData.drgDiagnoseFieldResult.length; i++) {
             // console.log(newData.drgDiagnoseFieldResult[i].showType);
@@ -828,7 +833,7 @@
 
     }
 
-
+    // 完整性、逻辑性表格里的搜索
     function drgclick10(data) {
         var obj = data;
         var cuis = obj.id
@@ -893,7 +898,7 @@
     }
 
     //DRG修改
-    //ICD-10
+    //ICD-10搜索
     function drgEvent(data) {
         var obj = data;
         var cuis = obj.id
@@ -963,7 +968,7 @@
 
     }
 
-    //ICD-9
+    //ICD-9搜索
     function drgEventor(data) {
       
         var obj = data;
