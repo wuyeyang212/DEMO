@@ -3,7 +3,10 @@
     padding: 0;
     list-style: none;
 }
-
+@font-face{
+   font-family:'fonping'; 
+   src: url(../font/PINGFANGREGULAR.TTF);
+}
 #app {
     /* width:1200px; */
     /* height: 937px; */
@@ -45,7 +48,7 @@
     border-left: 1px solid #fff;
     padding-left: 10px;
     font-size: 14px;
-    font-family: PingFangSC-Regular;
+    font-family: "fonping";
     line-height: 22px;
     margin-left: 8px;
     position: absolute;

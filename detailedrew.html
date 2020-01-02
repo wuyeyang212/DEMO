@@ -14,8 +14,13 @@
     <!--模糊搜索 style="background:#eef4f9"-->
     <link rel="stylesheet" href="css/jquery-ui-1.9.2.custom.css">
     <style>
+        @font-face {
+            font-family:'fonping';
+            src: url(font/PINGFANGREGULAR.TTF);
+        }
+
         body {
-            font-family: "PingFang SC", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", "FreeSans, Arimo", "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", "FontAwesome", sans-serif
+            font-family: 'fonping', "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", "FreeSans, Arimo", "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", "FontAwesome", sans-serif
         }
 
         .ui-autocomplete {
@@ -674,10 +679,10 @@
             $(this).autocomplete('search')
 
             return false;
-        }).data( "ui-autocomplete" )._renderItem = function( ul, item ) {
-          return $( "<li>" )
-            .append( "<a>" + item.value  + "|" +item.label + "</a>" )
-            .appendTo( ul );
+        }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            return $("<li>")
+                .append("<a>" + item.value + "|" + item.label + "</a>")
+                .appendTo(ul);
         };
 
 
@@ -951,7 +956,7 @@
             select: function (event, ui) {
                 // $("#" + id).val(ui.item.label);
                 $("#" + id).val(ui.item.codeName);
-               
+
                 var ciuo = $("#" + id).parent().parent();
                 ciuo.children("td:eq(1)").text(ui.item.value)
                 ciuo.children("td:eq(2)").text(ui.item.label)
@@ -959,10 +964,10 @@
             }
         }).focus(function () {
             $(this).autocomplete('search')
-        }).data( "ui-autocomplete" )._renderItem = function( ul, item ) {
-          return $( "<li>" )
-            .append( "<a>" + item.value  + "|" +item.label + "</a>" )
-            .appendTo( ul );
+        }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            return $("<li>")
+                .append("<a>" + item.value + "|" + item.label + "</a>")
+                .appendTo(ul);
         };
 
 
@@ -970,7 +975,7 @@
 
     //ICD-9搜索
     function drgEventor(data) {
-      
+
         var obj = data;
         var cuis = obj.id
         var txt = document.getElementById(cuis);
@@ -978,7 +983,7 @@
     }
 
     function drgEventorhandle() {
-    
+
         // var drgkeyword = $(this).val()
         // var rangeType = $(this).attr("rangeid")
         // console.log(rangeType)
@@ -988,7 +993,7 @@
         $("#" + id).autocomplete({
             minLength: 1,
             source: function (request, response) {
-               
+
                 if (request.term != '') {
                     $.ajax({
                         type: "post",
@@ -999,7 +1004,7 @@
                         },
                         dataType: "json",
                         success: function (data) {
-                           
+
                             var arrList = [];
 
                             for (var i = 0; i < data.length; i++) {
@@ -1023,7 +1028,7 @@
             },
             select: function (event, ui) {
                 $("#" + id).val(ui.item.codeName);
-              
+
                 var ciuo = $("#" + id).parent().parent();
                 ciuo.children("td:eq(1)").text(ui.item.value)
                 ciuo.children("td:eq(2)").text(ui.item.label)
@@ -1031,10 +1036,10 @@
             }
         }).focus(function () {
             $(this).autocomplete('search')
-        }).data( "ui-autocomplete" )._renderItem = function( ul, item ) {
-          return $( "<li>" )
-            .append( "<a>" + item.value  + "|" +item.label + "</a>" )
-            .appendTo( ul );
+        }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            return $("<li>")
+                .append("<a>" + item.value + "|" + item.label + "</a>")
+                .appendTo(ul);
         };
 
 
@@ -1096,9 +1101,9 @@
         ]
 
         // DRG表格d code/name 对应的字段
-        var NameAp = ["JN47", "JN49", "JN53", "JN57", "JN61", "JN65", "JN69", "JN73", "JN77", "JN81", "JN85", "JN89",];
-        
-        var kuioOP = [ "JN126", "JN140", "JN154", "JN168", "JN182", "JN196", "JN210", "JN224", "JN238", "JN252"];
+        var NameAp = ["JN47", "JN49", "JN53", "JN57", "JN61", "JN65", "JN69", "JN73", "JN77", "JN81", "JN85", "JN89", ];
+
+        var kuioOP = ["JN126", "JN140", "JN154", "JN168", "JN182", "JN196", "JN210", "JN224", "JN238", "JN252"];
         //DRG校验
         //tbody的tr
         var trs2 = $("#drgDiagnoseFieldResult").children("tr");
@@ -1129,7 +1134,7 @@
                 if (i == o) {
                     var inputKey = operationArray[o];
                     var kuiKey = kuioOP[o];
-                    
+
                     // var inputCon = trs3.eq(i).children('td:eq(1)').html()
                     var inputCon = trs3.eq(i).children('td:eq(3)').children(":first").children(":first").val();
                     if (inputCon == "-") {
@@ -1180,7 +1185,7 @@
 
         fulMessage = JSON.stringify(fulMessage)
         var mId = $("#mId").text();
-     
+
         $.ajax({
             type: "post",
             url: "http://192.168.3.135:8081/recordCheck",
@@ -1254,7 +1259,7 @@
         }
     }
 
-   
+
     //鼠标经过事件
     let testFunc = debounce(function (item) {
         let sui = $(this).find(".sco")
@@ -1264,19 +1269,19 @@
         pageX = item.x + "px";
         pageY = item.y + "px";
         sui.empty()
-        for(var i = 0;i<errData.length;i++){
-            if(errData[i].fId==d.nameId){
+        for (var i = 0; i < errData.length; i++) {
+            if (errData[i].fId == d.nameId) {
                 sui.append("<div class='popover' style='top:" + pageY + ";left:" + pageX +
-            ";display:block'>"+errData[i].reason+"</div>")
-            }else if(errData[i].fId==d.codeId){
+                    ";display:block'>" + errData[i].reason + "</div>")
+            } else if (errData[i].fId == d.codeId) {
                 sui.append("<div class='popover' style='top:" + pageY + ";left:" + pageX +
-            ";display:block'>"+errData[i].reason+"</div>")
+                    ";display:block'>" + errData[i].reason + "</div>")
             }
         }
     }, 250)
 
     function coem(d, e) {
-       
+
         // e.addEventListener("mousemove",function(event){
         //     pageX = event.x+"px";
         //     pageY= event.y+"px";
