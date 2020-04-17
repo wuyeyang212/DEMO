@@ -2684,7 +2684,7 @@
 <script src="js/layer.js"></script>
 
 <script>
-    // const axios = require('axios')
+    const urls = 'http://192.168.3.135:8081/'
     var vm = new Vue({
         el: '#app',
         data: function () {
@@ -2692,7 +2692,6 @@
                 tableData: [],
                 taileId:null,
                 newVselet: null, //上次点击的id
-
                 formitem: {
                     JN127: '',
                     JN141: '',
@@ -2767,7 +2766,7 @@
 
         created() {
             this.GetList(this.id);
-            axios.get('http://192.168.3.135:8081/api/demo/getusers').then(res => {
+            axios.get(urls+'api/demo/getusers').then(res => {
                 var arr = [];
                 var ress = res.data.user;
                 for (var i = 0; i < res.data.user.length; i++) {
@@ -2812,7 +2811,7 @@
                 // console.log(data)
                 this.taileId = data
                 let _this = this;
-                axios.get('http://192.168.3.135:8081/api/demo/getuserinfo/' + data).then(res => {
+                axios.get(urls+'api/demo/getuserinfo/' + data).then(res => {
                     if (res.status == 200) {
                         console.log(res.data)
                         _this.myIndex = 1
@@ -2950,7 +2949,7 @@
         let ari = vm.Keio()
         ari = JSON.stringify(ari)
         $.ajax({
-            url: "http://192.168.3.135:8081/recordAudit", //请求的url地址
+            url: urls+"/recordAudit", //请求的url地址
             dataType: "json", //返回格式为json
             async: true, //请求是否异步，默认为异步，这也是ajax重要特性
             data: {

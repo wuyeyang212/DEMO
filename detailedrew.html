@@ -103,7 +103,8 @@
             </div>
             <div style="float: left;margin-right: 8px;width: 200px;">
                 <div>
-                    <span class="left" style="letter-spacing:3px;">DRG支付标准</span>
+                    <!-- <span class="left" style="letter-spacing:3px;">DRG支付标准</span> -->
+                    <span class="left" style="letter-spacing:3px;">权重</span>
                     <span class="left">：</span>
                     <span class="right" id="drgAmount">2000</span>
                     <span class="right">元</span>
@@ -267,6 +268,7 @@
 <script src="js/region_select.js"></script>
 <script src="js/json2.js"></script>
 <script>
+    const URL_TWO = 'http://192.168.3.135:8081/'
     $(function () {
 
 
@@ -390,7 +392,7 @@
         $('#guoupInfo').text(newData.groupInfo)
         $('#diagnose').text(newData.diagnose)
         $('#operation').text(newData.operation)
-        $('#drgAmount').text(newData.drgAmount)
+        $('#drgAmount').text(newData.weight)
         // $('#drgFundAmount').text(newData.drgFundAmount)
         $('#totalAmount').text(newData.totalAmount)
         $('#score').text(newData.score)
@@ -796,7 +798,7 @@
                 if (request.term != '') {
                     $.ajax({
                         type: "post",
-                        url: "http://192.168.3.135:8081/queryRange",
+                        url: URL_TWO+"queryRange",
                         data: {
                             "showType": "3",
                             "code": request.term
@@ -821,7 +823,7 @@
             },
             focus: function (event, ui) {
 
-                $("#" + id).val(ui.item.codename);
+                // $("#" + id).val(ui.item.codename);
                 return false;
             },
             select: function (event, ui) {
@@ -833,7 +835,11 @@
             }
         }).focus(function () {
             $(this).autocomplete('search')
-        })
+        }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            return $("<li>")
+                .append("<a>" + item.value + "|" + item.label + "</a>")
+                .appendTo(ul);
+        };
 
 
     }
@@ -860,7 +866,7 @@
                 if (request.term != '') {
                     $.ajax({
                         type: "post",
-                        url: "http://192.168.3.135:8081/queryRange",
+                        url: URL_TWO+"queryRange",
                         data: {
                             "showType": "2",
                             "code": request.term
@@ -874,7 +880,7 @@
                                 arrList.push({
                                     value: sui.code,
                                     label: sui.name,
-                                    codeName: sui.codeName
+                                    codeName: sui.codename
                                 })
                             }
                             response(arrList)
@@ -897,7 +903,11 @@
             }
         }).focus(function () {
             $(this).autocomplete('search')
-        })
+        }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            return $("<li>")
+                .append("<a>" + item.value + "|" + item.label + "</a>")
+                .appendTo(ul);
+        };
 
 
     }
@@ -924,7 +934,7 @@
                 if (request.term != '') {
                     $.ajax({
                         type: "post",
-                        url: "http://192.168.3.135:8081/queryRange",
+                        url: URL_TWO+"queryRange",
                         data: {
                             "showType": "2",
                             "code": request.term
@@ -938,7 +948,7 @@
                                 arrList.push({
                                     value: sui.code,
                                     label: sui.name,
-                                    codeName: sui.codeName
+                                    codeName: sui.codename
                                 })
                             }
                             response(arrList)
@@ -948,12 +958,13 @@
 
             },
             focus: function (event, ui) {
-
+                console.log(ui)
                 // $("#" + id).val(ui.item.label);
-                $("#" + id).val(ui.item.codeName);
+                // $("#" + id).val(ui.item.codeName);
                 return false;
             },
             select: function (event, ui) {
+                console.log(ui)
                 // $("#" + id).val(ui.item.label);
                 $("#" + id).val(ui.item.codeName);
 
@@ -997,7 +1008,7 @@
                 if (request.term != '') {
                     $.ajax({
                         type: "post",
-                        url: "http://192.168.3.135:8081/queryRange",
+                        url: URL_TWO+"queryRange",
                         data: {
                             "showType": "3",
                             "code": request.term
@@ -1009,10 +1020,11 @@
 
                             for (var i = 0; i < data.length; i++) {
                                 var sui = data[i];
+                                console.log(sui.code)
                                 arrList.push({
                                     value: sui.code,
                                     label: sui.name,
-                                    codeName: sui.codeName
+                                    codeName: sui.codename
                                 })
                             }
                             response(arrList)
@@ -1022,11 +1034,12 @@
 
             },
             focus: function (event, ui) {
-
+                console.log(ui)
                 $("#" + id).val(ui.item.codeName);
                 return false;
             },
             select: function (event, ui) {
+                console.log(ui)
                 $("#" + id).val(ui.item.codeName);
 
                 var ciuo = $("#" + id).parent().parent();
@@ -1188,7 +1201,7 @@
 
         $.ajax({
             type: "post",
-            url: "http://192.168.3.135:8081/recordCheck",
+            url: URL_TWO+"recordCheck",
             data: {
                 "recordInfo": fulMessage,
                 "recordId": mId
