@@ -38,7 +38,7 @@
                     <span class="listCon">
                         <img src="image/information.png" alt="">
                     </span>
-                    <span class="listCon">霍思邈</span>
+                    <span class="listCon">吴起凡</span>
                     <span style="margin-left: 12px;">
                         <img src="image/out.png" alt="">
                     </span>
@@ -2947,6 +2947,7 @@
 
     function demo() {
         let ari = vm.Keio()
+        let feeTotal = ari.JN265
         ari = JSON.stringify(ari)
         $.ajax({
             url: urls+"/recordAudit", //请求的url地址
@@ -2964,8 +2965,6 @@
 
                     layer.open({
                         type: 2,
-
-
                         title: false,
                         maxmin: false,
                         area: ['1000px', '700px'],
@@ -2974,7 +2973,7 @@
                         success: function (layero, index) {
                             var iframe = window['layui-layer-iframe' + index];
                            
-                            iframe.child(req.auditRuleResults);
+                            iframe.child(req.auditRuleResults,feeTotal);
                         },
                         end: function () {
                             var sui = vm.KeioS()
@@ -2983,6 +2982,8 @@
                             // })
                         }
                     });
+                }else if(req.code="0000"){
+                    layer.msg('效验成功');
                 }
             },
             complete: function () {

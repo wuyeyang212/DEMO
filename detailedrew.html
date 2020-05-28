@@ -107,7 +107,7 @@
                     <span class="left" style="letter-spacing:3px;">权重</span>
                     <span class="left">：</span>
                     <span class="right" id="drgAmount">2000</span>
-                    <span class="right">元</span>
+                    <!-- <span class="right">元</span> -->
                 </div>
                 <!--<div>-->
                 <!--<span class="left">DRG基金支付标准：</span>-->
@@ -383,7 +383,7 @@
 
 
     // 数据渲染
-    function dataShowing(newData) {
+    function dataShowing(newData,d) {
         console.log(newData)
         // 数据
         $('#mId').text(newData.mId)
@@ -394,7 +394,7 @@
         $('#operation').text(newData.operation)
         $('#drgAmount').text(newData.weight)
         // $('#drgFundAmount').text(newData.drgFundAmount)
-        $('#totalAmount').text(newData.totalAmount)
+        $('#totalAmount').text(d)
         $('#score').text(newData.score)
         //消息提醒
         $('#fullCheck').text(newData.fullCheckResult.length)
@@ -625,11 +625,11 @@
     var globalVariableData = {};
     var errData;
 
-    function child(d) {
+    function child(d,feeTotal) {
         globalVariableData = d
         var newData = d
         errData = d.drgCheckResult;
-        dataShowing(newData);
+        dataShowing(newData,feeTotal);
     }
 
 
