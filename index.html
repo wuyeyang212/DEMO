@@ -279,7 +279,8 @@
 
                                         <span class="blanking" id="JN40">
                                             <span class="fontBold">入院科别：</span>
-                                            <input class="underline" style="width: 107px;" v-model="formitem.nameJN40" />
+                                            <input class="underline" style="width: 107px;"
+                                                v-model="formitem.nameJN40" />
                                         </span>
 
                                         <span id="JN41">
@@ -289,7 +290,8 @@
 
                                         <span id="JN45">
                                             <span class="fontBold">转科科别：</span>
-                                            <input class="underline" style="width: 107px;" v-model="formitem.nameJN45" />
+                                            <input class="underline" style="width: 107px;"
+                                                v-model="formitem.nameJN45" />
                                         </span>
                                     </td>
                                 </tr>
@@ -306,7 +308,8 @@
 
                                         <span class="blanking" id="JN43">
                                             <span class="fontBold">出院科别：</span>
-                                            <input class="underline" style="width: 107px;" v-model="formitem.nameJN43" />
+                                            <input class="underline" style="width: 107px;"
+                                                v-model="formitem.nameJN43" />
                                         </span>
 
                                         <span id="JN44">
@@ -403,7 +406,7 @@
                                     <td class="TrueMicsrosoft">{{ formitem.JN52 == '3'? '√' : '' }}</td>
                                     <td class="TrueMicsrosoft">{{ formitem.JN52 == '4'? '√' : '' }}</td>
                                     <td class="TrueMicsrosoft">{{ formitem.JN52 == '9'? '√' : '' }}</td>
-                                    <td ><span id="JN50">{{ formitem.JN50 }}</span></td>
+                                    <td><span id="JN50">{{ formitem.JN50 }}</span></td>
                                 </tr>
 
                                 <tr id="JN56">
@@ -418,7 +421,7 @@
                                     <td class="TrueMicsrosoft">{{ formitem.JN56 == '3'? '√' : '' }}</td>
                                     <td class="TrueMicsrosoft">{{ formitem.JN56 == '4'? '√' : '' }}</td>
                                     <td class="TrueMicsrosoft">{{ formitem.JN56 == '9'? '√' : '' }}</td>
-                                    <td ><span id="JN54">{{ formitem.JN54 }}</span></td>
+                                    <td><span id="JN54">{{ formitem.JN54 }}</span></td>
                                 </tr>
 
                                 <tr height="24" id="JN60">
@@ -766,8 +769,7 @@
                                             <span class="blanking">
                                                 <input type="radio" name="gt31" value="2" v-model="formitem.JN351"
                                                     disabled="true" />有，目的
-                                                <input class="underline" style="width: 574px;"
-                                                     />
+                                                <input class="underline" style="width: 574px;" />
                                             </span>
                                         </span>
                                     </td>
@@ -1936,9 +1938,9 @@
                                     </td>
                                     <td>
                                         <span id="JN316">
-                                            <input class="underline" v-model="this.inICU1year" />年
-                                            <input class="underline" v-model="this.inICU1month" />月
-                                            <input class="underline" v-model="this.inICU1day" />日
+                                            <input class="underline" v-model="inICU1year" />年
+                                            <input class="underline" v-model="inICU1month" />月
+                                            <input class="underline" v-model="inICU1day" />日
                                             <br>
                                             <input class="underline" />时
                                             <input class="underline" />分
@@ -1971,9 +1973,9 @@
                                     </td>
                                     <td>
                                         <span id="JN319">
-                                            <input class="underline" v-model="this.inICU2year" />年
-                                            <input class="underline" v-model="this.inICU2month" />月
-                                            <input class="underline" v-model="this.inICU2day" />日
+                                            <input class="underline" v-model="inICU2year" />年
+                                            <input class="underline" v-model="inICU2month" />月
+                                            <input class="underline" v-model="inICU2day" />日
                                             <br>
                                             <input class="underline" />时
                                             <input class="underline" />分
@@ -2005,9 +2007,9 @@
                                     </td>
                                     <td>
                                         <span id="JN322">
-                                            <input class="underline" v-model="this.inICU3year" />年
-                                            <input class="underline" v-model="this.inICU3month" />月
-                                            <input class="underline" v-model="this.inICU3day" />日
+                                            <input class="underline" v-model="inICU3year" />年
+                                            <input class="underline" v-model="inICU3month" />月
+                                            <input class="underline" v-model="inICU3day" />日
                                             <br>
                                             <input class="underline" />时
                                             <input class="underline" />分
@@ -2039,9 +2041,9 @@
                                     </td>
                                     <td>
                                         <span id="JN325">
-                                            <input class="underline" v-model="this.inICU4year" />年
-                                            <input class="underline" v-model="this.inICU4month" />月
-                                            <input class="underline" v-model="this.inICU4day" />日
+                                            <input class="underline" v-model="inICU4year" />年
+                                            <input class="underline" v-model="inICU4month" />月
+                                            <input class="underline" v-model="inICU4day" />日
                                             <br>
                                             <input class="underline" />时
                                             <input class="underline" />分
@@ -2073,9 +2075,9 @@
                                     </td>
                                     <td>
                                         <span id="JN328">
-                                            <input class="underline" v-model="this.inICU5year" />年
-                                            <input class="underline" v-model="this.inICU5month" />月
-                                            <input class="underline" v-model="this.inICU5day" />日
+                                            <input class="underline" v-model="inICU5year" />年
+                                            <input class="underline" v-model="inICU5month" />月
+                                            <input class="underline" v-model="inICU5day" />日
                                             <br>
                                             <input class="underline" />时
                                             <input class="underline" />分
@@ -2620,9 +2622,9 @@
                     </div>
                     <div id="myKui" class="myKui" v-show="myIndex==0">
                         <el-row :gutter="20">
-                            <el-col :span="5"  @click.native="Indexsui(item.hospitalId)" v-for="(item,i) in conste">
+                            <el-col :span="5" @click.native="Indexsui(item.hospitalId)" v-for="(item,i) in conste">
                                 <div class="blueTop"></div>
-                                <div class="cardContent" >
+                                <div class="cardContent">
                                     <div class="normal">
                                         <div>
                                             <span class="patientName">{{item.name}}</span>
@@ -2650,30 +2652,13 @@
             </el-main>
         </el-container>
 
-        <!-- <div class="hospital">
-            <div class="content" id="content">
-
-               
-                <div class="personInfor">
-
-                </div>
-
-                
-               
-
-            </div>
-        </div> -->
-
-
-
-        <!-- <el-button @click="Keios">默认按钮</el-button> -->
-        <!-- <button onclick="demo()">4545</button> -->
     </div>
 
 
 </body>
 <!-- import Vue before Element -->
 <script src="js/jquery-1.8.3.js"></script>
+<script src="https://cdn.bootcss.com/es6-promise/4.1.1/es6-promise.auto.min.js"></script>
 
 <script src="js/vue.js"></script>
 <script src="js/axios.js"></script>
@@ -2683,14 +2668,14 @@
 <script src="js/jsjsneir.js"></script>
 <script src="js/layer.js"></script>
 
-<script>
-    const urls = 'http://192.168.3.135:8081/'
+<script >
+    var urls = 'http://192.168.3.135:8081/'
     var vm = new Vue({
         el: '#app',
         data: function () {
             return {
                 tableData: [],
-                taileId:null,
+                taileId: null,
                 newVselet: null, //上次点击的id
                 formitem: {
                     JN127: '',
@@ -2764,11 +2749,14 @@
             }
         },
 
-        created() {
-            this.GetList(this.id);
-            axios.get(urls+'api/demo/getusers').then(res => {
+        created:function() {
+            // this.GetList(this.id);
+            var that = this;
+           
+            axios.get(urls + 'api/demo/getusers').then(function(res){
                 var arr = [];
                 var ress = res.data.user;
+             
                 for (var i = 0; i < res.data.user.length; i++) {
 
                     var str_before = ress[i].BedNumber.split('号')[0];
@@ -2786,46 +2774,46 @@
                     })
                     //    console.log(ress[i].JN39.format('yyyy-MM-dd'))
                 }
-                this.conste = arr
+                that.conste = arr
+                console.log(that.conste)
             })
         },
-        mounted() {
-            let parm = {
+        mounted:function() {
+            var  parm = {
                 mdId: this.id
             };
             this.Guding();
         },
         methods: {
-            FistPage() {
+            FistPage:function() {
                 this.myIndex = 0
             },
-            attachedPage() {
-                // this.flagIndex = 1
+            attachedPage:function() {
+                
                 if (this.flagIndex == 0) {
                     this.flagIndex = 1
                 } else {
                     this.flagIndex = 0
                 }
             },
-            Indexsui(data) {
-                // console.log(data)
+            Indexsui:function(data) {
                 this.taileId = data
-                let _this = this;
-                axios.get(urls+'api/demo/getuserinfo/' + data).then(res => {
+                var  _this = this;
+                axios.get(urls + 'api/demo/getuserinfo/' + data).then(function(res){
                     if (res.status == 200) {
                         console.log(res.data)
                         _this.myIndex = 1
                         _this.formitem = res.data.jnInfo
 
-                        this.year = res.data.jnInfo.JN10.substr(0, 4)
-                        this.month = res.data.jnInfo.JN10.substr(4, 2)
-                        this.day = res.data.jnInfo.JN10.substr(6, 2)
+                        _this.year = res.data.jnInfo.JN10.substr(0, 4)
+                        _this.month = res.data.jnInfo.JN10.substr(4, 2)
+                        _this.day = res.data.jnInfo.JN10.substr(6, 2)
 
                         this.JN39year = res.data.jnInfo.JN39.substr(0, 4)
                         this.JN39month = res.data.jnInfo.JN39.substr(4, 2)
                         this.JN39day = res.data.jnInfo.JN39.substr(6, 2)
                         this.JN39hours = res.data.jnInfo.JN39.substr(8, 2)
-                      
+
                         this.JN42year = res.data.jnInfo.JN42.substr(0, 4)
                         this.JN42month = res.data.jnInfo.JN42.substr(4, 2)
                         this.JN42day = res.data.jnInfo.JN42.substr(6, 2)
@@ -2859,7 +2847,7 @@
                 })
             },
             //计算屏幕尺寸
-            Guding() {
+            Guding:function() {
                 var client = document.documentElement.clientHeight;
                 var content = document.getElementById('content');
                 var myKui = document.getElementById('myKui');
@@ -2868,77 +2856,21 @@
                 my.style.height = (client - 260) + "px"
                 myKui.style.height = (client - 260) + "px"
             },
-            Keio() {
-                // console.log(this.formitem)
-                // this.fromeiu.cuise = false
+            Keio:function() {
+                
                 return this.formitem
             },
-            KeioS() {
-               this.Indexsui(this.taileId)
+            KeioS:function() {
+                this.Indexsui(this.taileId)
             },
-            handleClick(tab, event) {
-                console.log(tab, event);
-            },
+           
 
 
-            GetList(data) {
-                console.log(data);
-            },
+            // GetList:function(data) {
+            //     console.log(data);
+            // },
 
-            //随者页面的滚动
-            handleClick(data) {
-                // console.log(data)
-                if (this.newVselet != "null") {
-                    var suisele = this.newVselet;
-                }
-                console.log(suisele)
-                $("#" + suisele).css("color", "black")
-
-                var dataid = data.fId
-                var sio = $("#" + dataid);
-
-                var oneDivHeight = $("#my").height();
-                //  console.log(oneDivHeight )
-
-
-                console.log(sio.offset().top - 431)
-                console.log($("#my").scrollTop())
-
-                // console.log($("#my").scrollTop()>sui,$("#my").scrollTop() <sui - $("#my").height())
-                // if(!($("#my").scrollTop() > sio.offset().top-240) && !($("#my").scrollTop() < sio.offset().top- $("#my").height())) {
-                //           console.log("出现了")
-                //       } else {
-                //           console.log("消失了")
-                //       }
-                if (!(oneDivHeight < sio.offset().top - 240) && !($("#my").scrollTop() < sio.offset().top - $(
-                            "#my")
-                        .height()) && sio.offset().top - 240 > 0) {
-                    console.log("出现了")
-                    sio.css("color", "red")
-                } else {
-                    //  $("#my").animate({scrollTop:sio.offset().top},500)
-                    //  $("#my").animate({scrollTop:sio.offset().top+600},500)
-                    $("#my").animate({
-                        scrollTop: $("#my").scrollTop() + sio.offset().top - 431
-                    }, 500)
-                    sio.css("color", "red")
-                    // $("#my").animate({scrollTop:0},500)
-                }
-                // console.log(suikio)
-                //   const offsetTop = suikio.top;
-                // const offsetBottom = suikio.bottom;
-                // // const offsetHeight = suikio.height;
-                // if (offsetTop <= window.innerHeight && offsetBottom >= 0) {
-                //   console.log("进入可视区域");
-                //   // do something...
-                // } else {
-                //   console.log("移出可视区域");
-                //   // do something...
-                // }
-
-                this.newVselet = data.fId
-                // id:this.$route.query.id
-            },
+            
 
 
         },
@@ -2946,11 +2878,11 @@
     })
 
     function demo() {
-        let ari = vm.Keio()
-        let feeTotal = ari.JN265
+        var  ari = vm.Keio()
+        var  feeTotal = ari.JN265
         ari = JSON.stringify(ari)
         $.ajax({
-            url: urls+"/recordAudit", //请求的url地址
+            url: urls + "/recordAudit", //请求的url地址
             dataType: "json", //返回格式为json
             async: true, //请求是否异步，默认为异步，这也是ajax重要特性
             data: {
@@ -2972,8 +2904,8 @@
                         content: 'detailedrew.html',
                         success: function (layero, index) {
                             var iframe = window['layui-layer-iframe' + index];
-                           
-                            iframe.child(req.auditRuleResults,feeTotal);
+                                console.log(req)
+                            iframe.child(req.auditRuleResults, feeTotal);
                         },
                         end: function () {
                             var sui = vm.KeioS()
@@ -2982,7 +2914,7 @@
                             // })
                         }
                     });
-                }else if(req.code="0000"){
+                } else if (req.code = "0000") {
                     layer.msg('效验成功');
                 }
             },

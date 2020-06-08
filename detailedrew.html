@@ -682,6 +682,7 @@
 
             return false;
         }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            
             return $("<li>")
                 .append("<a>" + item.value + "|" + item.label + "</a>")
                 .appendTo(ul);
@@ -948,7 +949,7 @@
                                 arrList.push({
                                     value: sui.code,
                                     label: sui.name,
-                                    codeName: sui.codename
+                                    codeName: sui.codename,
                                 })
                             }
                             response(arrList)
