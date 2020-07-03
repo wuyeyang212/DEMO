@@ -1209,11 +1209,17 @@
                     var kuiKey = NameAp[j];
                     // var inputCode = trs2.eq(i).children('td:eq(1)').html()
                     var inputCon = trs2.eq(i).children('td:eq(3)').children(":first").children(":first").val();
-                    if (inputCon == '-') {
-                        DRGfull[kuiKey] = "-"
-                    } else {
+                    var hhinputConCode = trs2.eq(i).children('td:eq(1)').html();
+                    var hhinputConName = trs2.eq(i).children('td:eq(2)').html();
+                    if (inputCon!='') {
                         DRGfull[inputKey] = inputCon
+                    } else if(hhinputConCode!='-'&&inputCon=='') {
+                        DRGfull[inputKey] = hhinputConCode + "|" + hhinputConName
+                        
+                    }else if(hhinputConCode=='-'&&inputCon==''){
+                        DRGfull[kuiKey] = "-"
                     }
+                    
                 }
             }
         }
@@ -1229,10 +1235,16 @@
 
                     // var inputCon = trs3.eq(i).children('td:eq(1)').html()
                     var inputCon = trs3.eq(i).children('td:eq(3)').children(":first").children(":first").val();
-                    if (inputCon == "-") {
-                        fulMessage[kuiKey] = "-"
-                    } else {
+                    var hhinputConCode = trs2.eq(i).children('td:eq(1)').html();
+                    var hhinputConName = trs2.eq(i).children('td:eq(2)').html();
+                    
+                    if (inputCon!='') {
                         fulMessage[inputKey] = inputCon
+                    } else if(hhinputConCode!='-'&&inputCon=='') {
+                        fulMessage[inputKey] = hhinputConCode + "|" + hhinputConName
+                        
+                    }else if(hhinputConCode=='-'&&inputCon==''){
+                        fulMessage[kuiKey] = "-"
                     }
                 }
             }
