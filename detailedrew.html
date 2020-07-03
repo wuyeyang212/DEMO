@@ -322,7 +322,7 @@
                 var suiCui = trsyu.eq(0).children('td:eq(0)').text();
 
                 SMOtable.prepend(top)
-                // SortTdName(SMOtable, suiCui)
+                SortTdName(SMOtable, suiCui)
             }
         });
 
@@ -331,13 +331,10 @@
             if (TableName == "门(急)诊诊断" || TableName == "主要诊断") {
                 trsyu.each(function (el, index) {
 
-                    if (el == 0) {
-
-                        $(this).children('td:eq(0)').text('门(急)诊诊断')
-                    } else if (el == 1) {
+                   if (el == 0) {
                         $(this).children('td:eq(0)').text('主要诊断')
-                    } else if (1 < el && el < 12) {
-                        $(this).children('td:eq(0)').text('其他诊断' + (el - 1))
+                    } else {
+                        $(this).children('td:eq(0)').text('其他诊断' + el)
                     }
                     //  else if (11 < el && el < 15) {
                     //     $(this).children('td:eq(0)').text('病理诊断' + (el - 11))
@@ -1191,7 +1188,7 @@
         }
         // console.log(fulMessage)
         var DRGfull = {};
-        var codeArray = ["JN48", "JN50", "JN54", "JN58", "JN62", "JN66", "JN70", "JN74", "JN78", "JN82", "JN86", "JN90",
+        var codeArray = [ "JN50", "JN54", "JN58", "JN62", "JN66", "JN70", "JN74", "JN78", "JN82", "JN86", "JN90",
             "JN107", "JN111", "JN115", "JN119", "JN121", "JN123",
         ]
 
@@ -1266,6 +1263,7 @@
             };
         }
         console.log(DRGfull)
+        console.log(Logic.length)
         if (Logic.length == 0) {
             Object.assign(fulMessage, DRGfull);
         } else {
