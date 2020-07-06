@@ -196,9 +196,9 @@
                             <table class="dg leftText" cellspacing="0">
                                 <thead>
                                     <tr class="blueTr">
-                                        <th style="width: 120px">字段名</th>
-                                        <th style="width: 120px">ICD-10</th>
-                                        <th style="width: 300px">ICD-10中文名称</th>
+                                        <th style="width: 120px;">字段名</th>
+                                        <th style="width: 250px;">ICD-10编码</th>
+                                        <th style="width: 250px;">医保ICD-10编码</th>
                                         <th style="width: 230px">修改</th>
                                         <th>操作</th>
                                     </tr>
@@ -211,8 +211,8 @@
                                 <thead>
                                     <tr class="blueTr">
                                         <th style="width: 120px">字段名</th>
-                                        <th style="width: 120px">ICD-9</th>
-                                        <th style="width: 300px">ICD-9中文名称</th>
+                                        <th style="width: 250px">ICD-9编码</th>
+                                        <th style="width: 250px">医保ICD-9编码</th>
                                         <th style="width: 230px">修改</th>
                                         <th>操作</th>
                                     </tr>
@@ -268,8 +268,6 @@
 <script src="js/region_select.js"></script>
 <script src="js/json2.js"></script>
 <script>
-    
-    // const URL_TWO = 'http://192.168.3.53:8082/'
     const URL_TWO = 'http://192.168.3.135:8082/'
     $(function () {
 
@@ -584,11 +582,21 @@
                     "<div class='sco'></div></div></td>"
             }
 
+            if( newData.drgDiagnoseFieldResult[i].code!='-'){
+                str2 += "<td title='"+newData.drgDiagnoseFieldResult[i]
+                .code+"|"+ newData.drgDiagnoseFieldResult[i]
+                .name+"' id='" + newData.drgDiagnoseFieldResult[i].codeId + "'>" + newData.drgDiagnoseFieldResult[i]
+                .code+"|"+ newData.drgDiagnoseFieldResult[i]
+                .name+ "</td>"
+                str2 += "<td title='"+newData.drgDiagnoseFieldResult[i].ybCode+"|"+newData.drgDiagnoseFieldResult[i].ybName+"' id='" + newData.drgDiagnoseFieldResult[i].nameId + "'>" + newData.drgDiagnoseFieldResult[i]
+                .ybCode+"|"+newData.drgDiagnoseFieldResult[i].ybName + "</td>"
+            }else{
+                str2 += "<td id='" + newData.drgDiagnoseFieldResult[i].codeId + "'>" +"-"+ "</td>"
+                str2 += "<td id='" + newData.drgDiagnoseFieldResult[i].codeId + "'>" +"-"+ "</td>"
+            }
 
-            str2 += "<td id='" + newData.drgDiagnoseFieldResult[i].codeId + "'>" + newData.drgDiagnoseFieldResult[i]
-                .code + "</td>"
-            str2 += "<td id='" + newData.drgDiagnoseFieldResult[i].nameId + "'>" + newData.drgDiagnoseFieldResult[i]
-                .name + "</td>"
+            
+            
             if (newData.drgCheckResult.length > 0) {
                 for (var j = 0; j < newData.drgCheckResult.length; j++) {
                     if (newData.drgDiagnoseFieldResult[i].codeId == newData.drgCheckResult[j].fId) {
@@ -608,9 +616,9 @@
                     "'onmouseover ='drgEvent(this)' type='text' class='inputCon' autocomplete='off' value='' ></div></td>"
             }
 
-
+            // <span class='moveUpOrDown'>上移</span> | <span class='moveUpOrDown'>下移</span> |
             str2 +=
-                "<td><span class='moveUpOrDown'>上移</span> | <span class='moveUpOrDown'>下移</span> | <span class='moveUpOrDown'>置顶</span></td>"
+                "<td><span class='moveUpOrDown'>置顶</span></td>"
             str2 += "</tr>"
         }
         $("#drgDiagnoseFieldResult").append(str2)
@@ -628,11 +636,17 @@
             } else {
                 str3 += "<td><div class='firstTd'>" + newData.drgOperationFieldResult[i].fieldName + "</div></td>"
             }
-
-            str3 += "<td id='" + newData.drgOperationFieldResult[i].codeId + "'>" + newData.drgOperationFieldResult[i]
-                .code + "</td>"
-            str3 += "<td id='" + newData.drgOperationFieldResult[i].nameId + "'>" + newData.drgOperationFieldResult[i]
-                .name + "</td>"
+            if(newData.drgOperationFieldResult[i].code!='-'){
+                str3 += "<td title='"+newData.drgOperationFieldResult[i] .code+"|"+ newData.drgOperationFieldResult[i].name+"'  id='" + newData.drgOperationFieldResult[i].codeId + "'>" + newData.drgOperationFieldResult[i]
+                .code+"|"+ newData.drgOperationFieldResult[i].name + "</td>"
+                str3 += "<td title='"+newData.drgOperationFieldResult[i].ybCode+"|"+ newData.drgOperationFieldResult[i].ybName+"' id='" + newData.drgOperationFieldResult[i].codeId + "'>" + newData.drgOperationFieldResult[i]
+                .ybCode+"|"+ newData.drgOperationFieldResult[i].ybName + "</td>"
+            }else{
+                str3 += "<td id='" + newData.drgOperationFieldResult[i].nameId + "'>" + "-" + "</td>"
+                str3 += "<td id='" + newData.drgOperationFieldResult[i].nameId + "'>" + "-" + "</td>"
+            }
+           
+            
             if (newData.drgCheckResult.length > 0) {
                 for (var j = 0; j < newData.drgCheckResult.length; j++) {
                     if (newData.drgOperationFieldResult[i].codeId == newData.drgCheckResult[j].fId) {
@@ -651,9 +665,9 @@
                     "' rangeid='DMB01' onmouseover='drgEventor(this)' type='text' class='inputCon' autocomplete='off' ></div></td>"
             }
 
-
+            // <span class='moveUpOrDown'>上移</span> | <span class='moveUpOrDown'>下移</span> |
             str3 +=
-                "<td><span class='moveUpOrDown'>上移</span> | <span class='moveUpOrDown'>下移</span> | <span class='moveUpOrDown'>置顶</span></td>"
+                "<td> <span class='moveUpOrDown'>置顶</span></td>"
             str3 += "</tr>"
         }
         $("#drgOperationFieldResult").append(str3)
