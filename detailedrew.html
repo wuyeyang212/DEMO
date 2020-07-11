@@ -591,22 +591,17 @@
                     "<div class='sco'></div></div></td>"
             }
 
-            if (newData.drgDiagnoseFieldResult[i].code != '-') {
-                str2 += "<td class='heconellipsis' title='" + newData.drgDiagnoseFieldResult[i]
-                    .code + "|" + newData.drgDiagnoseFieldResult[i]
-                    .name + "' id='" + newData.drgDiagnoseFieldResult[i].codeId + "'>" + newData.drgDiagnoseFieldResult[
-                        i]
-                    .code + "|" + newData.drgDiagnoseFieldResult[i]
-                    .name + "</td>"
-                str2 += "<td class='heconellipsis' title='" + newData.drgDiagnoseFieldResult[i].ybCode + "|" + newData
-                    .drgDiagnoseFieldResult[
-                        i].ybName + "' id='" + newData.drgDiagnoseFieldResult[i].nameId + "'>" + newData
-                    .drgDiagnoseFieldResult[i]
-                    .ybCode + "|" + newData.drgDiagnoseFieldResult[i].ybName + "</td>"
-            } else {
-                str2 += "<td id='" + newData.drgDiagnoseFieldResult[i].codeId + "'>" + "-" + "</td>"
-                str2 += "<td id='" + newData.drgDiagnoseFieldResult[i].codeId + "'>" + "-" + "</td>"
-            }
+            // if (newData.drgDiagnoseFieldResult[i].code != '-') {
+                str2 += "<td class='heconellipsis' title='" + newData.drgDiagnoseFieldResult[i].code + "|" + 
+                    newData.drgDiagnoseFieldResult[i].name + "'id='" + newData.drgDiagnoseFieldResult[i].codeId + "'>" + 
+                    newData.drgDiagnoseFieldResult[i].code + "|" + newData.drgDiagnoseFieldResult[i].name + "</td>"
+                str2 += "<td class='heconellipsis' title='" + newData.drgDiagnoseFieldResult[i].ybCode + "|" + 
+                    newData.drgDiagnoseFieldResult[i].ybName + "'id='" + newData.drgDiagnoseFieldResult[i].nameId + "'>" + 
+                    newData.drgDiagnoseFieldResult[i].ybCode + "|" + newData.drgDiagnoseFieldResult[i].ybName + "</td>"
+            // } else {
+                // str2 += "<td id='" + newData.drgDiagnoseFieldResult[i].codeId + "'>" + "-" + "</td>"
+                // str2 += "<td id='" + newData.drgDiagnoseFieldResult[i].nameId + "'>" + "-" + "</td>"
+            // }
 
 
 
@@ -653,20 +648,17 @@
             } else {
                 str3 += "<td><div class='firstTd'>" + newData.drgOperationFieldResult[i].fieldName + "</div></td>"
             }
-            if (newData.drgOperationFieldResult[i].code != '-') {
-                str3 += "<td class='heconellipsis' title='" + newData.drgOperationFieldResult[i].code + "|" + newData
-                    .drgOperationFieldResult[
-                        i].name + "'  id='" + newData.drgOperationFieldResult[i].codeId + "'>" + newData
-                    .drgOperationFieldResult[i]
-                    .code + "|" + newData.drgOperationFieldResult[i].name + "</td>"
-                str3 += "<td class='heconellipsis' title='" + newData.drgOperationFieldResult[i].ybCode + "|" + newData
-                    .drgOperationFieldResult[i].ybName + "' id='" + newData.drgOperationFieldResult[i].codeId + "'>" +
-                    newData.drgOperationFieldResult[i]
-                    .ybCode + "|" + newData.drgOperationFieldResult[i].ybName + "</td>"
-            } else {
-                str3 += "<td id='" + newData.drgOperationFieldResult[i].nameId + "'>" + "-" + "</td>"
-                str3 += "<td id='" + newData.drgOperationFieldResult[i].nameId + "'>" + "-" + "</td>"
-            }
+            // if (newData.drgOperationFieldResult[i].code != '-') {
+                str3 += "<td class='heconellipsis' title='" + newData.drgOperationFieldResult[i].code + "|" + 
+                    newData.drgOperationFieldResult[i].name + "'id='" + newData.drgOperationFieldResult[i].codeId + "'>" 
+                    + newData.drgOperationFieldResult[i].code + "|" + newData.drgOperationFieldResult[i].name + "</td>"
+                str3 += "<td class='heconellipsis' title='" + newData.drgOperationFieldResult[i].ybCode + "|" +
+                    newData.drgOperationFieldResult[i].ybName + "'id='" + newData.drgOperationFieldResult[i].nameId + "'>" +
+                    newData.drgOperationFieldResult[i].ybCode + "|" + newData.drgOperationFieldResult[i].ybName + "</td>"
+            // } else {
+                // str3 += "<td id='" + newData.drgOperationFieldResult[i].codeId + "'>" + "-" + "</td>"
+                // str3 += "<td id='" + newData.drgOperationFieldResult[i].nameId + "'>" + "-" + "</td>"
+            // }
 
 
             if (newData.drgCheckResult.length > 0) {
