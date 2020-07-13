@@ -331,7 +331,7 @@
             if (TableName == "门(急)诊诊断" || TableName == "主要诊断") {
                 trsyu.each(function (el, index) {
 
-                   if (el == 0) {
+                    if (el == 0) {
                         $(this).children('td:eq(0)').text('主要诊断')
                     } else {
                         $(this).children('td:eq(0)').text('其他诊断' + el)
@@ -582,21 +582,21 @@
                     "<div class='sco'></div></div></td>"
             }
 
-            if( newData.drgDiagnoseFieldResult[i].code!='-'){
-                str2 += "<td title='"+newData.drgDiagnoseFieldResult[i]
-                .code+"|"+ newData.drgDiagnoseFieldResult[i]
-                .name+"' id='" + newData.drgDiagnoseFieldResult[i].codeId + "'>" + newData.drgDiagnoseFieldResult[i]
-                .code+"|"+ newData.drgDiagnoseFieldResult[i]
-                .name+ "</td>"
-                str2 += "<td title='"+newData.drgDiagnoseFieldResult[i].ybCode+"|"+newData.drgDiagnoseFieldResult[i].ybName+"' id='" + newData.drgDiagnoseFieldResult[i].nameId + "'>" + newData.drgDiagnoseFieldResult[i]
-                .ybCode+"|"+newData.drgDiagnoseFieldResult[i].ybName + "</td>"
-            }else{
-                str2 += "<td id='" + newData.drgDiagnoseFieldResult[i].codeId + "'>" +"-"+ "</td>"
-                str2 += "<td id='" + newData.drgDiagnoseFieldResult[i].codeId + "'>" +"-"+ "</td>"
+            if (newData.drgDiagnoseFieldResult[i].code != '-') {
+                str2 += "<td title='" + newData.drgDiagnoseFieldResult[i]
+                    .code + "|" + newData.drgDiagnoseFieldResult[i]
+                        .name + "' id='" + newData.drgDiagnoseFieldResult[i].codeId + "'>" + newData.drgDiagnoseFieldResult[i]
+                        .code + "|" + newData.drgDiagnoseFieldResult[i]
+                        .name + "</td>"
+                str2 += "<td title='" + newData.drgDiagnoseFieldResult[i].ybCode + "|" + newData.drgDiagnoseFieldResult[i].ybName + "' id='" + newData.drgDiagnoseFieldResult[i].nameId + "'>" + newData.drgDiagnoseFieldResult[i]
+                    .ybCode + "|" + newData.drgDiagnoseFieldResult[i].ybName + "</td>"
+            } else {
+                str2 += "<td id='" + newData.drgDiagnoseFieldResult[i].codeId + "'>" + "-" + "</td>"
+                str2 += "<td id='" + newData.drgDiagnoseFieldResult[i].codeId + "'>" + "-" + "</td>"
             }
 
-            
-            
+
+
             if (newData.drgCheckResult.length > 0) {
                 for (var j = 0; j < newData.drgCheckResult.length; j++) {
                     if (newData.drgDiagnoseFieldResult[i].codeId == newData.drgCheckResult[j].fId) {
@@ -636,17 +636,17 @@
             } else {
                 str3 += "<td><div class='firstTd'>" + newData.drgOperationFieldResult[i].fieldName + "</div></td>"
             }
-            if(newData.drgOperationFieldResult[i].code!='-'){
-                str3 += "<td title='"+newData.drgOperationFieldResult[i] .code+"|"+ newData.drgOperationFieldResult[i].name+"'  id='" + newData.drgOperationFieldResult[i].codeId + "'>" + newData.drgOperationFieldResult[i]
-                .code+"|"+ newData.drgOperationFieldResult[i].name + "</td>"
-                str3 += "<td title='"+newData.drgOperationFieldResult[i].ybCode+"|"+ newData.drgOperationFieldResult[i].ybName+"' id='" + newData.drgOperationFieldResult[i].codeId + "'>" + newData.drgOperationFieldResult[i]
-                .ybCode+"|"+ newData.drgOperationFieldResult[i].ybName + "</td>"
-            }else{
+            if (newData.drgOperationFieldResult[i].code != '-') {
+                str3 += "<td title='" + newData.drgOperationFieldResult[i].code + "|" + newData.drgOperationFieldResult[i].name + "'  id='" + newData.drgOperationFieldResult[i].codeId + "'>" + newData.drgOperationFieldResult[i]
+                    .code + "|" + newData.drgOperationFieldResult[i].name + "</td>"
+                str3 += "<td title='" + newData.drgOperationFieldResult[i].ybCode + "|" + newData.drgOperationFieldResult[i].ybName + "' id='" + newData.drgOperationFieldResult[i].codeId + "'>" + newData.drgOperationFieldResult[i]
+                    .ybCode + "|" + newData.drgOperationFieldResult[i].ybName + "</td>"
+            } else {
                 str3 += "<td id='" + newData.drgOperationFieldResult[i].nameId + "'>" + "-" + "</td>"
                 str3 += "<td id='" + newData.drgOperationFieldResult[i].nameId + "'>" + "-" + "</td>"
             }
-           
-            
+
+
             if (newData.drgCheckResult.length > 0) {
                 for (var j = 0; j < newData.drgCheckResult.length; j++) {
                     if (newData.drgOperationFieldResult[i].codeId == newData.drgCheckResult[j].fId) {
@@ -671,9 +671,12 @@
             str3 += "</tr>"
         }
         $("#drgOperationFieldResult").append(str3)
+
     }
 
-
+    var str = "iid0000ffr";
+    var substr = str.match(/(iid=?)(\S*)(?=ffr)/);
+    console.log(substr[2]);
     // 提交需要的数据
     var globalVariableData = {};
     var errData;
@@ -1077,7 +1080,7 @@
 
     }
 
-    function drgEventorhandle(data,rangList) {
+    function drgEventorhandle(data, rangList) {
         var syu = $(this);
         // var id = this.id;
         var id = data.id
@@ -1105,7 +1108,7 @@
                                     value: sui.code,
                                     label: sui.name,
                                     codeName: sui.codename,
-                                    fist:''
+                                    fist: ''
                                 })
                             }
                             response(arrList)
@@ -1116,12 +1119,12 @@
 
                     for (var i = 0; i < rangList.length; i++) {
                         var sui = rangList[i];
-                        
+
                         arrList.push({
                             value: sui.code,
                             label: sui.name,
                             codeName: sui.codename,
-                            fist:'优先选择'
+                            fist: '优先选择'
                         })
                     }
                     response(arrList)
@@ -1146,7 +1149,7 @@
             $(this).autocomplete('search')
         }).data("ui-autocomplete")._renderItem = function (ul, item) {
             return $("<li>")
-                .append("<a>"+item.fist + item.value + "|" + item.label + "</a>")
+                .append("<a>" + item.fist + item.value + "|" + item.label + "</a>")
                 .appendTo(ul);
         };
 
@@ -1204,7 +1207,7 @@
         }
         // console.log(fulMessage)
         var DRGfull = {};
-        var codeArray = [ "JN50", "JN54", "JN58", "JN62", "JN66", "JN70", "JN74", "JN78", "JN82", "JN86", "JN90",
+        var codeArray = ["JN50", "JN54", "JN58", "JN62", "JN66", "JN70", "JN74", "JN78", "JN82", "JN86", "JN90",
             "JN107", "JN111", "JN115", "JN119", "JN121", "JN123",
         ]
 
@@ -1227,15 +1230,15 @@
                     var inputCon = trs2.eq(i).children('td:eq(3)').children(":first").children(":first").val();
                     var hhinputConCode = trs2.eq(i).children('td:eq(1)').html();
                     var hhinputConName = trs2.eq(i).children('td:eq(2)').html();
-                    if (inputCon!='') {
+                    if (inputCon != '') {
                         DRGfull[inputKey] = inputCon
-                    } else if(hhinputConCode!='-'&&inputCon=='') {
+                    } else if (hhinputConCode != '-' && inputCon == '') {
                         DRGfull[inputKey] = hhinputConCode + "|" + hhinputConName
-                        
-                    }else if(hhinputConCode=='-'&&inputCon==''){
+
+                    } else if (hhinputConCode == '-' && inputCon == '') {
                         DRGfull[kuiKey] = "-"
                     }
-                    
+
                 }
             }
         }
@@ -1253,13 +1256,13 @@
                     var inputCon = trs3.eq(i).children('td:eq(3)').children(":first").children(":first").val();
                     var hhinputConCode = trs2.eq(i).children('td:eq(1)').html();
                     var hhinputConName = trs2.eq(i).children('td:eq(2)').html();
-                    
-                    if (inputCon!='') {
+
+                    if (inputCon != '') {
                         fulMessage[inputKey] = inputCon
-                    } else if(hhinputConCode!='-'&&inputCon=='') {
+                    } else if (hhinputConCode != '-' && inputCon == '') {
                         fulMessage[inputKey] = hhinputConCode + "|" + hhinputConName
-                        
-                    }else if(hhinputConCode=='-'&&inputCon==''){
+
+                    } else if (hhinputConCode == '-' && inputCon == '') {
                         fulMessage[kuiKey] = "-"
                     }
                 }
