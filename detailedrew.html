@@ -591,23 +591,6 @@
                     "<div class='sco'></div></div></td>"
             }
 
-<<<<<<< HEAD
-            if (newData.drgDiagnoseFieldResult[i].code != '-') {
-                str2 += "<td title='" + newData.drgDiagnoseFieldResult[i]
-                    .code + "|" + newData.drgDiagnoseFieldResult[i]
-                        .name + "' id='" + newData.drgDiagnoseFieldResult[i].codeId + "'>" + newData.drgDiagnoseFieldResult[i]
-                        .code + "|" + newData.drgDiagnoseFieldResult[i]
-                        .name + "</td>"
-                str2 += "<td title='" + newData.drgDiagnoseFieldResult[i].ybCode + "|" + newData.drgDiagnoseFieldResult[i].ybName + "' id='" + newData.drgDiagnoseFieldResult[i].nameId + "'>" + newData.drgDiagnoseFieldResult[i]
-                    .ybCode + "|" + newData.drgDiagnoseFieldResult[i].ybName + "</td>"
-            } else {
-                str2 += "<td id='" + newData.drgDiagnoseFieldResult[i].codeId + "'>" + "-" + "</td>"
-                str2 += "<td id='" + newData.drgDiagnoseFieldResult[i].codeId + "'>" + "-" + "</td>"
-            }
-
-
-
-=======
             // if (newData.drgDiagnoseFieldResult[i].code != '-') {
                 str2 += "<td class='heconellipsis' title='" + newData.drgDiagnoseFieldResult[i].code + "|" + 
                     newData.drgDiagnoseFieldResult[i].name + "'id='" + newData.drgDiagnoseFieldResult[i].codeId + "'>" + 
@@ -622,7 +605,6 @@
 
 
 
->>>>>>> 18cef71817ee4de7639a8f5cdc6de4e92694f33f
             if (newData.drgCheckResult.length > 0) {
                 for (var j = 0; j < newData.drgCheckResult.length; j++) {
                     if (newData.drgDiagnoseFieldResult[i].codeId == newData.drgCheckResult[j].fId) {
@@ -666,17 +648,6 @@
             } else {
                 str3 += "<td><div class='firstTd'>" + newData.drgOperationFieldResult[i].fieldName + "</div></td>"
             }
-<<<<<<< HEAD
-            if (newData.drgOperationFieldResult[i].code != '-') {
-                str3 += "<td title='" + newData.drgOperationFieldResult[i].code + "|" + newData.drgOperationFieldResult[i].name + "'  id='" + newData.drgOperationFieldResult[i].codeId + "'>" + newData.drgOperationFieldResult[i]
-                    .code + "|" + newData.drgOperationFieldResult[i].name + "</td>"
-                str3 += "<td title='" + newData.drgOperationFieldResult[i].ybCode + "|" + newData.drgOperationFieldResult[i].ybName + "' id='" + newData.drgOperationFieldResult[i].codeId + "'>" + newData.drgOperationFieldResult[i]
-                    .ybCode + "|" + newData.drgOperationFieldResult[i].ybName + "</td>"
-            } else {
-                str3 += "<td id='" + newData.drgOperationFieldResult[i].nameId + "'>" + "-" + "</td>"
-                str3 += "<td id='" + newData.drgOperationFieldResult[i].nameId + "'>" + "-" + "</td>"
-            }
-=======
             // if (newData.drgOperationFieldResult[i].code != '-') {
                 str3 += "<td class='heconellipsis' title='" + newData.drgOperationFieldResult[i].code + "|" + 
                     newData.drgOperationFieldResult[i].name + "'id='" + newData.drgOperationFieldResult[i].codeId + "'>" 
@@ -688,7 +659,6 @@
                 // str3 += "<td id='" + newData.drgOperationFieldResult[i].codeId + "'>" + "-" + "</td>"
                 // str3 += "<td id='" + newData.drgOperationFieldResult[i].nameId + "'>" + "-" + "</td>"
             // }
->>>>>>> 18cef71817ee4de7639a8f5cdc6de4e92694f33f
 
 
             if (newData.drgCheckResult.length > 0) {
@@ -1276,21 +1246,12 @@
                     var kuiKey = NameAp[j];
                     // var inputCode = trs2.eq(i).children('td:eq(1)').html()
                     var inputCon = trs2.eq(i).children('td:eq(3)').children(":first").children(":first").val();
-<<<<<<< HEAD
-                    var hhinputConCode = trs2.eq(i).children('td:eq(1)').html();
-                    var hhinputConName = trs2.eq(i).children('td:eq(2)').html();
-                    if (inputCon != '') {
-                        DRGfull[inputKey] = inputCon
-                    } else if (hhinputConCode != '-' && inputCon == '') {
-                        DRGfull[inputKey] = hhinputConCode + "|" + hhinputConName
-=======
                     var hhinputConCode = trs2.eq(i).children('td:eq(2)').html();
                     // var hhinputConName = trs2.eq(i).children('td:eq(2)').html();
                     if (inputCon != '') {
                         DRGfull[inputKey] = inputCon
                     } else if (hhinputConCode != '-' && inputCon == '') {
                         DRGfull[inputKey] = hhinputConCode
->>>>>>> 18cef71817ee4de7639a8f5cdc6de4e92694f33f
 
                     } else if (hhinputConCode == '-' && inputCon == '') {
                         DRGfull[kuiKey] = "-"
@@ -1311,22 +1272,13 @@
 
                     // var inputCon = trs3.eq(i).children('td:eq(1)').html()
                     var inputCon = trs3.eq(i).children('td:eq(3)').children(":first").children(":first").val();
-<<<<<<< HEAD
-                    var hhinputConCode = trs2.eq(i).children('td:eq(1)').html();
-                    var hhinputConName = trs2.eq(i).children('td:eq(2)').html();
-=======
                     var hhinputConCode = trs3.eq(i).children('td:eq(2)').html();
                     // var hhinputConName = trs3.eq(i).children('td:eq(2)').html();
->>>>>>> 18cef71817ee4de7639a8f5cdc6de4e92694f33f
 
                     if (inputCon != '') {
                         fulMessage[inputKey] = inputCon
                     } else if (hhinputConCode != '-' && inputCon == '') {
-<<<<<<< HEAD
-                        fulMessage[inputKey] = hhinputConCode + "|" + hhinputConName
-=======
                         fulMessage[inputKey] = hhinputConCode
->>>>>>> 18cef71817ee4de7639a8f5cdc6de4e92694f33f
 
                     } else if (hhinputConCode == '-' && inputCon == '') {
                         fulMessage[kuiKey] = "-"
@@ -1375,7 +1327,6 @@
 
         fulMessage = JSON.stringify(fulMessage)
         var mId = $("#mId").text();
-
         $.ajax({
             type: "post",
             url: URL_TWO + "recordCheck",
