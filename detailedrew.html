@@ -580,7 +580,7 @@
         for (var i = 0; i < newData.drgDiagnoseFieldResult.length; i++) {
             // console.log(newData.drgDiagnoseFieldResult[i].showType);
             str2 += "<tr>";
-            if (arrS.indexOf(newData.drgDiagnoseFieldResult[i].nameId) > -1) {
+            if (arrS.indexOf(newData.drgDiagnoseFieldResult[i].codeId) > -1) {
                 str2 += "<td ErrData=" + JSON.stringify(newData.drgDiagnoseFieldResult[i]) +
                     " onmouseover='coem(" + JSON.stringify(newData.drgDiagnoseFieldResult[i]) +
                     ",this)' onmouseout='MouseLeave(" + JSON.stringify(newData.drgDiagnoseFieldResult[i]) +
